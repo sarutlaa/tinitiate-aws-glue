@@ -3,7 +3,7 @@ deploy:
   runs-on: ubuntu-latest
   steps:
     - name: Download python script from build
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v1
       with:
         name: unzip_glue_job.py
     - name: Set up AWS credentials

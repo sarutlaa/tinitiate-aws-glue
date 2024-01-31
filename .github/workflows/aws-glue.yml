@@ -1,25 +1,28 @@
-name: AWS Glue Job
-
-on:
-  push:
-    branches:
-      - main  # Adjust the branch as needed
-
-jobs:
-  run-glue-job:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
-
-    - name: Set up AWS CLI
-      uses: aws-actions/configure-aws-credentials@v1
+deploy:
+  needs: build
+  runs-on: ubuntu-latest
+  steps:
+    - name: Download python script from build
+      uses: actions/download-artifact@v2
       with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-1  # Adjust the region as needed
-
-    - name: Run AWS Glue Job
+        name: tini-d-unzip-valid-invoices.py
+    - name: Set up AWS credentials
+      shell: bash
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       run: |
-        aws glue start-job-run --job-name unzip_glue_job.py
+        mkdir -p ~/.aws
+        touch ~/.aws/credentials
+        echo "[default]
+        aws_access_key_id = $AWS_ACCESS_KEY_ID
+        aws_secret_access_key = $AWS_SECRET_ACCESS_KEY" > ~/.aws/credentials
+    - name: Upload to S3
+      run: aws s3 cp tini-d-unzip-valid-invoices.py s3://tini-d-gluebucket-001/py_scripts/tini-d-unzip-valid-invoices.py --region us-east-1
+    - name: Update Glue job
+      run: |
+        aws glue update-job --job-name "UNZIP_INVOICE_Jan_31" --job-update \
+"Role=AWSGlueServiceRole,Command={Name=glueetl,ScriptLocation=s3://tini-d-gluebucket-001/py_scripts/tini-d-unzip-valid-invoices.py}" \
+--region us-east-1
+    - name: Cleanup
+      run: rm -rf ~/.aws

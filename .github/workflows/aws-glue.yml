@@ -5,7 +5,7 @@ deploy:
     - name: Download python script from build
       uses: actions/download-artifact@v2
       with:
-        name: tini-d-unzip-valid-invoices.py
+        name: unzip_glue_job.py
     - name: Set up AWS credentials
       shell: bash
       env:
@@ -18,11 +18,11 @@ deploy:
         aws_access_key_id = $AWS_ACCESS_KEY_ID
         aws_secret_access_key = $AWS_SECRET_ACCESS_KEY" > ~/.aws/credentials
     - name: Upload to S3
-      run: aws s3 cp tini-d-unzip-valid-invoices.py s3://tini-d-gluebucket-001/py_scripts/tini-d-unzip-valid-invoices.py --region us-east-1
+      run: aws s3 cp unzip_glue_job.py s3://tini-d-gluebucket-001/py_scripts/unzip_glue_job.py --region us-east-1
     - name: Update Glue job
       run: |
         aws glue update-job --job-name "UNZIP_INVOICE_Jan_31" --job-update \
-"Role=AWSGlueServiceRole,Command={Name=glueetl,ScriptLocation=s3://tini-d-gluebucket-001/py_scripts/tini-d-unzip-valid-invoices.py}" \
+"Role=AWSGlueServiceRole,Command={Name=glueetl,ScriptLocation=s3://tini-d-gluebucket-001/py_scripts/unzip_glue_job.py}" \
 --region us-east-1
     - name: Cleanup
       run: rm -rf ~/.aws

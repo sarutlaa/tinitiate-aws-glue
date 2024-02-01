@@ -4,7 +4,10 @@ deploy:
   steps:
     - name: Checkout Repository
       uses: actions/checkout@v2  # Update to the latest version, which uses Node.js 20
-    
+      with:
+        repository: https://github.com/jaykumsi/tinitiate-aws-glue.git
+        ref: main
+        
     - name: Set up Python 3.8
       uses: actions/setup-python@v2
       with:

@@ -3,22 +3,32 @@ on:
   push:
     paths:
       - '.github/workflows/aws-glue.yml'
-deploy:
-  needs: build
-  runs-on: ubuntu-latest
-  steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v4
 
-    - name: Set up Node.js
-      uses: actions/setup-node@v4
 
-    - name: Set up AWS CLI
-      uses: aws-actions/configure-aws-credentials@v2
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: us-east-1
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    steps:
+        - name: Install aws cli
+          id: install-aws-cli
+          uses: unfor19/install-aws-cli-action@v1
+          with:
+            version: 2
+            verbose: false
+            arch: amd64
+            rootdir: ""
+            workdir: "" 
 
-    - name: Upload to S3
-      run: aws s3 cp unzip_glue_job.py s3://tini-d-gluebucket-001/py_scripts/unzip_glue_job.py
+        - name: Set AWS credentials
+          run: export AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }} && export AWS_SECRET_ACCESS_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+        - name: Checkout repository
+          uses: actions/checkout@v3
+          with:
+            submodules: 'true'
+
+        - name: Upload files to S3
+          run: aws s3 sync ./ s3://tini-d-gluebucket-001/py_scripts/unzip_glue_job.py

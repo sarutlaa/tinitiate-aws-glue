@@ -10,5 +10,4 @@ deploy:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
      
     - name: Upload to S3
-      run: aws s3 sync ./unzip_glue_job.py s3://tini-d-gluebucket-001/py_scripts/unzip_glue_job.py  
-     
+      run: aws s3 sync ./unzip_glue_job.py s3://tini-d-gluebucket-001/py_scripts/unzip_glue_job.py

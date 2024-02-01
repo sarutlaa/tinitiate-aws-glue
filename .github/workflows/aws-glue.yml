@@ -31,4 +31,5 @@ jobs:
             submodules: 'true'
 
         - name: Upload files to S3
-          run: aws s3 cp unzip_glue_job.py s3://tini-d-gluebucket-001/py_scripts/
+          run: aws s3 cp unzip_glue_job.py s3://tini-d-gluebucket-001/py_scripts/ --debug
+          - name: Upload to S3

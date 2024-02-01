@@ -32,6 +32,8 @@ jobs:
 
         - name: Upload files to S3
           run: aws s3 cp unzip_glue_job.py s3://tini-d-gluebucket-001/py_scripts/ --region us-east-1 --debug
-               aws glue start-job-run --job-name unzip_glue_job.py
+        
+        - name: Start AWS Glue Job
+          run: aws glue start-job-run --job-name unzip_glue_job.py  --debug
 
     

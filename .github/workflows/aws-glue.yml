@@ -38,11 +38,12 @@ jobs:
     
         #- name: Update AWS Glue Job
          # run: aws glue update-job --job-name unzip_glue_job.py --job-update #"Role=tini-d-glue-crawler-role-001,Command={Name=glueetl,ScriptLocation=s3://tini-d-gluebucket-001/py_scripts/unzip_glue_job.py}" --region us-east-1 --debug      
-        
+        echo "AWS Update Starting"
         - name: Update AWS Glue Job
           run: aws glue update-job --job-name unzip_glue_job.py --job-update	 
           Description="To load the unzip data into catalog",Role="tini-d-glue-crawler-role-001"	,ExecutionProperty={MaxConcurrentRuns=1},Command={Name=glueetl,ScriptLocation="s3://tini-d-gluebucket-001/py_scripts/unzip_glue_job.py"},MaxRetries=0,Timeout=2880,WorkerType="G.1X",NumberOfWorkers=2,GlueVersion="1.0" --region us-east-1 --debug
           
+        echo "AWS Update Completed"  
         - name: Run AWS Glue Job
           run: aws glue start-job-run --job-name unzip_glue_job.py  --region us-east-1 --debug 
 

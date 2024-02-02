@@ -37,8 +37,8 @@ jobs:
          # run: aws glue create-job --name unzip_glue_job.py --role tini-d-glue-crawler-role-001 --command Name=glueetl,ScriptLocation=s3://tini-d-gluebucket-001/py_scripts/unzip_glue_job.py  --region us-east-1 --debug
     
         - name: Update AWS Glue Job
-          run: aws glue update-job --job-name unzip_glue_job.py --job-update 
-          "Role=tini-d-glue-crawler-role-001,Command={Name=glueetl,ScriptLocation=s3://tini-d-gluebucket-001/py_scripts/unzip_glue_job.py},DefaultArguments={--additional= arguments},Description="To load the unzip data into catalog",MaxRetries=2,Timeout=2880,WorkerType="G 1X",Language= "Python 3",NumberOfWorkers=2,GlueVersion="Glue 4.0 - Supports spark 3.3,Scala 2,Python 3""  --region us-east-1 --debug 
+          run: aws glue update-job --job-name unzip_glue_job.py --job-update	 Description="To load the unzip data into catalog",Role="tini-d-glue-crawler-role-001"	,ExecutionProperty={MaxConcurrentRuns=1},Command={Name=glueetl,ScriptLocation="s3://tini-d-gluebucket-001/py_scripts/unzip_glue_job.py"},MaxRetries=0,Timeout=2880,WorkerType="G.1X",NumberOfWorkers=3,GlueVersion="1.0" --region us-east-1 --debug
+          
         - name: Run AWS Glue Job
           run: aws glue start-job-run --job-name unzip_glue_job.py  --region us-east-1 --debug 
 

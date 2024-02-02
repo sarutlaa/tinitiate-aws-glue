@@ -46,7 +46,6 @@ jobs:
               --job-update '{
                 "Description": "To load the unzip data into catalog",
                 "Role": "tini-d-glue-crawler-role-001",
-                "ExecutionProperty": {"MaxConcurrentRuns": 1},
                 "Command": {
                   "Name": "glueetl",
                   "ScriptLocation": "s3://tini-d-gluebucket-001/py_scripts/unzip_glue_job.py"

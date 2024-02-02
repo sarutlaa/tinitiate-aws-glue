@@ -38,7 +38,7 @@ jobs:
     
         #- name: Update AWS Glue Job
          # run: aws glue update-job --job-name unzip_glue_job.py --job-update #"Role=tini-d-glue-crawler-role-001,Command={Name=glueetl,ScriptLocation=s3://tini-d-gluebucket-001/py_scripts/unzip_glue_job.py}" --region us-east-1 --debug      
-        echo "AWS Update Starting"
+        
         - name: Update AWS Glue Job
           run: |
             aws glue update-job \

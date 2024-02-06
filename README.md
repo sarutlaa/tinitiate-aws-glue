@@ -34,8 +34,18 @@
     * Source S3 (CSV,Parquet,JSON,AWS ION) - Target(S3,RDBMS,DynamoDB)
         * IAM roles needed
         * Code Structure
-    * Source RDBMS (Oracle, SQL Server, Postgresql) - Target(S3,RDBMS,DynamoDB) 
+    * Source RDBMS (Oracle, SQL Server, Postgresql) - Target(S3,RDBMS,  
+                    DynamoDB) 
     * Source Dynamo - Target(S3,RDBMS,DynamoDB)
+    * Create Script to crawl the S3 Zip file to Data Catalog
+    * Create a log group using the script
+    * Add above crawl to the Log group
+    * Read errors from latest log in the specified log group
+    * Partitioning through crawler 
+    * partitioning through Athena
+    * Inserting through Athena
+    * Serde to read parquet/JSon/CSV/Ion
+
 
 ## GITHUB Deployment with Actions
 * Working with GitHub
@@ -51,3 +61,5 @@
     * Settings
     * actions>yaml file
     * On Push, On Merge
+
+

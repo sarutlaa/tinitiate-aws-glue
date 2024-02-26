@@ -17,7 +17,7 @@ database = "glue_db"
 df = glueContext.create_dynamic_frame.from_catalog(database=database, table_name="purchase").toDF()
 
 # IN condition
-df_in = df.filter(df["product_supplier_id"].isin([150,259,21]))
+df_in = df.filter(df["product_supplier_id"].isin([150,259,21])) 
 
 # NOT IN condition
 df_not_in = df.filter(~df["quantity"].isin([295,743,67]))

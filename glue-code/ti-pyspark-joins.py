@@ -25,7 +25,7 @@ category_df = glueContext.create_dynamic_frame.from_catalog(database=database, t
 
 
 
-# Join the tables on categoryid column
+# Join the tables on categoryid column. Remove Duplicate columns
 inner_df = product_df.join(category_df, product_df["categoryid"] == category_df["categoryid"], "inner")
 
 # Log the count of rows in the joined DataFrame

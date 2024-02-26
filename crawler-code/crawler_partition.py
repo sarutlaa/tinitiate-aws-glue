@@ -1,3 +1,82 @@
+<<<<<<< HEAD
+import boto3
+import urllib.parse
+import os
+import copy
+import sys
+
+# Configure database / table name and emp_id, file_id from workflow params?
+DATABASE_NAME = 'glue_db'
+TABLE_NAME = 'emp_hr_data'
+dept_id = '1'
+
+# # Initialise the Glue client using Boto 3
+glue_client = boto3.client('glue')
+
+#get current table schema for the given database name & table name
+def get_current_schema(database_name, table_name):
+    try:
+        response = glue_client.get_table(
+            DatabaseName=DATABASE_NAME,
+            Name=TABLE_NAME
+        )
+    except Exception as error:
+        print("Exception while fetching table info")
+        sys.exit(-1)
+    
+    # Parsing table info required to create partitions from table
+    table_data = {}
+    table_data['input_format'] = response['Table']['StorageDescriptor']['InputFormat']
+    table_data['output_format'] = response['Table']['StorageDescriptor']['OutputFormat']
+    table_data['table_location'] = response['Table']['StorageDescriptor']['Location']
+    table_data['serde_info'] = response['Table']['StorageDescriptor']['SerdeInfo']
+    table_data['partition_keys'] = response['Table']['PartitionKeys']
+    
+    return table_data
+
+#prepare partition input list using table_data
+def generate_partition_input_list(table_data):
+    input_list = []  # Initializing empty list
+    partition_keys =  [{'Name': 'dept_id', 'Type': 'bigint'}]
+    partition_values = [str(dept_id)]   
+    
+    # Ensure the number of partition keys matches the number of partition values
+    if len(partition_keys) != len(partition_values):
+        print("Error: Number of partition keys does not match the number of partition values")
+        return None
+    
+    part_location = table_data['s3://tini-d-gluebucket-001/incoming_data/hr-data/']  # Base location
+    
+    for i, key in enumerate(partition_keys):
+        part_location += f"{key['Name']}={partition_values[i]}/"
+    
+    input_dict = {
+        'Values': partition_values,
+        'StorageDescriptor': {
+            'Location': part_location,
+            'InputFormat': table_data['input_format'],
+            'OutputFormat': table_data['output_format'],
+            'SerdeInfo': table_data['serde_info']
+        }
+    }
+    input_list.append(input_dict.copy())
+    return input_list
+
+#create partition dynamically using the partition input list
+table_data = get_current_schema(DATABASE_NAME, TABLE_NAME)
+input_list = generate_partition_input_list(dept_id)
+try:
+    create_partition_response = glue_client.batch_create_partition(
+            DatabaseName=DATABASE_NAME,
+            TableName=TABLE_NAME,
+            PartitionInputList=input_list
+        )
+    print('Glue partition created successfully.') 
+    print(create_partition_response)
+except Exception as e:
+            # Handle exception as per your business requirements
+            print(e)
+=======
 import os
 # Set the AWS profile using an environment variable
 os.environ['AWS_PROFILE'] = 'jkumsi'
@@ -121,3 +200,4 @@ except botocore.exceptions.ClientError as e:
 except Exception as e:
     logger.error(f"Error: {e}")
     raise e
+>>>>>>> 38ff75ddde0a9bd3c09c78d3b88f592404b6c95c

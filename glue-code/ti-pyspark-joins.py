@@ -1,20 +1,12 @@
 from pyspark.context import SparkContext
 from awsglue.context import GlueContext
-from pyspark.sql import SparkSession
-import logging
 
 # Initialize Spark context with log level
 sc = SparkContext()
 sc.setLogLevel("INFO")  # Setting log level for Spark context
 
 glueContext = GlueContext(sc)
-spark = glueContext.spark_session
 
-# Set up logging - check if this returns a valid logger
-logger = glueContext.get_logger()
-# Optional: Inspect the logger object
-print("Logger: ", logger)
-logger.info("IM Using Logger")
 # Define Athena catalog and database
 catalog = "awsglue_data_catalog"
 database = "glue_db"
@@ -23,39 +15,54 @@ database = "glue_db"
 product_df = glueContext.create_dynamic_frame.from_catalog(database=database, table_name="product").toDF()
 category_df = glueContext.create_dynamic_frame.from_catalog(database=database, table_name="category").toDF()
 
+# Select specific columns from the tables to avoid duplicate column names
+product_selected_df = product_df.select("productid", "productname", "categoryid", "unit_price").withColumnRenamed("categoryid", "product_categoryid")
+category_selected_df = category_df.select("categoryid", "categoryname")
 
-
-# Join the tables on categoryid column. Remove Duplicate columns
-inner_df = product_df.join(category_df, product_df["categoryid"] == category_df["categoryid"], "inner")
+# Join the tables on categoryid column
+inner_df = product_selected_df.join(category_selected_df, product_selected_df["product_categoryid"] == category_selected_df["categoryid"], "inner")
 
 # Log the count of rows in the joined DataFrame
-logger.info("Number of rows in the joined DataFrame: {}".format(inner_df.count()))
+glueContext.get_logger().info("Number of rows in the inner joined DataFrame: {}".format(inner_df.count()))
+
+# Show the resulting DataFrame
+inner_df.show()
+
+# Drop the category_categoryid column from the joined DataFrame
+inner_df = inner_df.drop("product_categoryid")
+
+# Show the resulting DataFrame after dropping the column
+inner_df.show()
 
 # Left Join the tables on categoryid column
-left_df = product_df.join(category_df, product_df["categoryid"] == category_df["categoryid"], "left")
- 
+left_df = product_selected_df.join(category_selected_df, product_selected_df["product_categoryid"] == category_selected_df["categoryid"], "left")
 
-# right Join the tables on categoryid column
-right_df = product_df.join(category_df, product_df["categoryid"] == category_df["categoryid"], "right")
- 
-# full Join the tables on categoryid column
-full_df = product_df.join(category_df, product_df["categoryid"] == category_df["categoryid"], "full_outer")
- 
-print("full_df: ", logger)
-# Show the resulting DataFrame
-full_df.show(n=full_df.count())
+# Drop the category_categoryid column from the joined DataFrame
+left_df = left_df.drop("product_categoryid")
 
-print("right_df: ", logger)
-# Show the resulting DataFrame
-right_df.show()
-
-print("left_df: ", logger)
 # Show the resulting DataFrame
 left_df.show()
 
-print("inner_df: ", logger)
-# Display the joined data frame
-inner_df.show()
+# Right Join the tables on categoryid column
+right_df = product_selected_df.join(category_selected_df, product_selected_df["product_categoryid"] == category_selected_df["categoryid"], "right")
 
- 
- 
+
+# Drop the category_categoryid column from the joined DataFrame
+right_df = right_df.drop("product_categoryid")
+
+
+# Show the resulting DataFrame
+right_df.show()
+
+# Full Outer Join the tables on categoryid column
+full_outer_df = product_selected_df.join(category_selected_df, product_selected_df["product_categoryid"] == category_selected_df["categoryid"], "outer")
+
+
+
+# Drop the category_categoryid column from the joined DataFrame
+full_outer_df = full_outer_df.drop("product_categoryid")
+
+
+
+# Show the resulting DataFrame
+full_outer_df.show()

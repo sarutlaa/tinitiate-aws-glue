@@ -2,7 +2,7 @@
 > Jay Kumsi
 
 ## Glue Topics
-* [AWS Glue Overview](markdown/intro.md)
+* [Introduction](markdown/intro.md).
 * What IAM Roles are needed
 
 ### Glue with PySpark

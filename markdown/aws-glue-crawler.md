@@ -1,6 +1,5 @@
-<<<<<<< HEAD
 # AWS Glue Crawler
-> Jay Kumsi
+> Jay Kumsi & Sravya Arutla
 ## Glue Crawler
   * A Program that connects to your data source (S3 ,DyDB) to scan your data and creates metadata tables in Glue Data Catalog
   * Can scan multuple data sources in single run

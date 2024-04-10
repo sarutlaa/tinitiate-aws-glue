@@ -21,9 +21,10 @@ result_df = purchase_df.select("purchase_tnx_id", "product_supplier_id","purchas
 
 # Create a new table using CTAS
 result_df.createOrReplaceTempView("temp_table")
+# OR
 # spark.sql("CREATE TABLE new_purchase_table AS SELECT * FROM temp_table")
 
-# Optionally, you can also specify the table location and format
+# Optionally, you can Specify the table format (Parquet) and S3 location for storing the new table
 spark.sql("CREATE TABLE new_purchase_table USING PARQUET LOCATION 's3://ti-p-etl-glue/glue_logs/' AS SELECT * FROM temp_table")
 
 # Show the resulting DataFrame

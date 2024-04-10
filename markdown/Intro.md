@@ -1,7 +1,7 @@
 
 # AWS Glue
 
-> Sravya Arutla
+> Jay Kumsi & Sravya Arutla
 
 
 
@@ -15,15 +15,23 @@ Below are the listed Key AWS Glue Components.
 
 ## AWS Glue Components
 
+AWS Glue utilizes a collaborative framework of multiple components, each contributing to the design and upkeep of ETL processes.
+
+### AWS Glue Console
+- Enables the creation, monitoring, and management of ETL jobs by users.
+
 ### Glue Data Catalog
 
-
-The Glue Data Catalog is a central metadata repository that stores information about your data assets, regardless of where they are located. It acts as a unified metadata store for all your data sources and targets, enabling seamless data discovery, ETL, and query execution across your datasets.
+- Central Metadata Repository: Stores information on data assets, accessible regardless of their physical location.
+- Unified Metadata Store: Serves as a single source for all data sources and targets, enhancing data management and accessibility.
+- Seamless Data Discovery: Simplifies the process of discovering data across various datasets.
+- Efficient ETL Processes: Enables smooth Extract, Transform, and Load operations, ensuring data is readily prepared for analysis.
+- Optimized Query Execution: Facilitates efficient query execution across datasets, improving data retrieval and analysis.
 
 
 ### Database
 
-Within the AWS Glue Data Catalog, a database is a logical grouping of tables. It helps organize your data catalog and makes it easier to manage access and permissions for different datasets.
+Databases in the AWS Glue Data Catalog function as collections of related Data Catalog table definitions, systematically organized into logical groups. This structure supports efficient data catalog organization and streamlines the control of access and permissions across a variety of datasets.
 
 ### Data store, data source, and data target
 

@@ -9,6 +9,8 @@ AWS Glue is a Serverless data integration i.e., fully managed Extract, Transform
 
 ![AWS Glue Components](https://github.com/sarutlaa/tinitiate-aws-glue/assets/141533429/49d4152a-1baa-4ff8-ae33-1532e8eeffe3)
 
+***Fig.1 AWS Glue Components***
+
 Below are the listed Key AWS Glue Components.
 
 
@@ -87,3 +89,12 @@ Each of these components plays a crucial role in the AWS Glue service, working t
 - No built-in testing environment
 - Spark, Scala, and Python expertise required
 - No real-time data operations
+
+
+## Use Cases
+
+- Integration with Amazon Athena
+- Integration with Amazon S3
+- Integration with Snowflake
+- Integration with GitHub
+- Creating an event-driven ETL pipeline: with AWS Lambda, you can trigger an ETL job when new data is added to Amazon S3.

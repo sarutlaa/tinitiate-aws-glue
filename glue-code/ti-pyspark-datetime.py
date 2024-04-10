@@ -1,3 +1,4 @@
+# Import necessary libraries for Spark and AWS Glue functionalities
 from pyspark.context import SparkContext
 from awsglue.context import GlueContext
 from pyspark.sql import SparkSession

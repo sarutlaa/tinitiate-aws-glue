@@ -1,9 +1,8 @@
-<<<<<<< HEAD
 # AWS Glue
 > Jay Kumsi
 
 ## Glue Topics
-* Intro 
+* Introduction
 * What IAM Roles are needed
 
 ### Glue with PySpark

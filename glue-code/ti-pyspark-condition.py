@@ -4,7 +4,7 @@ from pyspark.sql import SparkSession
 
 # Initialize Spark context with log level
 sc = SparkContext()
-sc.setLogLevel("INFO")  # Setting log level for Spark context
+sc.setLogLevel("INFO")  # Set log level to INFO to control the verbosity of log output
 
 glueContext = GlueContext(sc)
 spark = glueContext.spark_session

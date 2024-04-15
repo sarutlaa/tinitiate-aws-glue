@@ -1,9 +1,8 @@
-<<<<<<< HEAD
 # AWS Glue
-> Jay Kumsi
+> Jay Kumsi & Sravya Arutla
 
 ## Glue Topics
-*Intro 
+* [AWS Glue Overview](markdown/Intro.md)
 * What IAM Roles are needed
 * [Crawler](AWS-GLUE-Crawler.md).
    * Source
@@ -66,4 +65,3 @@
 * Glue PySpark DataFrame Filter Conditions IN, NOT IN, >,<,<>
 * Glue PySpark DataFrame Distinct, Psuedo Colums, Date, DateTime, DateTime TimeZone
 * Glue PySpark DataFrame Handling: Null, isnull, not null
->>>>>>> 38ff75ddde0a9bd3c09c78d3b88f592404b6c95c

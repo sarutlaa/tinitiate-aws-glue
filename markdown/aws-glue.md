@@ -2,7 +2,7 @@
 > Jay Kumsi & Sravya Arutla
 
 ## Glue Topics
-* [AWS Glue Overview](markdown/Intro.md)
+* [AWS Glue Overview](Intro.md)
 * What IAM Roles are needed
 * [Crawler](AWS-GLUE-Crawler.md).
    * Source

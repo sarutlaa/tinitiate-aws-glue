@@ -8,7 +8,7 @@
    * Source
    * Target
 * Glue with PySpark IAM Roles
-* Glue PySpark DataFrame Joins (Inner, Left, Right, Full Outer,cross join) - Filename :: ti-pyspark-joins.py
+* [Joins](markdown/glue-pyspark-joins.md)
 * Glue PySpark DataFrame Joins two small tables,2 large tables,2 very large tables
 * Glue PySpark DataFrame Joins multiple tables joins(3 or more)
 * Glue PySpark DataFrame Joins Remove duplicate columns when joined

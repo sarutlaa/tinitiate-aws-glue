@@ -1,9 +1,7 @@
 
-# JOINS
+# Understanding Joins with PySpark in AWS Glue:
 
-## Understanding Joins with PySpark in AWS Glue:
-
-This dcoument demonstrates the use of PySpark in AWS Glue to process and join data stored in Athena. By utilizing various types of joins, we can combine records from two datasets (product and category) based on their relational keys. Here's a simple breakdown of each type of join used in the script
+This document demonstrates the use of PySpark in AWS Glue to process and join data stored in Athena. By utilizing various types of joins, we can combine records from two datasets (product and category) based on their relational keys. Here's a simple breakdown of each type of join used in the script
 
 ## Types of Joins
 ### 1. Inner Join:

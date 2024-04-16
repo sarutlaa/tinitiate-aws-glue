@@ -18,7 +18,7 @@
 * Glue Generate PySpark DataFrame from RDBMS (Oracle, SQL Server, Postgresql, MySQL)
 * Glue Generate PySpark DataFrame from DynamoDB
 * Glue PySpark DataFrame Select, Rename Columns in Select
-* Glue PySpark DataFrame Group By --done
+* [Group By](glue-pyspark-groupby.md)
 * Glue PySpark DataFrame Analytical Functions --done
 * Glue PySpark DataFrame Order By --done
 * Glue PySpark DataFrame Having Clause --done

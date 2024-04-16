@@ -51,7 +51,7 @@ Create an IAM role for AWS Glue with the necessary permissions to access S3, Glu
 ### 4. PySpark Script
 Below is the PySpark script used in the Glue job. This script initializes Spark and Glue contexts, loads data from Athena, selects specific columns, performs various joins, and logs the output.
 
-[pyspark-joins](glue-code/ti-pyspark-joins.py)
+[pyspark-joins](../glue-code/ti-pyspark-joins.py)
 
 ### 5. Understanding Joins: 
   - **Inner Join**: Returns records that have matching values in both databases.

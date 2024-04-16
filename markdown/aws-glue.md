@@ -33,10 +33,10 @@
 * [Distinct](glue-pyspark-distinct.md)
 * Glue PySpark DataFrame Psuedo Colums --done
 * Glue PySpark DataFrame Built in Psuedo --done
-* Glue PySpark DataFrame Date, DateTime, DateTime TimeZone --error
-* Glue PySpark DataFrame Union,Union All, Intersect --done
-* Glue PySpark DataFrame Pivot, UNPivot --done
-* Glue PySpark DataFrame With Clause(CTE) --done
+* [Date Formats](glue-pyspark-date-formats.md) Date, DateTime, DateTime TimeZone --error
+* [Set Operations](glue-pyspark-set-operations.md) Union,Union All, Intersect --done
+* [Pivot, UnPivot](glue-pyspark-pivot-unpivot.md)
+* [Common Table Expressions(CTE)](glue-pyspark-cte.md)
 * [CTAS](glue-pyspark-ctas.md) 
 * Glue PySpark DataFrame Connect by prior(hierarchial queries) --error
 * Glue PySpark DataFrame partitions -- done

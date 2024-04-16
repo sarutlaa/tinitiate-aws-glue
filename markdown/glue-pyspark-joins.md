@@ -1,7 +1,33 @@
 
 # JOINS
 
-## Demonstration of how to process and join CSV data using AWS Glue and PySpark.
+## Understanding Joins with PySpark in AWS Glue:
+
+This dcoument demonstrates the use of PySpark in AWS Glue to process and join data stored in Athena. By utilizing various types of joins, we can combine records from two datasets (product and category) based on their relational keys. Here's a simple breakdown of each type of join used in the script
+
+## Types of Joins
+### 1. Inner Join:
+  - What It Does: Merges rows from both datasets where the join column values match.
+  - Example: Matches products with their corresponding categories using categoryid.
+  - Use Case: Ideal for displaying products that have specific categories defined.
+    
+### 2. Left Join:
+
+  - What It Does: Includes all rows from the left dataset and the matched rows from the right dataset. Unmatched rows from the right dataset will have null values.
+  - Example: Shows all products, appending category information where available.
+  - Use Case: Useful for displaying all products, highlighting those without specific categories.
+    
+### 3. Right Join:
+
+  - What It Does: Includes all rows from the right dataset and the matched rows from the left dataset. Unmatched rows from the left dataset will have null values.
+  - Example: Lists all categories, appending product information where available.
+  - Use Case: Ensures that all categories are displayed, including those without any linked products.
+
+### 4. Full Outer Join:
+
+  - What It Does: Combines results of both left and right joins, including rows from both datasets where there is no match.
+  - Example: Shows all products and categories, marking unmatched items with null.
+  - Use Case: Provides a comprehensive overview of both products and categories, displaying complete data availability.
 
 ## Prerequisites
 - Input Data Files in S3
@@ -28,6 +54,13 @@ Create an IAM role for AWS Glue with the necessary permissions to access S3, Glu
 Below is the PySpark script used in the Glue job. This script initializes Spark and Glue contexts, loads data from Athena, selects specific columns, performs various joins, and logs the output.
 
 [pyspark-joins](glue-code/ti-pyspark-joins.py)
+
+### 5. Understanding Joins: 
+  - **Inner Join**: Returns records that have matching values in both databases.
+  - **Left Join**: Returns all records from the left dataset, and the matched records from the right dataset. If there is no match, the result is `null` on the right side.
+  - **Right Join**: Returns all records from the right dataset, and the matched records from the left dataset. If there is no match, the result is `null` on the left side.
+  - **Full Outer Join**: Combines the results of both left and right outer joins. The result is `null` on the side that does not have a match.
+  - **Cross Join**: Produces the Cartesian product of rows from both datasets. Use with caution as it can result in large datasets.
 
 ### 5. Execution
 Run the Glue job and monitor the execution in the AWS Glue Console.

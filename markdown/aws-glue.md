@@ -22,7 +22,7 @@
 * [Analytical Functions](glue-pyspark-analytical.md)
 * [Order By](glue-pyspark-orderby.md)
 * [Having](glue-pyspark-having.md)
-* [Filtering](glue-pyspark-filtering.md) IN, NOT IN, >,<,<> 
+* [Filtering](glue-pyspark-condtition.md) 
 * Glue PySpark DataFrame Handling: Null, isnull, not null --done
 * [Distinct](glue-pyspark-distinct.md)
 * Glue PySpark DataFrame Psuedo Colums --done

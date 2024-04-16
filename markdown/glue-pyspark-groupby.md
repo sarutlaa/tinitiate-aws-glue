@@ -1,4 +1,4 @@
-# Understanding Joins with PySpark in AWS Glue:
+# Understanding GroupBy with PySpark in AWS Glue:
 
 ## Prerequisites
 

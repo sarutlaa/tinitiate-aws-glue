@@ -19,19 +19,19 @@
 * Glue Generate PySpark DataFrame from DynamoDB
 * Glue PySpark DataFrame Select, Rename Columns in Select
 * [Group By](glue-pyspark-groupby.md)
-* Glue PySpark DataFrame Analytical Functions --done
-* Glue PySpark DataFrame Order By --done
-* Glue PySpark DataFrame Having Clause --done
-* Glue PySpark DataFrame Filter Conditions IN, NOT IN, >,<,<> --done
+* [Analytical Functions](glue-pyspark-analytical.md)
+* [Order By](glue-pyspark-orderby.md)
+* [Having](glue-pyspark-having.md)
+* [Filtering](glue-pyspark-filtering.md) IN, NOT IN, >,<,<> 
 * Glue PySpark DataFrame Handling: Null, isnull, not null --done
-* Glue PySpark DataFrame Distinct --done
+* [Distinct](glue-pyspark-distinct.md)
 * Glue PySpark DataFrame Psuedo Colums --done
 * Glue PySpark DataFrame Built in Psuedo --done
 * Glue PySpark DataFrame Date, DateTime, DateTime TimeZone --error
 * Glue PySpark DataFrame Union,Union All, Intersect --done
 * Glue PySpark DataFrame Pivot, UNPivot --done
 * Glue PySpark DataFrame With Clause(CTE) --done
-* Glue PySpark DataFrame CTAS --done
+* [CTAS](glue-pyspark-ctas.md) 
 * Glue PySpark DataFrame Connect by prior(hierarchial queries) --error
 * Glue PySpark DataFrame partitions -- done
 * Glue PySpark Targets write DataFrame to S3 (CSV,Parquet,JSON,AWS ION)

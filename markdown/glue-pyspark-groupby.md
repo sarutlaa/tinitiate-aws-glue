@@ -13,6 +13,6 @@
 
 ### 4. PySpark Script
 
-[pyspark-joins](../glue-code/ti-pyspark-groupby.py)
+[pyspark-groupby](../glue-code/ti-pyspark-groupby.py)
 
 ### 5. Execution

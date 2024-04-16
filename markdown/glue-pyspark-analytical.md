@@ -13,6 +13,6 @@
 
 ### 4. PySpark Script
 
-[pyspark-joins](../glue-code/ti-pyspark-analytical.py)
+[pyspark-analytical-functions](../glue-code/ti-pyspark-analytical.py)
 
 ### 5. Execution

@@ -69,13 +69,6 @@ Below is the PySpark script used in the Glue job. This script initializes Spark 
 
 [pyspark-joins](../glue-code/ti-pyspark-joins.py)
 
-### 5. Understanding Joins: 
-  - **Inner Join**: Returns records that have matching values in both databases.
-  - **Left Join**: Returns all records from the left dataset, and the matched records from the right dataset. If there is no match, the result is `null` on the right side.
-  - **Right Join**: Returns all records from the right dataset, and the matched records from the left dataset. If there is no match, the result is `null` on the left side.
-  - **Full Outer Join**: Combines the results of both left and right outer joins. The result is `null` on the side that does not have a match.
-  - **Cross Join**: Produces the Cartesian product of rows from both datasets. Use with caution as it can result in large datasets.
-
 ### 5. Execution
 Run the Glue job and monitor the execution in the AWS Glue Console.
 

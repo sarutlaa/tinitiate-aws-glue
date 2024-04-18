@@ -3,12 +3,11 @@
 
 ## Glue Topics
 * [AWS Glue Overview](Intro.md)
-* What IAM Roles are needed
+* What IAM Roles are needed OR Glue with PySpark IAM Roles
 * [Crawler](aws-glue-crawler.md)
    * Source
    * Target
-* Glue with PySpark IAM Roles
-* * Glue with PySpark
+* Glue with PySpark
     * Source S3 (CSV,Parquet,JSON,AWS ION) - Target(S3,RDBMS,DynamoDB)
         * IAM roles needed
         * Code Structure

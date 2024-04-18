@@ -14,8 +14,10 @@
     * Source RDBMS (Oracle, SQL Server, Postgresql) - Target(S3,RDBMS,DynamoDB) 
     * Source Dynamo - Target(S3,RDBMS,DynamoDB)
 
-Data Frame Reading into different targets:
-
+## Glue with PySpark
+* prerequisites
+* Setting up Instructions
+### Data Frame Reading into different targets:
 * [Joins](glue-pyspark-joins.md)
 * Glue PySpark DataFrame Joins multiple tables joins(3 or more) - Recheck
 * Glue PySpark DataFrame Joins Remove duplicate columns when joined - Check Select script Alias
@@ -46,7 +48,7 @@ Data Frame Reading into different targets:
 * Glue PySpark DataFrame Connect by prior(hierarchial queries) -- recurisive
 * Glue PySpark DataFrame partitions -- done (Can we partition in pyspark and what is its use case? )
 
-Data Frame Writing into different targets:
+### Data Frame Writing into different targets:
 
 * Glue PySpark Targets write DataFrame to S3 (CSV,Parquet,JSON,AWS ION)
 * Glue PySpark Targets write DataFrame to RDBMS (Oracle, SQL Server, Postgresql, MySQL)

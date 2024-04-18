@@ -8,24 +8,36 @@ This document demonstrates the use of PySpark in AWS Glue to process and join da
   - What It Does: Merges rows from both datasets where the join column values match.
   - Example: Matches products with their corresponding categories using categoryid.
   - Use Case: Ideal for displaying products that have specific categories defined.
+```ruby
+inner_df = product_selected_df.join(category_selected_df, product_selected_df["product_categoryid"] == category_selected_df["categoryid"], "inner")
+```
     
 ### 2. Left Join:
 
   - What It Does: Includes all rows from the left dataset and the matched rows from the right dataset. Unmatched rows from the right dataset will have null values.
   - Example: Shows all products, appending category information where available.
   - Use Case: Useful for displaying all products, highlighting those without specific categories.
+```ruby
+left_df = product_selected_df.join(category_selected_df, product_selected_df["product_categoryid"] == category_selected_df["categoryid"], "left")
+```
     
 ### 3. Right Join:
 
   - What It Does: Includes all rows from the right dataset and the matched rows from the left dataset. Unmatched rows from the left dataset will have null values.
   - Example: Lists all categories, appending product information where available.
   - Use Case: Ensures that all categories are displayed, including those without any linked products.
+```ruby
+right_df = product_selected_df.join(category_selected_df, product_selected_df["product_categoryid"] == category_selected_df["categoryid"], "right")
+```
 
 ### 4. Full Outer Join:
 
   - What It Does: Combines results of both left and right joins, including rows from both datasets where there is no match.
   - Example: Shows all products and categories, marking unmatched items with null.
   - Use Case: Provides a comprehensive overview of both products and categories, displaying complete data availability.
+```ruby
+full_outer_df = product_selected_df.join(category_selected_df, product_selected_df["product_categoryid"] == category_selected_df["categoryid"], "outer")
+```
 
 ## Prerequisites
 - Input Data Files in S3

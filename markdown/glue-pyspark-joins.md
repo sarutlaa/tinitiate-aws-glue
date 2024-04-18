@@ -4,6 +4,10 @@
 This document demonstrates the use of PySpark in AWS Glue to process and join data stored in Athena. By utilizing various types of joins, we can combine records from two datasets (product and category) based on their relational keys. Here's a simple breakdown of each type of join used in the script
 
 ## Types of Joins
+
+![Joins_Diagram](https://github.com/sarutlaa/tinitiate-aws-glue/assets/141533429/4e134bfc-8804-4f57-80e6-af11137383af)
+
+
 ### 1. Inner Join:
   - What It Does: Merges rows from both datasets where the join column values match.
   - Example: Matches products with their corresponding categories using categoryid.

@@ -2,6 +2,7 @@
 
 This document outlines the use of PySpark in AWS Glue to apply window functions for data analysis, specifically on sales data stored in Athena. The script sets up the necessary Spark and Glue contexts, executes window functions such as LAG, LEAD, and RANK, and displays the results. 
 
+## Analytical Window Functions
 Window functions in PySpark allow for advanced data analysis and manipulation within a defined "window" of data. These functions enable calculations across a range of data rows that are related to the current row, providing powerful tools for aggregation and comparison without collapsing rows, unlike group-by functions which aggregate data to a single row. Commonly used window functions include lag, lead, rank, and row_number, each of which serves a specific purpose in data analysis:
 
 - *LAG*: Retrieves a value from a previous row in the window, often used to compare current values with those of previous entries.
@@ -15,8 +16,8 @@ Below is a breakdown of the script's components and operations:
 
 Ensure the proper setup of the AWS environment, including S3 buckets and IAM roles. Detailed steps can be found here:
 
-[Prerequisites](/prerequisites.md)
-Setting up [AWS Glue Crawler](/aws-glue-crawler.md)
+* [Prerequisites](/prerequisites.md)
+* Setting up [AWS Glue Crawler](/aws-glue-crawler.md)
 
 ##  PySpark Script 
 The script can be accessed and reviewed here:

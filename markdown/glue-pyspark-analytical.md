@@ -13,7 +13,9 @@ Below is a breakdown of the script's components and operations:
 
 ## Prerequisites
 
-Refer Prerequisties for setting up the S3 bucket, required IAM roles and Prerequisites and for crawler crawler
+Refer Prerequisties for setting up the S3 bucket, required IAM roles and
+[Prerequisites]((/prerequisites.md)) and for crawler [crawler](/aws-glue-crawler.md)
+
 
 ##  PySpark Script 
 [pyspark-analytical-functions](../glue-code/ti-pyspark-analytical.py)

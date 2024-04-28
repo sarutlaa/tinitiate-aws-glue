@@ -45,7 +45,7 @@ full_outer_df = product_selected_df.join(category_selected_df, product_selected_
 
 ## Prerequisites for the pyspark script execution
 
-Refer Prerequisties for setting up the S3 bucket, required IAM roles and
+Ensure to have the correct IAM roles and S3 bucket configurations set up, which are detailed in these documents:
 [Prerequisites]((/prerequisites.md)) and for crawler [crawler](/aws-glue-crawler.md)
 
 

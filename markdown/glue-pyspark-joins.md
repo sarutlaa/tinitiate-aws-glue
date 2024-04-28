@@ -94,9 +94,3 @@ Below is the PySpark script used in the Glue job. This script initializes Spark 
         glueContext.get_logger().info("Number of rows in the joined DataFrame: {}".format(inner_df.count()))
         inner_df.show()
       ```
-     
-
-
-
-
-

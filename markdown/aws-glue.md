@@ -15,8 +15,8 @@
     * Source Dynamo - Target(S3,RDBMS,DynamoDB)
 
 ## Glue with PySpark
-* prerequisites
-* Setting up Instructions
+* [Prerequisites](prerequisites.md)
+* [Setting up Instructions](set-up-instructions.md)
 ### Data Frame Reading into different targets:
 * [Joins](glue-pyspark-joins.md)
 * Glue PySpark DataFrame Joins multiple tables joins(3 or more) - Recheck

@@ -26,7 +26,7 @@ The script can be accessed and reviewed here:
   ```
 
 ### 2. Data Loading:
-* Loads the "product" and "product_un_in" tables from the Athena database into DataFrames to prepare them for set operations.
+* Purpose: Loads the "product" and "product_un_in" tables from the Athena database into DataFrames to prepare them for set operations.
 * Code Example:
   ```ruby
   df1 = glueContext.create_dynamic_frame.from_catalog(database="glue_db", table_name="product").toDF()

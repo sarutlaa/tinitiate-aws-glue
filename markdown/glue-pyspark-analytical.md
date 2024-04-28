@@ -4,10 +4,10 @@ This document outlines the use of PySpark in AWS Glue to apply window functions 
 
 Window functions in PySpark allow for advanced data analysis and manipulation within a defined "window" of data. These functions enable calculations across a range of data rows that are related to the current row, providing powerful tools for aggregation and comparison without collapsing rows, unlike group-by functions which aggregate data to a single row. Commonly used window functions include lag, lead, rank, and row_number, each of which serves a specific purpose in data analysis:
 
-*LAG*: Retrieves a value from a previous row in the window, often used to compare current values with those of previous entries.
-*LEAD*: Retrieves a value from a subsequent row in the window, useful for comparing current values to future values.
-*RANK*: Assigns a rank to each row within a partition of a result set, with ties receiving the same rank.
-*ROW_NUMBER*: Assigns a unique sequential integer to rows within a partition of a result set, starting at 1 for the first row in each partition.
+- *LAG*: Retrieves a value from a previous row in the window, often used to compare current values with those of previous entries.
+- *LEAD*: Retrieves a value from a subsequent row in the window, useful for comparing current values to future values.
+- *RANK*: Assigns a rank to each row within a partition of a result set, with ties receiving the same rank.
+- *ROW_NUMBER*: Assigns a unique sequential integer to rows within a partition of a result set, starting at 1 for the first row in each partition.
 
 Below is a breakdown of the script's components and operations:
 

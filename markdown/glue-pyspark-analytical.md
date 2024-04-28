@@ -1,4 +1,4 @@
-# Understanding Analytical Functions (RANK, LEAD, LAG) with PySpark in AWS Glue:
+# Understanding Analytical Functions with PySpark in AWS Glue:
 
 This document outlines the use of PySpark in AWS Glue to apply window functions for data analysis, specifically on sales data stored in Athena. The script sets up the necessary Spark and Glue contexts, executes window functions such as LAG, LEAD, and RANK, and displays the results. 
 
@@ -13,11 +13,13 @@ Below is a breakdown of the script's components and operations:
 
 ## Prerequisites
 
-Refer Prerequisties for setting up the S3 bucket, required IAM roles and
-[Prerequisites]((/prerequisites.md)) and for crawler [crawler](/aws-glue-crawler.md)
+Ensure the proper setup of the AWS environment, including S3 buckets and IAM roles. Detailed steps can be found here:
 
+[Prerequisites](/prerequisites.md)
+Setting up [AWS Glue Crawler](/aws-glue-crawler.md)
 
 ##  PySpark Script 
+The script can be accessed and reviewed here:
 [pyspark-analytical-functions](../glue-code/ti-pyspark-analytical.py)
 
 

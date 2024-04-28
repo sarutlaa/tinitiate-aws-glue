@@ -1,4 +1,4 @@
-# Understanding Analytical Functions (RANK, DENSE RANK, LEAD, LAG) with PySpark in AWS Glue:
+# Understanding Analytical Functions (RANK, LEAD, LAG) with PySpark in AWS Glue:
 
 This document outlines the use of PySpark in AWS Glue to apply window functions for data analysis, specifically on sales data stored in Athena. The script sets up the necessary Spark and Glue contexts, executes window functions such as LAG, LEAD, and RANK, and displays the results. 
 

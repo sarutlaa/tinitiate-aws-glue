@@ -49,10 +49,7 @@ Refer Prerequisties for setting up the S3 bucket, required IAM roles and
 [Prerequisites]((/prerequisites.md)) and for crawler [crawler](/aws-glue-crawler.md)
 
 
-### PySpark Script
+## PySpark Script
 Below is the PySpark script used in the Glue job. This script initializes Spark and Glue contexts, loads data from Athena, selects specific columns, performs various joins, and logs the output.
 
 [pyspark-joins](../glue-code/ti-pyspark-joins.py)
-
-### Execution
-Run the Glue job and monitor the execution in the AWS Glue Console.

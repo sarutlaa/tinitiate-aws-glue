@@ -2,6 +2,16 @@
 
 This document outlines the use of PySpark in AWS Glue for grouping and counting data stored in Athena, focusing on electric vehicle datasets. The script sets up the necessary Spark and Glue contexts, performs data aggregation based on certain attributes, and utilizes logging to track the process. 
 
+## Prerequisites for the PySpark Script Execution:
+
+Refer Prerequisties for setting up the S3 bucket, required IAM roles and
+[Prerequisites]((/prerequisites.md)) and for crawler [crawler](/aws-glue-crawler.md)
+
+## PySpark Script
+Below is the complete PySpark script used in the Glue job for grouping and counting data. This script handles the initialization of contexts, loads data from Athena, performs data grouping and aggregation by specific attributes, and displays the final results 
+
+[pyspark-groupby](../glue-code/ti-pyspark-groupby.py)
+
 ## Main Operations
 1. Initializing Spark and Glue Contexts:
    
@@ -29,13 +39,3 @@ This document outlines the use of PySpark in AWS Glue for grouping and counting 
        ```ruby
        result_df = grouped_df.groupBy("make","model").agg(count("*").alias("count"))
      ```
-
-## Prerequisites for the PySpark Script Execution:
-
-Refer Prerequisties for setting up the S3 bucket, required IAM roles and
-[Prerequisites]((/prerequisites.md)) and for crawler [crawler](/aws-glue-crawler.md)
-
-## PySpark Script
-
-[pyspark-groupby](../glue-code/ti-pyspark-groupby.py)
-

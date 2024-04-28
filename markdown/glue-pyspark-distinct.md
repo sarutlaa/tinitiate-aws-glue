@@ -1,5 +1,5 @@
-# Understanding SQL-like Filtering with PySpark in AWS Glue
-This document provides an overview of using PySpark within AWS Glue to apply SQL-like filtering conditions, specifically on a "purchase" dataset stored in Athena. The script initializes the necessary Spark and Glue contexts, loads data, and applies various conditions such as IN, NOT IN, Greater Than, Less Than, and Not Equal To to filter the data accordingly.
+# Understanding Distinct Operation with PySpark in AWS Glue
+This document provides a detailed guide on using PySpark within AWS Glue to remove duplicate records from a dataset, specifically focusing on a "purchase" table stored in Athena. The script sets up the necessary Spark and Glue contexts, loads the data, performs a distinct operation to ensure uniqueness, and displays the results.
 
 ## Prerequisites
 
@@ -32,37 +32,16 @@ The script can be accessed and reviewed here:
   ```ruby
   df = glueContext.create_dynamic_frame.from_catalog(database="glue_db", table_name="purchase").toDF()
   ```
-### 3. Applying Filters:
-* Purpose: Demonstrates the application of various SQL-like conditions to filter the DataFrame based on specific criteria.
-* Filters Applied:
-  -  IN Condition: Filters rows where product_supplier_id matches any of the specified values.
-    ```ruby
-    df_in = df.filter(df["product_supplier_id"].isin([150, 259, 21]))
-    ```
-  - NOT IN Condition: Excludes rows where quantity matches any of the specified values.
-    ```ruby
-    df_not_in = df.filter(~df["quantity"].isin([295, 743, 67]))
-    ```
-  - Greater Than Condition: Selects rows where quantity is greater than 200.
-    ```ruby
-    df_gt = df.filter(df["quantity"] > 200)
-    ```
-  - Less Than Condition: Selects rows where quantity is less than 200.
-    ```ruby
-    df_lt = df.filter(df["quantity"] < 200)
-    ```
-  - Not Equal To Condition: Filters out rows where quantity is not equal to 743.
-    ```ruby
-    df_ne = df.filter(df["quantity"] != 743)
-    ```    
-    
-### 4. Displaying Results:
-* Purpose: Shows the results of the DataFrame after each filtering condition to verify the correctness of the applied filters.
+### 3. Obtaining Distinct Records:
+* Purpose: Removes duplicate entries from the DataFrame to ensure that each row is unique, which is crucial for accurate data analysis and reporting.
 * Code Example:
   ```ruby
-  df_in.show()
-  df_not_in.show()
-  df_gt.show()
-  df_lt.show()
-  df_ne.show()
+  distinct_df = df.distinct()
+  ```
+ 
+### 4. Displaying Results:
+* Purpose: Shows the distinct records from the DataFrame, triggering an action that collects and prints the unique rows to the console.
+* Code Example:
+  ```ruby
+  distinct_df.show()
   ```

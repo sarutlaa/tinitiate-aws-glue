@@ -53,30 +53,30 @@ Below is the PySpark script used in the Glue job. This script initializes Spark 
 [pyspark-joins](../glue-code/ti-pyspark-joins.py)
 
 ## Main Operations
-1. Initializing Spark and Glue Contexts:
-    - What It Does: Sets up the necessary contexts for Spark and Glue operations, configuring log levels to monitor the execution process.
-    - Code Example:
-      ```ruby
+### 1. Initializing Spark and Glue Contexts:
+  - What It Does: Sets up the necessary contexts for Spark and Glue operations, configuring log levels to monitor the execution process.
+  - Code Example:
+    ```ruby
         from pyspark.context import SparkContext
         from awsglue.context import GlueContext
         sc = SparkContext()
         sc.setLogLevel("INFO")
         glueContext = GlueContext(sc)
-        ```
-2. Data Loading and Preparation:
-    - What It Does: Loads tables from the Athena database into data frames and prepares them by selecting and renaming columns to facilitate joining without column name conflicts.
-    - Code Example:
-      ```ruby
+     ```
+### 2. Data Loading and Preparation:
+  - What It Does: Loads tables from the Athena database into data frames and prepares them by selecting and renaming columns to facilitate joining without column name conflicts.
+  - Code Example:
+    ```ruby
       product_df = glueContext.create_dynamic_frame.from_catalog(database="glue_db", table_name="product").toDF()
       category_df = glueContext.create_dynamic_frame.from_catalog(database="glue_db", table_name="category").toDF()
       product_selected_df = product_df.select("productid", "productname", "categoryid", "unit_price").withColumnRenamed("categoryid", "product_categoryid")
       category_selected_df = category_df.select("categoryid", "categoryname")
-      ```
+    ```
 
-3. Performing Joins:
-    - What It Does: Executes inner, left, right, and full outer joins on the product and category datasets based on the categoryid column.
-    - Code Examples:
-       ```ruby
+### 3. Performing Joins:
+  - What It Does: Executes inner, left, right, and full outer joins on the product and category datasets based on the categoryid column.
+  - Code Examples:
+    ```ruby
       # Inner Join
       inner_df = product_selected_df.join(category_selected_df, "product_categoryid" == "categoryid", "inner")
       # Left Join
@@ -87,10 +87,10 @@ Below is the PySpark script used in the Glue job. This script initializes Spark 
       full_outer_df = product_selected_df.join(category_selected_df, "product_categoryid" == "categoryid", "outer")
       ```
      
-4. Logging and Results Display:
-     - What It Does: Logs the count of rows in each joined DataFrame and displays the results.
-     - Code Examples:
-       ```ruby
+### 4. Logging and Results Display:
+   - What It Does: Logs the count of rows in each joined DataFrame and displays the results.
+   - Code Examples:
+     ```ruby
         glueContext.get_logger().info("Number of rows in the joined DataFrame: {}".format(inner_df.count()))
         inner_df.show()
       ```

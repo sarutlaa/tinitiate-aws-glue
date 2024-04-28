@@ -1,10 +1,11 @@
-#Prerequisites
+##Prerequisites
+
 Input Data Files in S3
 Glue Crawler to crawl the S3 data and then getting the schema of it in Data Catalog
 Accessing S3 crawlers data for the tables 'product' and 'category'.
 IAM role with permissions for AWS Glue, S3, and Athena
 
-#Setup Instructions
+##Setup Instructions
 1. S3 Bucket Setup
 Upload your CSV files to your S3 bucket.
 

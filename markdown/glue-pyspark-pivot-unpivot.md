@@ -2,18 +2,18 @@
 
 This document explains how to use PySpark within AWS Glue to perform pivot and unpivot operations, utilizing employee salary data stored in a CSV format in S3. The script sets up the necessary Spark and Glue contexts, loads the data, transforms it using pivot and unpivot techniques to restructure the dataset for different analytical needs, and displays the results.
 
-## Pivot 
+## 1. Pivot 
 Pivot transforms data from a long format (many rows, fewer columns) to a wide format (fewer rows, more columns). This operation turns unique values from a specific column into multiple columns, making the data easier to analyze and visualize side by side.
 
-### Usage Scenarios:
+### *Usage Scenarios*:
 
 Comparing performance metrics across different categories or time periods displayed as separate columns.
 Summarizing data for reports where each category needs its column.
 
-## UnPivot
+## 2. UnPivot
 Unpivot does the opposite by converting data from a wide format back to a long format. This transformation takes values from multiple columns and consolidates them into one column, increasing the number of rows but decreasing the number of columns.
 
-### Usage Scenarios:
+### *Usage Scenarios*:
 
 Preparing data for analyses that require a standardized format, such as statistical tests or machine learning models.
 Simplifying data structure for database storage or applications that require long-format data.

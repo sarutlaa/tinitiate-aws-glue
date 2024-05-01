@@ -2,40 +2,63 @@
 
 This document outlines the use of PySpark in AWS Glue for grouping and counting data stored in Athena, focusing on electric vehicle datasets. The script sets up the necessary Spark and Glue contexts, performs data aggregation based on certain attributes, and utilizes logging to track the process. 
 
-## Prerequisites for the PySpark Script Execution:
+## GroupBy Aggregation
 
-Refer Prerequisties for setting up the S3 bucket, required IAM roles and
-[Prerequisites]((/prerequisites.md)) and for crawler [crawler](/aws-glue-crawler.md)
+GroupBy counts the number of occurrences for each group specified by one or more columns.
 
-## PySpark Script
-Below is the complete PySpark script used in the Glue job for grouping and counting data. This script handles the initialization of contexts, loads data from Athena, performs data grouping and aggregation by specific attributes, and displays the final results 
+Below is a detailed breakdown of the script's components and operations.
 
-[pyspark-groupby](../glue-code/ti-pyspark-groupby.py)
+## Prerequisites for the pyspark script execution
+
+Ensure proper configuration of IAM roles and S3 buckets as outlined here:
+
+* [Prerequisites]((/prerequisites.md)) 
+* [Crawler Setup](/aws-glue-crawler.md)
+
+## PySpark Script - [pyspark-groupby](../glue-code/ti-pyspark-groupby.py)
+- Input tables         : electric_vehicle_population_data_csv in Data Catalog
+- Output files         : csv, json and parquet files in S3 buckets.
+- Crawlers used        : electric_vechiles
+
 
 ## Main Operations
-1. Initializing Spark and Glue Contexts:
-   
-   - What It Does: Sets up the necessary contexts for Spark and Glue operations, including logging configurations.
-   - Code Example:
-     ```ruby
-       from pyspark.context import SparkContext
-       from awsglue.context import GlueContext
-       sc = SparkContext()
-       sc.setLogLevel("INFO")
-       glueContext = GlueContext(sc)
-     ```
+### 1. Context Initialization:
+  ### 1. Context Initialization:
+  - Objective: Establish necessary contexts for Spark and Glue operations and set appropriate log levels.
+  - Implementation:
+    ```ruby
+    from pyspark.context import SparkContext
+    from awsglue.context import GlueContext
+    sc = SparkContext.getOrCreate()
+    sc.setLogLevel("INFO")
+    glueContext = GlueContext(sc)
+    ```
+### 2. Data Loading and Preparation:
+  - Objective: Load tables from Athena into Spark DataFrames, transforming them for aggregation
+  - Implementation:
+    ```ruby
+    electric_vehicles_df = glueContext.create_dynamic_frame.from_catalog(database="glue_db", table_name="electric_vehicle_population_data_csv").toDF()
+    ```
 
-2. Data Loading and Conversion:
-   - What It Does: Loads data from the AWS Glue Data Catalog, specifically targeting the Athena database and converting dynamic frames to dataframes.
-   - Code Example:
+### 3. Performing Group By and Saving Results:
+   - Objective: Execute group by operations to aggregate data by specified keys and save the results to designated S3 buckets in multiple formats.
+   - Implementation:
       ```ruby
-       grouped_df = glueContext.create_dynamic_frame.from_catalog(database="glue_db", table_name="electric_vehicles").toDF()
+       result_df = electric_vehicles_df.groupBy("make", "model").agg(count("*").alias("count"))
+      s3_bucket_paths = {
+          "csv": "s3://bucket/csv/",
+          "json": "s3://bucket/json/",
+          "parquet": "s3://bucket/parquet/"
+      }
+      for format, path in s3_bucket_paths.items():
+          result_df.write.format(format).save(path, mode="overwrite")
      ```
       
-3. Grouping and Counting:
-   - What It Does: Groups the electric vehicle data by 'make' and 'model', then counts the number of occurrences for each combination.
-   - Use Case: Useful for understanding the distribution of different makes and models within the dataset.
-   - Code Example:
+### 4. Logging and Output Verification:
+   - Objective: Log operational details and confirm the success of data writes.
+   - Implementatione:
        ```ruby
-       result_df = grouped_df.groupBy("make","model").agg(count("*").alias("count"))
+      logger = glueContext.get_logger()
+      logger.info("Results successfully written to S3 in all formats.")
+
      ```

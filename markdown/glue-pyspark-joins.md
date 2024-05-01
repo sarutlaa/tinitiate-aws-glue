@@ -23,10 +23,13 @@ Below is a detailed breakdown of the script's components and operations.
 Ensure proper configuration of IAM roles and S3 buckets as outlined here:
 
 * [Prerequisites]((/prerequisites.md)) 
-* [crawler](/aws-glue-crawler.md)
+* [Crawler Setup](/aws-glue-crawler.md)
 
 
 ## PySpark Script - [pyspark-joins](../glue-code/ti-pyspark-joins.py)
+- Input           : products_csv, categories_csv.
+- Output          : csv, json and parquet files in S3 buckets.
+
 
 ## Main Operations
 ### 1. Context Initialization:

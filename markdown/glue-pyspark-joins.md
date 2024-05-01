@@ -8,13 +8,17 @@ This document outlines the use of PySpark in AWS Glue for performing different t
 ![Joins_Diagram](https://github.com/sarutlaa/tinitiate-aws-glue/assets/141533429/4e134bfc-8804-4f57-80e6-af11137383af)
 
 
-### 1. Inner Join: An inner join returns records that have matching values in both tables
+### 1. Inner Join: 
+An inner join returns records that have matching values in both tables
    
-### 2. Left Join: A left join returns all records from the left table, and the matched records from the right table. If there is no match, the result is NULL on the side of the right table.
+### 2. Left Join: 
+A left join returns all records from the left table, and the matched records from the right table. If there is no match, the result is NULL on the side of the right table.
   
-### 3. Right Join: It is similar to the left join but returns all records from the right table, and the matched records from the left table. If there is no match, the result is NULL on the side of the left table.
+### 3. Right Join: 
+It is similar to the left join but returns all records from the right table, and the matched records from the left table. If there is no match, the result is NULL on the side of the left table.
 
-### 4. Full Outer Join: A full outer join returns all records when there is a match in either the left or right table. This means it shows all records from both tables, with matching records from both sides where available. If there is no match, the result is NULL on the side of the table without a match.
+### 4. Full Outer Join: 
+A full outer join returns all records when there is a match in either the left or right table. This means it shows all records from both tables, with matching records from both sides where available. If there is no match, the result is NULL on the side of the table without a match.
 
 Below is a detailed breakdown of the script's components and operations.
 

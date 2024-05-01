@@ -23,7 +23,6 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 
 ## Main Operations
 ### 1. Context Initialization:
-  ### 1. Context Initialization:
   - Objective: Establish necessary contexts for Spark and Glue operations and set appropriate log levels.
   - Implementation:
     ```ruby

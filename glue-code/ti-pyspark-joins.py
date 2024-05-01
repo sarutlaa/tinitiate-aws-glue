@@ -2,7 +2,7 @@ from pyspark.context import SparkContext
 from awsglue.context import GlueContext
 
 # Initialize Spark context with log level
-sc = SparkContext()
+sc = SparkContext.getOrCreate()
 sc.setLogLevel("INFO")  # Setting log level for Spark context
 
 glueContext = GlueContext(sc)

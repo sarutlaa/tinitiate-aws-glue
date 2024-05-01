@@ -53,7 +53,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
     ```ruby
     product_df = glueContext.create_dynamic_frame.from_catalog(database="glue_db", table_name="products_csv").toDF()
     category_df = glueContext.create_dynamic_frame.from_catalog(database="glue_db", table_name="categories_csv").toDF()
-    product_selected_df = product_df.select("productid", "productname", "categoryid",       "unit_price").withColumnRenamed("categoryid", "product_categoryid")
+    product_selected_df = product_df.select("productid", "productname", "categoryid", "unit_price").withColumnRenamed("categoryid", "product_categoryid")
     category_selected_df = category_df.select("categoryid", "categoryname")
     ```
 

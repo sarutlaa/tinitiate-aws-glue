@@ -57,10 +57,10 @@ Ensure proper configuration of IAM roles and S3 buckets as outlined here:
     ```
 
 ### 3. Executing Joins and Saving Results:
-  - Objective: Perform different types of joins and save the results to specified S3 buckets in various formats.
+  - Objective: Perform different types of joins and save the results to specified S3 buckets in 3 different formats.
   - Implementation:
     ```ruby
-     join_types = ["inner", "left", "right", "outer"]
+    join_types = ["inner", "left", "right", "outer"]
     s3_bucket_paths = {
         "csv": "s3://bucket/csv/",
         "json": "s3://bucket/json/",

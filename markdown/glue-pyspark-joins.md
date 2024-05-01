@@ -31,7 +31,7 @@ Ensure proper configuration of IAM roles and S3 buckets as outlined here:
 
 
 ## PySpark Script - [pyspark-joins](../glue-code/ti-pyspark-joins.py)
-- Input           : products_csv, categories_csv.
+- Input           : products_csv, categories_csv tables in Data Catalog
 - Output          : csv, json and parquet files in S3 buckets.
 - Crawlers used   : product_crawler, category_crawler
 

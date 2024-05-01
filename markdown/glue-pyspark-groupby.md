@@ -10,7 +10,7 @@ Below is a detailed breakdown of the script's components and operations.
 
 ## Prerequisites for the pyspark script execution
 
-Ensure proper configuration of IAM roles and S3 buckets as outlined here:
+Ensure proper configuration of IAM roles and S3 buckets and run necessary crawleras outlined here:
 
 * [Prerequisites]((/prerequisites.md)) 
 * [Crawler Setup](/aws-glue-crawler.md)

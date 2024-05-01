@@ -43,7 +43,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
    - Objective: Execute group by operations to aggregate data by specified keys and save the results to designated S3 buckets in multiple formats.
    - Implementation:
       ```ruby
-       result_df = electric_vehicles_df.groupBy("make", "model").agg(count("*").alias("count"))
+      result_df = electric_vehicles_df.groupBy("make", "model").agg(count("*").alias("count"))
       s3_bucket_paths = {
           "csv": "s3://bucket/csv/",
           "json": "s3://bucket/json/",

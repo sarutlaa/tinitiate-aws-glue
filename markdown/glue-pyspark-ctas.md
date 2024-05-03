@@ -12,7 +12,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 * [Prerequisites]((/prerequisites.md)) 
 * [Crawler Setup](/aws-glue-crawler.md)
 
-##  PySpark Script - [pyspark-set-operations](../glue-code/ti-pyspark-ctas.py)
+##  PySpark Script - [pyspark-ctas](../glue-code/ti-pyspark-ctas.py)
 - Input tables          : purchase
 - Output                : New table in the AWS Glue Data Catalog stored in S3.
 - Crawlers used         : purchase_crawler

@@ -1,21 +1,26 @@
 # Understanding Timezone Conversion with PySpark in AWS Glue
 This document explains how to use PySpark within AWS Glue to convert datetime information to different timezones, focusing on data from a "dispatch" table stored in Athena. The script sets up the necessary Spark and Glue contexts, loads the data, converts datetime values into UTC, adjusts them to a specified timezone, and displays the results.
 
+DateTime manipulations are crucial for preparing data for analyses that depend on accurate timing and scheduling insights. This includes timezone adjustments, formatting dates for readability, and calculating time differences to understand durations or delays.
+
 ## Prerequisites
 
-Ensure the proper setup of the AWS environment, including S3 buckets and IAM roles. Detailed steps can be found here:
+Ensure proper configuration of IAM roles and S3 buckets and run necessary crawleras outlined here:
 
-* [Prerequisites](/prerequisites.md)
-* Setting up [AWS Glue Crawler](/aws-glue-crawler.md)
+* [Prerequisites]((/prerequisites.md)) 
+* [Crawler Setup](/aws-glue-crawler.md)
 
-##  PySpark Script 
-The script can be accessed and reviewed here:
-[pyspark-date-formats](../glue-code/ti-pyspark-datetime.py)
+
+##  PySpark Script - [pyspark-date-formats](../glue-code/ti-pyspark-datetime.py)
+- Input tables          : dispatch
+- Output                : Stored in CSV, JSON, and Parquet formats in the specified S3 bucket.
+- Crawlers used         : dispatch_crawler
+
 
 ## Main Operations
 
 ### 1. Initializing Spark and Glue Contexts:
-* Purpose: Establishes the necessary Spark and Glue contexts for data manipulation with logging set to INFO to control verbosity.
+* Objective: Establishes the necessary Spark and Glue contexts for data manipulation with logging set to INFO to control verbosity.
 * Code Example:
   ```ruby
   from pyspark.context import SparkContext
@@ -26,30 +31,43 @@ The script can be accessed and reviewed here:
   ```
 
 ### 2. Data Loading:
-* Purpose: Loads the "dispatch" table from the Athena database into a DataFrame, preparing it for datetime conversion.
-* Code Example:
+* Objective: Loads the "dispatch" table from the Athena database into a DataFrame, preparing it for datetime conversion.
+* Implementation:
   ```ruby
   df = glueContext.create_dynamic_frame.from_catalog(database="glue_db", table_name="dispatch").toDF()
   ```
 ### 3. Converting to UTC::
-* Purpose: Converts the 'dispatch_date' string column to a UTC datetime format to standardize the timestamp data..
-* Code Example:
+* Objective: Converts the 'dispatch_date' string column to a UTC datetime format to standardize the timestamp data..
+* Implementation:
   ```ruby
   from pyspark.sql.functions import from_utc_timestamp
   df_utc = df.withColumn("datetime_utc_column", from_utc_timestamp(df["dispatch_date"], "UTC"))
   ```  
     
-### 4. Converting to Desired Timezone:
-* Purpose: Adjusts the UTC datetime to a specified timezone, enhancing the data's relevance for specific regional analyses.
+### 4.  Additional DateTime Operations:
+* Objective: Enhance the dataset with formatted date strings and calculated time differences for detailed temporal analysis.
 * Note: Replace 'desired_timezone' with the appropriate timezone string, like 'America/New_York'.
-* Code Example:
+* Implementation:
   ```ruby
-  df_with_timezone = df_utc.withColumn("datetime_with_timezone_column", from_utc_timestamp(df_utc["datetime_utc_column"], "desired_timezone"))
+  df_formatted = df_with_timezone.withColumn("formatted_date", date_format("datetime_with_timezone_column", "yyyy-MM-dd HH:mm:ss"))
+  df_time_diff = df_formatted.withColumn("time_difference_seconds", expr("unix_timestamp(current_timestamp()) - unix_timestamp(datetime_with_timezone_column)"))
+
   ```
 
-### 5. Displaying Results:
-* Purpose: Shows the DataFrame with the new datetime columns adjusted for the specified timezone, validating the timezone conversion.
-* Code Example:
+### 5. Output Formatting and Storage:
+* Objective: Save the enriched data to Amazon S3 in multiple formats for accessibility and further use.
+* Implementation:
   ```ruby
-  df_with_timezone.show()
+  output_base_path = "s3://your-bucket-name/your-folder/"
+  df_time_diff.write.mode("overwrite").option("header", "true").csv(output_base_path + "csv/")
+  df_time_diff.write.mode("overwrite").json(output_base_path + "json/")
+  df_time_diff.write.mode("overwrite").parquet(output_base_path + "parquet/")
+
+  ```
+### 6. Logging and Execution Verification:
+* Objective: Confirm successful execution and storage of the data, ensuring traceability and reliability of the process.
+* Implementation:
+  ```ruby
+   glueContext.get_logger().info("Data successfully written to S3 in CSV, JSON, and Parquet formats.")
+
   ```

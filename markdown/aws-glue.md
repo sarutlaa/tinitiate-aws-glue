@@ -17,7 +17,8 @@
 ## Glue with PySpark
 * [Prerequisites](prerequisites.md)
 * [Setting up Instructions](set-up-instructions.md)
-### Data Frame Reading into different targets:
+  
+### SQL Like Implementations with PySpark and AWS Glue ETL Scripts
 
 * [Order By](glue-pyspark-orderby.md)
 * [Group By](glue-pyspark-groupby.md)

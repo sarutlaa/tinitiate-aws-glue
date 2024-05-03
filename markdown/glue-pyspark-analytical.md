@@ -14,10 +14,10 @@ Below is a breakdown of the script's components and operations:
 
 ## Prerequisites
 
-Ensure the proper setup of the AWS environment, including S3 buckets and IAM roles. Detailed steps can be found here:
+Ensure proper configuration of IAM roles and S3 buckets and run necessary crawleras outlined here:
 
-* [Prerequisites](/prerequisites.md)
-* Setting up [AWS Glue Crawler](/aws-glue-crawler.md)
+* [Prerequisites]((/prerequisites.md)) 
+* [Crawler Setup](/aws-glue-crawler.md)
 
 ##  PySpark Script - [pyspark-analytical-functions](../glue-code/ti-pyspark-analytical.py)
 - Input tables          : purchase

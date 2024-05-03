@@ -1,26 +1,27 @@
 # Managing Data Transformations and Table Creation with PySpark in AWS Glue
 
-This document demonstrates how to use PySpark within AWS Glue for data transformation and efficient table creation using the CTAS method, focusing on data from the "purchase" table stored in Athena. The script sets up necessary Spark and Glue contexts, performs data transformation, and creates a new table in a specified format and location.
+This documentation guides you through the process of using PySpark within AWS Glue to perform a Create Table As Select (CTAS) operation. The workflow focuses on transforming data from the "purchase" table stored in Athena, creating a new table in the AWS Glue Data Catalog, and storing the transformed data directly in Amazon S3 using the CTAS approach.
 
-## CTAS (Create Table As Select)
-The CTAS command is crucial for creating a new table from selected data in one step, often used to store transformed data efficiently. This method is integral in workflows that require the generation of new, structured tables from existing datasets.
+## Overview of CTAS
+The CTAS command is a powerful SQL operation commonly used in data warehousing. It creates a new table by executing a SELECT query. This operation is particularly useful in data transformation processes where the transformed data needs to be stored persistently for future use. In AWS Glue, utilizing CTAS allows for efficient management and querying of large datasets by leveraging the scalable storage of S3 and the metadata management capabilities of the Glue Data Catalog.
 
 ## Prerequisites
 
-Ensure the proper setup of the AWS environment, including S3 buckets and IAM roles. Detailed steps can be found here:
+Ensure proper configuration of IAM roles and S3 buckets and run necessary crawleras outlined here:
 
-* [Prerequisites](/prerequisites.md)
-* Setting up [AWS Glue Crawler](/aws-glue-crawler.md)
+* [Prerequisites]((/prerequisites.md)) 
+* [Crawler Setup](/aws-glue-crawler.md)
 
-##  PySpark Script 
-The script can be accessed and reviewed here:
-[pyspark-set-operations](../glue-code/ti-pyspark-ctas.py)
+##  PySpark Script - [pyspark-set-operations](../glue-code/ti-pyspark-ctas.py)
+- Input tables          : purchase
+- Output                : New table in the AWS Glue Data Catalog stored in S3.
+- Crawlers used         : purchase_crawler
+
 
 ## Main Operations
-
 ### 1. Initializing Spark and Glue Contexts:
-* Purpose: Establishes the necessary Spark and Glue contexts for data manipulation with logging set to INFO to control verbosity.
-* Code Example:
+* Objective: Establishes the necessary Spark and Glue contexts for data manipulation with logging set to INFO to control verbosity.
+* Implementation:
   ```ruby
   from pyspark.context import SparkContext
   from awsglue.context import GlueContext
@@ -28,25 +29,32 @@ The script can be accessed and reviewed here:
   sc.setLogLevel("INFO")
   glueContext = GlueContext(sc)
   ```
-### 2. Data Loading:
-* Purpose: Purpose: Loads the "purchase" data from Athena into a DataFrame, applies necessary filters and transformations.
-* Code Example:
+### 2. Data Loading and Transformation:
+* Objective: Load the "purchase" data from Athena, apply transformations, and prepare for storage.
+* Implementation:
   ```ruby
   purchase_df = glueContext.create_dynamic_frame.from_catalog(database="glue_db", table_name="purchase").toDF()
-  result_df = purchase_df.select("purchase_tnx_id", "product_supplier_id","purchase_tnxdate","quantity","invoice_price").filter(purchase_df["quantity"] > 100)
+  result_df = purchase_df.select("purchase_tnx_id", "product_supplier_id", "purchase_tnxdate", "quantity", "invoice_price").filter(purchase_df["quantity"] > 100)
+
   ```
-### 3. Creating a New Table Using CTAS:
-* Purpose: Utilizes the CTAS command to create a new table from the transformed data, specifying the format (Parquet) and the location (S3).
-* Code Example:
+### 3. Executing the CTAS Operation:
+* Objective: Use the CTAS command to create a new table from the transformed data, specifying Parquet as the storage format and S3 as the location
+* Implementation:
   ```ruby
   result_df.createOrReplaceTempView("temp_table")
-  spark.sql("CREATE TABLE new_purchase_table USING PARQUET LOCATION 's3://ti-p-etl-glue/glue_logs/' AS SELECT * FROM temp_table")
+  spark.sql("""
+    CREATE TABLE glue_db.new_purchase_table
+    USING PARQUET
+    LOCATION 's3://your-bucket-name/your-folder/new_purchase_table/'
+    AS SELECT * FROM temp_table
+  """)
+
   ```
 
-### 4. Displaying Results:
-* Purpose: Shows the transformed data to verify correctness before and after the table creation.
-* Code Example:
+### 4. Verification and Logging:
+* Objective: Log the successful creation of the table and verify that the operation has been executed as expected.
+* Implementation:
   ```ruby
-  result_df.show()
+  glueContext.get_logger().info("CTAS operation completed and new table created in S3.")
   ```
 

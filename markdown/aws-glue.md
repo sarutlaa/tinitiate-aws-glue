@@ -32,6 +32,7 @@
 * [Common Table Expressions(CTE)](glue-pyspark-cte.md)
 * [CTAS](glue-pyspark-ctas.md)
 * [Date Formats](glue-pyspark-date-formats.md)
+* [Null Checks](glue-pyspark-null-checks.md)
 
   
   
@@ -44,7 +45,7 @@
 * Glue Generate PySpark DataFrame from RDBMS (Oracle, SQL Server, Postgresql, MySQL) - Pending
 * Glue Generate PySpark DataFrame from DynamoDB - Pending ( nested and non nested table building )
 
-* Glue PySpark DataFrame Handling: Null, isnull, not null --done
+
 * Glue PySpark DataFrame Psuedo Colums --done ( Custom ones )
 * Glue PySpark DataFrame Built in Psuedo --done ( Current date or time, location - check?? )
 * Glue PySpark DataFrame Connect by prior(hierarchial queries) -- recurisive

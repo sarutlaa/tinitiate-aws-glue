@@ -20,20 +20,20 @@ Simplifying data structure for database storage or applications that require lon
 
 ## Prerequisites
 
-Ensure the proper setup of the AWS environment, including S3 buckets and IAM roles. Detailed steps can be found here:
+Ensure proper configuration of IAM roles and S3 buckets and run necessary crawleras outlined here:
 
-* [Prerequisites](/prerequisites.md)
-* Setting up [AWS Glue Crawler](/aws-glue-crawler.md)
+* [Prerequisites]((/prerequisites.md)) 
+* [Crawler Setup](/aws-glue-crawler.md)
 
-##  PySpark Script 
-The script can be accessed and reviewed here:
-[pyspark-set-operations](../glue-code/ti-pyspark-pivot-unpivot.py)
+##  PySpark Script - [pyspark-set-operations](../glue-code/ti-pyspark-pivot-unpivot.py)
+- Input Source          : CSV file from "employee_dept" stored in S3.
+- Output files          : csv, json and parquet files in S3 buckets.
 
 ## Main Operations
 
 ### 1. Initializing Spark and Glue Contexts:
-* Purpose: Establishes the necessary Spark and Glue contexts for data manipulation with logging set to INFO to control verbosity.
-* Code Example:
+* Objective: Establishes the necessary Spark and Glue contexts for data manipulation with logging set to INFO to control verbosity.
+* Implementation:
   ```ruby
   from pyspark.context import SparkContext
   from awsglue.context import GlueContext
@@ -42,14 +42,14 @@ The script can be accessed and reviewed here:
   glueContext = GlueContext(sc)
   ```
 ### 2. Data Loading:
-* Purpose: Loads the employee salary data from a CSV file stored in S3 into a DataFrame.
-* Code Example:
+* Objective: Loads the employee salary data from a CSV file stored in S3 into a DataFrame.
+* Implementation:
   ```ruby
   df = spark.read.option("header", "true").csv("s3://ti-p-data/hr-data/employee_dept/")
   ```
 ### 3. Pivot Operation:
-* Purpose: Transforms the dataset to create a new DataFrame where each selected month becomes a separate column with corresponding salary data.
-* Code Example:
+* Objective: Transforms the dataset to create a new DataFrame where each selected month becomes a separate column with corresponding salary data.
+* Implementation:
   ```ruby
   from pyspark.sql.functions import col
   months = ['January', 'February', 'March']
@@ -59,18 +59,24 @@ The script can be accessed and reviewed here:
   )
   ```
 ### 4. Unpivot Operation:
-* Purpose: Transforms the pivoted DataFrame back into a long format where each row represents a month and its corresponding salary for easier comparison across different dimensions.
-* Code Example:
+* Objective: Transforms the pivoted DataFrame back into a long format where each row represents a month and its corresponding salary for easier comparison across different dimensions.
+* Implementation:
   ```ruby
   unpivot_df = pivot_df.selectExpr(
       "employee_id", "employee_name", "department",
       "stack(3, 'January', January, 'February', February, 'March', March) as (month, salary)"
   )
   ```
-### 5. Displaying Results:
-* Purpose: Shows the results of both the pivoted and unpivoted DataFrames to verify the correctness of the data transformations.
-* Code Example:
+### 5. Output Formatting and Storage:
+* Objective: Store the results of both pivoted and unpivoted DataFrames in Amazon S3 in CSV, JSON, and Parquet formats to support diverse downstream uses.
+* Implementation:
   ```ruby
-  pivot_df.show()
-  unpivot_df.show()
+  output_base_path = "s3://your-output-bucket/your-folder/"
+  pivot_df.write.mode("overwrite").option("header", "true").csv(output_base_path + "pivot/csv/")
+  pivot_df.write.mode("overwrite").json(output_base_path + "pivot/json/")
+  pivot_df.write.mode("overwrite").parquet(output_base_path + "pivot/parquet/")
+  unpivot_df.write.mode("overwrite").option("header", "true").csv(output_base_path + "unpivot/csv/")
+  unpivot_df.write.mode("overwrite").json(output_base_path + "unpivot/json/")
+  unpivot_df.write.mode("overwrite").parquet(output_base_path + "unpivot/parquet/")
+
   ```

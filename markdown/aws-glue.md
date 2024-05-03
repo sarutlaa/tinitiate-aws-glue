@@ -31,10 +31,9 @@
 * [Pivot, UnPivot](glue-pyspark-pivot-unpivot.md)
 * [Common Table Expressions(CTE)](glue-pyspark-cte.md)
 * [CTAS](glue-pyspark-ctas.md)
+* [Date Formats](glue-pyspark-date-formats.md)
 
   
-* [Date Formats](glue-pyspark-date-formats.md) Date, DateTime, DateTime TimeZone --error
-
   
 * Glue PySpark DataFrame Joins multiple tables joins(3 or more) - Recheck
 * Glue PySpark DataFrame Joins Remove duplicate columns when joined - Check Select script Alias

@@ -28,7 +28,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 
 ### 1. Initializing Spark and Glue Contexts:
 * What It Does: Configures the Spark and Glue contexts necessary for data operations, with logging set to provide informative messages.
-* Code Example:
+* Implementation:
   ```ruby
   from pyspark.context import SparkContext
   from awsglue.context import GlueContext

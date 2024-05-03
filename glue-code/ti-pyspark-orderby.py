@@ -15,13 +15,25 @@ catalog = "awsglue_data_catalog"
 database = "glue_db"
 
 # Load tables from Athena into data frames
-grouped_df = glueContext.create_dynamic_frame.from_catalog(database=database, table_name="electric_vechiles").toDF()
+grouped_df = glueContext.create_dynamic_frame.from_catalog(database=database, table_name="electric_vehicle_population_data_csv").toDF()
 
 # Group by electric vehicle column and count the occurrences
 result_df = grouped_df.groupBy("make", "model").agg(count("*").alias("count"))
 
-# Add ORDER BY clause to the DataFrame
-result_df = result_df.orderBy("count", ascending=False)
+# Specify the output path for the S3 bucket
+output_base_path = "s3://ti-author-scripts/ti-author-glue-scripts/ti-glue-pyspark-scripts-outputs/ti-pyspark-orderby-outputs/"
 
-# Show the resulting DataFrame
-result_df.show()
+# Order by 'count' descending and save the results
+result_df_desc = result_df.orderBy("count", ascending=False)
+result_df_desc.write.mode("overwrite").option("header", "true").csv(output_base_path + "csv/desc/")
+result_df_desc.write.mode("overwrite").json(output_base_path + "json/desc/")
+result_df_desc.write.mode("overwrite").parquet(output_base_path + "parquet/desc/")
+
+# Order by 'count' ascending and save the results
+result_df_asc = result_df.orderBy("count", ascending=True)
+result_df_asc.write.mode("overwrite").option("header", "true").csv(output_base_path + "csv/asc/")
+result_df_asc.write.mode("overwrite").json(output_base_path + "json/asc/")
+result_df_asc.write.mode("overwrite").parquet(output_base_path + "parquet/asc/")
+
+# Log information after saving to S3
+glueContext.get_logger().info("Data successfully written to S3 in both ascending and descending order in CSV, JSON, and Parquet formats.")

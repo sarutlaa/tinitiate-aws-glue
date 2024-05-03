@@ -53,7 +53,7 @@
 
 ### Data Frame Writing into different targets:
 
-* Glue PySpark Targets write DataFrame to S3 (CSV,Parquet,JSON,AWS ION)
+* Glue PySpark Targets write DataFrame to S3 (CSV,Parquet,JSON,AWS ION) - done
 * Glue PySpark Targets write DataFrame to RDBMS (Oracle, SQL Server, Postgresql, MySQL)
 * Glue PySpark Targets write DataFrame to NoSQL DynamoDB
 * Glue PySpark DataFrame index

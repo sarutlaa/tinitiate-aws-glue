@@ -2,30 +2,25 @@ from pyspark.context import SparkContext
 from awsglue.context import GlueContext
 from pyspark.sql import SparkSession
 
-# Initialize Spark context with log level
 sc = SparkContext()
-sc.setLogLevel("INFO")  # Setting log level for Spark context
-
+sc.setLogLevel("INFO")
 glueContext = GlueContext(sc)
 spark = glueContext.spark_session
 
-# Define Athena catalog and database
-catalog = "awsglue_data_catalog"
-database = "glue_db"
+purchase_df = glueContext.create_dynamic_frame.from_catalog(database="glue_db", table_name="purchase").toDF()
+result_df = purchase_df.select(
+    "purchase_tnx_id", "product_supplier_id", "purchase_tnxdate", "quantity", "invoice_price"
+).filter(purchase_df["quantity"] > 100)
 
-# Load the source table "purchase" from Athena into a DataFrame
-purchase_df = glueContext.create_dynamic_frame.from_catalog(database=database, table_name="purchase").toDF()
-
-# Perform any required transformations and filtering
-result_df = purchase_df.select("purchase_tnx_id", "product_supplier_id","purchase_tnxdate","quantity","invoice_price").filter(purchase_df["quantity"] > 100)
-
-# Create a new table using CTAS
+# Create or replace temporary view
 result_df.createOrReplaceTempView("temp_table")
-# OR
-# spark.sql("CREATE TABLE new_purchase_table AS SELECT * FROM temp_table")
 
-# Optionally, you can Specify the table format (Parquet) and S3 location for storing the new table
-spark.sql("CREATE TABLE new_purchase_table USING PARQUET LOCATION 's3://ti-p-etl-glue/glue_logs/' AS SELECT * FROM temp_table")
+# Instead of showing the DataFrame, use Spark SQL to create a new table in the Glue catalog that stores data in S3
+spark.sql(f"""
+    CREATE TABLE glue_db.new_purchase_table
+    USING PARQUET
+    LOCATION 's3://your-bucket-name/your-folder/new_purchase_table/'
+    AS SELECT * FROM temp_table
+""")
 
-# Show the resulting DataFrame
-result_df.show()
+glueContext.get_logger().info("CTAS operation completed and new table created in S3.")

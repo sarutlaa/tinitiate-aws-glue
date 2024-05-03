@@ -27,7 +27,7 @@ union_all_df = df1.union(df2)  # In newer versions of PySpark, use union() inste
 intersect_df = df1.intersect(df2)
 
 # Specify the output path for the S3 bucket
-output_base_path = "s3://ti-author-scripts/ti-author-glue-scripts/ti-glue-pyspark-scripts-outputs/ti-pyspark-set-operations-outputs/"
+output_base_path = "s3://your-bucket-name/your-folder/"
 
 # Save the resulting DataFrames to S3 bucket in different formats
 # Save Union DataFrame

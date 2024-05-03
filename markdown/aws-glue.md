@@ -18,7 +18,17 @@
 * [Prerequisites](prerequisites.md)
 * [Setting up Instructions](set-up-instructions.md)
 ### Data Frame Reading into different targets:
+
+* [Order By](glue-pyspark-orderby.md)
+* [Group By](glue-pyspark-groupby.md)
+* [Distinct](glue-pyspark-distinct.md)
+* [Filtering](glue-pyspark-condition.md)
+* [Having](glue-pyspark-having.md)
 * [Joins](glue-pyspark-joins.md)
+* [Set Operations](glue-pyspark-set-operations.md)
+* [Analytical Functions](glue-pyspark-analytical.md)
+
+  
 * Glue PySpark DataFrame Joins multiple tables joins(3 or more) - Recheck
 * Glue PySpark DataFrame Joins Remove duplicate columns when joined - Check Select script Alias
   AND Glue PySpark DataFrame Select, Rename Columns in Select  
@@ -27,13 +37,13 @@
 * Glue Generate PySpark DataFrame from Single Parquet, Multiple Parquets without Athena / Crawler - Todo
 * Glue Generate PySpark DataFrame from RDBMS (Oracle, SQL Server, Postgresql, MySQL) - Pending
 * Glue Generate PySpark DataFrame from DynamoDB - Pending ( nested and non nested table building )
-* [Group By](glue-pyspark-groupby.md)
-* [Analytical Functions](glue-pyspark-analytical.md)
-* [Order By](glue-pyspark-orderby.md)
-* [Having](glue-pyspark-having.md)
-* [Filtering](glue-pyspark-condition.md) 
+
+
+
+* 
+* 
 * Glue PySpark DataFrame Handling: Null, isnull, not null --done
-* [Distinct](glue-pyspark-distinct.md)
+
 
 
 * Glue PySpark DataFrame Psuedo Colums --done ( Custom ones )
@@ -41,7 +51,7 @@
 
 
 * [Date Formats](glue-pyspark-date-formats.md) Date, DateTime, DateTime TimeZone --error
-* [Set Operations](glue-pyspark-set-operations.md) Union,Union All, Intersect --done
+
 * [Pivot, UnPivot](glue-pyspark-pivot-unpivot.md)
 * [Common Table Expressions(CTE)](glue-pyspark-cte.md)
 * [CTAS](glue-pyspark-ctas.md)

@@ -18,7 +18,7 @@
 * [Prerequisites](prerequisites.md)
 * [Setting up Instructions](set-up-instructions.md)
   
-### SQL Like Implementations with PySpark and AWS Glue ETL Scripts
+## SQL Like Implementations with PySpark and AWS Glue ETL Scripts
 
 * [Order By](glue-pyspark-orderby.md)
 * [Group By](glue-pyspark-groupby.md)

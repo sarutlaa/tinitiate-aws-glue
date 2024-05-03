@@ -1,8 +1,8 @@
-# Understanding Analytical Functions with PySpark in AWS Glue:
+# Analytical Processing with PySpark in AWS Glue
 
-This document outlines the use of PySpark in AWS Glue to apply window functions for data analysis, specifically on sales data stored in Athena. The script sets up the necessary Spark and Glue contexts, executes window functions such as LAG, LEAD, and RANK, and displays the results. 
+This document explains how to use PySpark in AWS Glue for conducting advanced analytical queries using window functions. The script sets up the required Spark and Glue contexts, applies window functions to compute various statistics, and saves the results in different formats to S3. 
 
-## Analytical Window Functions
+## Overview of Window Functions
 Window functions in PySpark allow for advanced data analysis and manipulation within a defined "window" of data. These functions enable calculations across a range of data rows that are related to the current row, providing powerful tools for aggregation and comparison without collapsing rows, unlike group-by functions which aggregate data to a single row. Commonly used window functions include lag, lead, rank, and row_number, each of which serves a specific purpose in data analysis:
 
 - *LAG*: Retrieves a value from a previous row in the window, often used to compare current values with those of previous entries.
@@ -19,10 +19,10 @@ Ensure the proper setup of the AWS environment, including S3 buckets and IAM rol
 * [Prerequisites](/prerequisites.md)
 * Setting up [AWS Glue Crawler](/aws-glue-crawler.md)
 
-##  PySpark Script 
-The script can be accessed and reviewed here:
-[pyspark-analytical-functions](../glue-code/ti-pyspark-analytical.py)
-
+##  PySpark Script - [pyspark-analytical-functions](../glue-code/ti-pyspark-analytical.py)
+- Input tables          : purchase
+- Output files          : csv, json and parquet files in S3 buckets.
+- Crawlers used         : purchase_crawler
 
 ## Main Operations
 
@@ -37,34 +37,39 @@ The script can be accessed and reviewed here:
   glueContext = GlueContext(sc)
   ```
 
-### 2. Data Loading:
-* What It Does: Loads the purchase table from the Athena database into a DataFrame to prepare for analysis.
-* Code Example:
+### 2. Data Loading and Preparation:
+* Objective: Load data from Athena into Spark DataFrames and prepare them for analytical processing.
+* Implementation:
   ```ruby
   analyzed_df = glueContext.create_dynamic_frame.from_catalog(database="glue_db", table_name="purchase").toDF()
   ```
 
 
 ### 3. Applying Window Functions:
-* What It Does: Uses window functions to calculate the previous and next invoice prices, as well as the rank of invoice prices within each product supplier group.
-* Use Cases: These calculations allow for detailed analysis of sales trends, pricing strategies, and ranking of sales transactions.
-* Code Example:
+* Objective: Execute window functions to compute prior and next invoice prices, rank and dense rank by invoice price, and save the results to specified S3 buckets in 3 different formats.
+* Implementation:
   ```ruby
-  from pyspark.sql.window import Window
-  from pyspark.sql.functions import col, lag, lead, rank
-  
-  # Previous invoice price
   analyzed_df = analyzed_df.withColumn("previous_invoice_price", lag("invoice_price").over(Window.partitionBy("product_supplier_id").orderBy("purchase_tnxdate")))
-  # Next invoice price
   analyzed_df = analyzed_df.withColumn("next_invoice_price", lead("invoice_price").over(Window.partitionBy("product_supplier_id").orderBy("purchase_tnxdate")))
-  # Invoice price rank
   analyzed_df = analyzed_df.withColumn("invoice_price_rank", rank().over(Window.partitionBy("product_supplier_id").orderBy(col("invoice_price").desc())))
-
+  analyzed_df = analyzed_df.withColumn("invoice_price_dense_rank", dense_rank().over(Window.partitionBy("product_supplier_id").orderBy(col("invoice_price").desc())))
   ```
 
-### 4. Displaying Results:
-* What It Does: Outputs the transformed DataFrame with newly calculated columns for previous invoice price, next invoice price, and invoice price rank.
-* Code Example:
+### 4. Output Formatting and Storage:
+* Objective: Format the DataFrame with specific column names and save in CSV, JSON, and Parquet formats to an S3 bucket.
+* Implementation:
   ```ruby
-  analyzed_df.show()
+  column_names = ["purchase_tnx_id", "product_supplier_id", "purchase_tnxdate", "quantity", "invoice_price", "previous_invoice_price", "next_invoice_price", "invoice_price_rank", "invoice_price_dense_rank"]
+  analyzed_df = analyzed_df.toDF(*column_names)
+  output_base_path = "s3://ti-author-scripts/ti-author-glue-scripts/ti-glue-pyspark-scripts-outputs/glue-pyspark-analytical-outputs/"
+  analyzed_df.write.mode("overwrite").option("header", "true").csv(output_base_path + "csv/")
+  analyzed_df.write.mode("overwrite").json(output_base_path + "json/")
+  analyzed_df.write.mode("overwrite").parquet(output_base_path + "parquet/")
+  ```
+
+### 5. Logging and Verification:
+* Objective: Log operational details and confirm the success of data writes.
+* Implementation:
+  ```ruby
+  logger.info("DataFrame saved in CSV, JSON, and Parquet formats to S3 successfully, including dense rank.")
   ```

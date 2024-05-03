@@ -1,22 +1,23 @@
-# Understanding SQL-like Filtering with PySpark in AWS Glue
+# SQL-like Filtering with PySpark in AWS Glue
 This document provides an overview of using PySpark within AWS Glue to apply SQL-like filtering conditions, specifically on a "purchase" dataset stored in Athena. The script initializes the necessary Spark and Glue contexts, loads data, and applies various conditions such as IN, NOT IN, Greater Than, Less Than, and Not Equal To to filter the data accordingly.
 
 ## Prerequisites
 
-Ensure the proper setup of the AWS environment, including S3 buckets and IAM roles. Detailed steps can be found here:
+Ensure proper configuration of IAM roles and S3 buckets and run necessary crawleras outlined here:
 
-* [Prerequisites](/prerequisites.md)
-* Setting up [AWS Glue Crawler](/aws-glue-crawler.md)
+* [Prerequisites]((/prerequisites.md)) 
+* [Crawler Setup](/aws-glue-crawler.md)
 
-##  PySpark Script 
-The script can be accessed and reviewed here:
-[pyspark-filtering](../glue-code/ti-pyspark-condition.py)
+##  PySpark Script - [pyspark-filtering](../glue-code/ti-pyspark-condition.py)
+- Input tables          : purchase
+- Output files          : csv, json and parquet files in S3 buckets.
+- Crawlers used         : purchase_crawler
 
 ## Main Operations
 
 ### 1. Initializing Spark and Glue Contexts:
-* Purpose: Establishes the necessary Spark and Glue contexts for data manipulation with logging set to INFO to control verbosity.
-* Code Example:
+* Objective: Establish the foundational Spark and Glue contexts necessary for data manipulation, with logging configured to INFO level to manage verbosity.
+* Implementation:
   ```ruby
   from pyspark.context import SparkContext
   from awsglue.context import GlueContext
@@ -26,13 +27,13 @@ The script can be accessed and reviewed here:
   ```
 
 ### 2. Data Loading:
-* Purpose: Loads the "purchase" table from the Athena database into a DataFrame for subsequent filtering operations.
-* Code Example:
+* Objective: Loads the "purchase" table from the Athena database into a DataFrame for subsequent filtering operations.
+* Implementation:
   ```ruby
   df = glueContext.create_dynamic_frame.from_catalog(database="glue_db", table_name="purchase").toDF()
   ```
 ### 3. Applying Filters:
-* Purpose: Demonstrates the application of various SQL-like conditions to filter the DataFrame based on specific criteria.
+* Objective: Apply various SQL-like filters to demonstrate data segmentation based on specified criteria.
 * Filters Applied:
   -  IN Condition: Filters rows where product_supplier_id matches any of the specified values.
     ```ruby
@@ -55,15 +56,19 @@ The script can be accessed and reviewed here:
     df_ne = df.filter(df["quantity"] != 743)
     ```    
     
-### 4. Displaying Results:
-* Purpose: Shows the results of the DataFrame after each filtering condition to verify the correctness of the applied filters.
-* Code Example:
+### 4. Output Formatting and Storage:
+* Objective: Format and save the filtered results in CSV, JSON, and Parquet formats to designated S3 paths for both ascending and descending orders.
+* Implementation:
   ```ruby
-  df_in.show()
-  df_not_in.show()
-  df_gt.show()
-  df_lt.show()
-  df_ne.show()
+  output_base_path = "s3://ti-author-scripts/ti-author-glue-scripts/ti-glue-pyspark-scripts-outputs/ti-pyspark-filtering-outputs/"
+  df_in.write.mode("overwrite").option("header", "true").csv(output_base_path + "csv/in_condition/")
+  df_in.write.mode("overwrite").json(output_base_path + "json/in_condition/")
+  df_in.write.mode("overwrite").parquet(output_base_path + "parquet/in_condition/")
   ```
 
-### 5. Execution
+### 5. Logging and Verification:
+* Objective: Confirm the successful execution and storage of filtered data in all specified formats and conditions.
+* Implementation:
+  ```ruby
+    glueContext.get_logger().info("Data successfully written to S3 in all specified filters and formats.")
+  ```  

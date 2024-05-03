@@ -20,8 +20,20 @@ df = glueContext.create_dynamic_frame.from_catalog(database=database, table_name
 # Create a temporary view of the DataFrame
 df.createOrReplaceTempView("temp_table")
 
-# Now you can use this temporary view in subsequent queries
+# Use the temporary view in a SQL query
 result_df = spark.sql("SELECT * FROM temp_table")
 
-# Show the resulting DataFrame
-result_df.show()
+# Specify the output path for the S3 bucket
+output_base_path = "s3://your-bucket-name/your-folder/"
+
+# Save the resulting DataFrame to the S3 bucket in CSV format
+result_df.write.mode("overwrite").option("header", "true").csv(output_base_path + "csv/")
+
+# Save the resulting DataFrame to the S3 bucket in JSON format
+result_df.write.mode("overwrite").json(output_base_path + "json/")
+
+# Save the resulting DataFrame to the S3 bucket in Parquet format
+result_df.write.mode("overwrite").parquet(output_base_path + "parquet/")
+
+# Log information after saving to S3
+glueContext.get_logger().info("Data successfully written to S3 in CSV, JSON, and Parquet formats.")

@@ -21,6 +21,14 @@ df = glueContext.create_dynamic_frame.from_catalog(database=database, table_name
 # This is particularly useful in scenarios where you need to ensure that each row in your DataFrame is unique
 distinct_df = df.distinct()
 
-# Display the distinct records from the DataFrame
-# This operation triggers an action that collects the distinct rows and prints them to the console
-distinct_df.show()
+# Specify the output path for the S3 bucket
+output_base_path = "s3://your-bucket-name/your-folder/"
+
+# Save the distinct records to the S3 bucket in your preferred format
+# Here we demonstrate saving in CSV, JSON, and Parquet formats
+distinct_df.write.mode("overwrite").option("header", "true").csv(output_base_path + "csv/")
+distinct_df.write.mode("overwrite").json(output_base_path + "json/")
+distinct_df.write.mode("overwrite").parquet(output_base_path + "parquet/")
+
+# Log information after saving to S3
+glueContext.get_logger().info("Distinct records successfully written to S3 in CSV, JSON, and Parquet formats.")

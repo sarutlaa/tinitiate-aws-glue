@@ -28,6 +28,10 @@
 * [Joins](glue-pyspark-joins.md)
 * [Set Operations](glue-pyspark-set-operations.md)
 * [Analytical Functions](glue-pyspark-analytical.md)
+* [Pivot, UnPivot](glue-pyspark-pivot-unpivot.md)
+* [Common Table Expressions(CTE)](glue-pyspark-cte.md)
+* [CTAS](glue-pyspark-ctas.md)
+* [Date Formats](glue-pyspark-date-formats.md) Date, DateTime, DateTime TimeZone --error
 
   
 * Glue PySpark DataFrame Joins multiple tables joins(3 or more) - Recheck
@@ -39,23 +43,9 @@
 * Glue Generate PySpark DataFrame from RDBMS (Oracle, SQL Server, Postgresql, MySQL) - Pending
 * Glue Generate PySpark DataFrame from DynamoDB - Pending ( nested and non nested table building )
 
-
-
-* 
-* 
 * Glue PySpark DataFrame Handling: Null, isnull, not null --done
-
-
-
 * Glue PySpark DataFrame Psuedo Colums --done ( Custom ones )
 * Glue PySpark DataFrame Built in Psuedo --done ( Current date or time, location - check?? )
-
-
-* [Date Formats](glue-pyspark-date-formats.md) Date, DateTime, DateTime TimeZone --error
-
-* [Pivot, UnPivot](glue-pyspark-pivot-unpivot.md)
-* [Common Table Expressions(CTE)](glue-pyspark-cte.md)
-* [CTAS](glue-pyspark-ctas.md)
 * Glue PySpark DataFrame Connect by prior(hierarchial queries) -- recurisive
 * Glue PySpark DataFrame partitions -- done (Can we partition in pyspark and what is its use case? )
 

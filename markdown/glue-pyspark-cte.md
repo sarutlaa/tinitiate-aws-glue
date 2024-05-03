@@ -8,20 +8,20 @@ it were a standalone table, aiding in simplifying SQL queries and improving read
 
 ## Prerequisites
 
-Ensure the proper setup of the AWS environment, including S3 buckets and IAM roles. Detailed steps can be found here:
+Ensure proper configuration of IAM roles and S3 buckets and run necessary crawleras outlined here:
 
-* [Prerequisites](/prerequisites.md)
-* Setting up [AWS Glue Crawler](/aws-glue-crawler.md)
+* [Prerequisites]((/prerequisites.md)) 
+* [Crawler Setup](/aws-glue-crawler.md)
 
-##  PySpark Script 
-The script can be accessed and reviewed here:
-[pyspark-set-operations](../glue-code/ti-pyspark-cte.py)
+##  PySpark Script - [pyspark-set-operations](../glue-code/ti-pyspark-cte.py)
+- Input tables          : purchase
+- Output files          : csv, json and parquet files in S3 buckets.
+- Crawlers used         : purchase_crawler
 
 ## Main Operations
-
 ### 1. Initializing Spark and Glue Contexts:
-* Purpose: Establishes the necessary Spark and Glue contexts for data manipulation with logging set to INFO to control verbosity.
-* Code Example:
+* Objective: Establishes the necessary Spark and Glue contexts for data manipulation with logging set to INFO to control verbosity.
+* Implementation:
   ```ruby
   from pyspark.context import SparkContext
   from awsglue.context import GlueContext
@@ -30,30 +30,38 @@ The script can be accessed and reviewed here:
   glueContext = GlueContext(sc)
   ```
 ### 2. Data Loading:
-* Purpose: Loads the "purchase" table from the Athena database into a DataFrame.
-* Code Example:
+* Objective: Loads the "purchase" table from the Athena database into a DataFrame.
+* Implementation:
   ```ruby
   df = glueContext.create_dynamic_frame.from_catalog(database="glue_db", table_name="purchase").toDF()
 
   ```
 ### 3. Creating a Temporary View:
-* Purpose: Creates a temporary view named "temp_table" which can be used in SQL queries, similar to how a CTE would be used.
-* Code Example:
+* Objective: Creates a temporary view named "temp_table" which can be used in SQL queries, similar to how a CTE would be used.
+* Implementation:
   ```ruby
   df.createOrReplaceTempView("temp_table")
   ```
 
 ### 4. Executing SQL Queries:
-* Purpose: Uses the temporary view to perform SQL queries, simplifying access to and manipulation of the data.
-* Code Example:
+* Objective: Uses the temporary view to perform SQL queries, simplifying access to and manipulation of the data.
+* Implementation:
   ```ruby
   result_df = spark.sql("SELECT * FROM temp_table")
   ```
 
-### 4. Displaying Results:
-* Purpose: Shows the results from the SQL query to verify the correctness and effectiveness of the temporary view.
-* Code Example:
+### 5. Output Formatting and Storage:
+* Objective: Save the SQL query results in CSV, JSON, and Parquet formats to predefined S3 bucket paths, ensuring data is accessible for further analysis.
+* Implementation:
   ```ruby
-  result_df.show()
+  output_base_path = "s3://your-bucket-name/your-folder/"
+  result_df.write.mode("overwrite").option("header", "true").csv(output_base_path + "csv/")
+  result_df.write.mode("overwrite").json(output_base_path + "json/")
+  result_df.write.mode("overwrite").parquet(output_base_path + "parquet/")
   ```
-
+### 6. Logging and Execution Verification:
+* Objective: Log operational details and confirm the successful execution and storage of data in all specified formats.
+* Implementation:
+  ```ruby
+  glueContext.get_logger().info("Data successfully written to S3 in CSV, JSON, and Parquet formats.")
+  ```

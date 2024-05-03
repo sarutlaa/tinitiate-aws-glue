@@ -31,6 +31,8 @@
 * [Pivot, UnPivot](glue-pyspark-pivot-unpivot.md)
 * [Common Table Expressions(CTE)](glue-pyspark-cte.md)
 * [CTAS](glue-pyspark-ctas.md)
+
+  
 * [Date Formats](glue-pyspark-date-formats.md) Date, DateTime, DateTime TimeZone --error
 
   

@@ -1,12 +1,12 @@
-# Aggregation and Sorting with PySpark in AWS Glue
+# Selecting and Aggregation with PySpark in AWS Glue
 
-This document outlines the process of using PySpark in AWS Glue to perform data selection and aliasing operations on data 
-sourced from the AWS Glue Data Catalog, followed by filtering based on specific criteria and saving the results in various formats to Amazon S3.
+This document outlines the procedures and code necessary to perform data joins, selections, and transformations using PySpark within AWS Glue. The process includes joining two datasets (products_csv and categories_csv), filtering based on specific criteria, and saving the results in various data formats to Amazon S3. The operation aims to refine product data for better accessibility and further analysis.
 
-## Overview of Selecting and Aliasing
+## Objectives
 
-Selecting and aliasing in PySpark involves choosing specific columns from a dataset and potentially renaming them to enhance readability and manageability.
-This is particularly useful in data transformation processes where clarity and precision in data representation are crucial.
+- Data Joining: Combine data from the products_csv and categories_csv tables using a common key to enrich product information with category details.
+- Data Filtering: Filter the data to focus on products with a unit price greater than 5, identifying higher-value items.
+- Data Storage: Save the transformed data in multiple formats (CSV, JSON, Parquet) to S3 for varied application use cases.
 
 ## Prerequisites
 
@@ -16,9 +16,9 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 * [Crawler Setup](/aws-glue-crawler.md)
 
 ##  PySpark Script - [pyspark-select-alias](../glue-code/ti-pyspark-select.py)
-- Input tables          : products_csv
+- Input tables          : products_csv, categories_csv
 - Output files          : csv, json and parquet files in S3 buckets.
-- Crawlers used         : product_crawler
+- Crawlers used         : product_crawler, category_crawler
 
 ## Main Operations
 ### 1. Initializing Spark and Glue Contexts:
@@ -37,22 +37,22 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 * Implementation:
   ```ruby
   product_df = glueContext.create_dynamic_frame.from_catalog(database="glue_db", table_name="products_csv").toDF()
+  category_df = glueContext.create_dynamic_frame.from_catalog(database="glue_db", table_name="categories_csv").toDF()
   ```
-
-### 3. Data Selection and Aliasing:
-* Objective: Group data by 'make' and 'model', count occurrences, and sort the results in both ascending and descending order based on count.
+### 3. Data Joining and Aliasing
+* Objective: Combine products and categories data based on the categoryid field, enriching product records with category names.
 * Implementation:
-  ```ruby
-  product_selected_df = product_df.select(
+    ```ruby
+    joined_df = product_df.join(category_df, product_df.categoryid == category_df.categoryid, "inner").select(
     col("productid").alias("Product ID"),
     col("productname").alias("Product Name"),
-    col("categoryid").alias("Product Category ID"),
-    col("unit_price").alias("Cost Per Unit")
+    category_df["categoryname"].alias("Category Name"),
+    col("unit_price").alias("Unit Price")
   )
 
   ```
   
-### 4. Filtering and Output Formatting:
+### 3. Filtering and Output Formatting:
 * Objective: Save the sorted data in CSV, JSON, and Parquet formats to predefined S3 bucket paths for both ascending and descending orders.
 * Implementation:
   ```ruby
@@ -63,7 +63,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
   filtered_product_df.write.mode("overwrite").parquet(output_base_path + "parquet/")
   ```
   
-### 5. Logging and Verification:
+### 4. Logging and Verification:
 * Objective: Log the completion of data writes, confirming successful storage in both orders and formats.
 * Implementation:
   ```ruby

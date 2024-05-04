@@ -8,6 +8,7 @@ Window functions in PySpark allow for advanced data analysis and manipulation wi
 *Rank Functions*
 - *LAG*: Retrieves a value from a previous row in the window, often used to compare current values with those of previous entries.
 - *LEAD*: Retrieves a value from a subsequent row in the window, useful for comparing current values to future values.
+  
 *Value Functions*
 - *RANK*: Assigns a rank to each row within a partition of a result set, with ties receiving the same rank.
 - *DENSE_RANK*: Assigns a rank to each row within a partition, with no gaps in ranking values across consecutive groups.

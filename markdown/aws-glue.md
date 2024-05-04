@@ -20,6 +20,7 @@
   
 ## SQL Like Implementations with PySpark and AWS Glue ETL Scripts
 
+* [Select & Alias](glue-pyspark-select-alias.md)
 * [Order By](glue-pyspark-orderby.md)
 * [Group By](glue-pyspark-groupby.md)
 * [Distinct](glue-pyspark-distinct.md)

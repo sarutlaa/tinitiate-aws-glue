@@ -35,8 +35,6 @@
 * [Null Checks](glue-pyspark-null-checks.md)
 
   
-  
-* Glue PySpark DataFrame Joins multiple tables joins(3 or more) - Recheck
 * Glue PySpark DataFrame Joins Remove duplicate columns when joined - Check Select script Alias
   AND Glue PySpark DataFrame Select, Rename Columns in Select  
 * Glue Generate PySpark DataFrame from Single JSON, Multiple JSONs without Athena / Crawler - Todo 

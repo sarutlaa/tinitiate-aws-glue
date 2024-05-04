@@ -15,7 +15,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 * [Prerequisites]((/prerequisites.md)) 
 * [Crawler Setup](/aws-glue-crawler.md)
 
-##  PySpark Script - [pyspark-orderby](../glue-code/ti-pyspark-orderby.py)
+##  PySpark Script - [pyspark-select-alias](../glue-code/ti-pyspark-select.py)
 - Input tables          : products_csv
 - Output files          : csv, json and parquet files in S3 buckets.
 - Crawlers used         : product_crawler

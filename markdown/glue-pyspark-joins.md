@@ -80,4 +80,4 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
         glueContext.get_logger().info("Data successfully written to S3 in all formats.")
       ```
 
-## Executing multiple joins: [pyspark-joins](glue-pyspark-multiple-joins.md)
+## Executing multiple joins: [pyspark-multiple-joins](glue-pyspark-multiple-joins.md)

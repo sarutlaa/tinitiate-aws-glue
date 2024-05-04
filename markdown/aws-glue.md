@@ -20,13 +20,13 @@
   
 ## SQL Like Implementations with PySpark and AWS Glue ETL Scripts
 
-* [Select & Alias](glue-pyspark-select-alias.md)
 * [Order By](glue-pyspark-orderby.md)
 * [Group By](glue-pyspark-groupby.md)
 * [Distinct](glue-pyspark-distinct.md)
 * [Filtering](glue-pyspark-condition.md)
 * [Having](glue-pyspark-having.md)
 * [Joins](glue-pyspark-joins.md)
+* [Select & Alias](glue-pyspark-select-alias.md)
 * [Set Operations](glue-pyspark-set-operations.md)
 * [Analytical Functions](glue-pyspark-analytical.md)
 * [Pivot, UnPivot](glue-pyspark-pivot-unpivot.md)
@@ -36,8 +36,7 @@
 * [Null Checks](glue-pyspark-null-checks.md)
 
   
-* Glue PySpark DataFrame Joins Remove duplicate columns when joined - Check Select script Alias
-  AND Glue PySpark DataFrame Select, Rename Columns in Select  
+
 * Glue Generate PySpark DataFrame from Single JSON, Multiple JSONs without Athena / Crawler - Todo 
 * Glue Generate PySpark DataFrame from Single CSV, Multiple CSVs without Athena / Crawler - Todo
 * Glue Generate PySpark DataFrame from Single Parquet, Multiple Parquets without Athena / Crawler - Todo

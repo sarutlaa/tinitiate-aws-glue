@@ -3,7 +3,7 @@
 This document explains how to use PySpark in AWS Glue for conducting advanced analytical queries using window functions. The script sets up the required Spark and Glue contexts, applies window functions to compute various statistics, and saves the results in different formats to S3. 
 
 ## Overview of Window Functions
-Window functions in PySpark allow for advanced data analysis and manipulation within a defined "window" of data. These functions enable calculations across a range of data rows that are related to the current row, providing powerful tools for aggregation and comparison without collapsing rows, unlike group-by functions which aggregate data to a single row. Commonly used window functions include lag, lead, rank, and row_number, each of which serves a specific purpose in data analysis:
+Window functions in PySpark allow for advanced data analysis and manipulation within a defined "window" of data. These functions enable calculations across a range of data rows that are related to the current row, providing powerful tools for aggregation and comparison without collapsing rows, unlike group-by functions which aggregate data to a single row. Commonly used window functions include lag, lead, rank, and dense_rank, each of which serves a specific purpose in data analysis:
 
 *Rank Functions*
 - *LAG*: Retrieves a value from a previous row in the window, often used to compare current values with those of previous entries.

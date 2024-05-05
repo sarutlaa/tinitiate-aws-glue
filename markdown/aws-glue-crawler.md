@@ -2,7 +2,7 @@
 
 AWS Glue Crawler is a service that automates the discovery, classification, and cataloging of data across AWS data stores. It automatically scans data repositories, detects schemas, and updates metadata in the AWS Glue Data Catalog.  This pre-populated Data Catalog is empowered to build efficient ETL workflows that can readily access and process your data, all within the AWS ecosystem.
 
-### Glue Functionalities:
+### Glue Crawler Functionalities:
 * *Data Source Discovery:* Crawlers can connect to various data sources supported by AWS Glue, including S3 buckets, relational databases (e.g., MySQL, Oracle), and data warehouses (e.g., Redshift).
 * *Schema Inference:* During the crawl process, the crawler analyzes the data to infer its schema (structure). This includes identifying data types for each column and understanding the overall organization of the data.
 * *Metadata Generation:* Based on the discovered schema and other details like data location and format, the crawler generates metadata entries within the AWS Glue Data Catalog. This metadata acts as a central registry, allowing you to easily locate and understand your data assets.

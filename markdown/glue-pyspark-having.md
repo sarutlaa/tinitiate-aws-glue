@@ -7,10 +7,9 @@ The HAVING clause is used in SQL to filter the results of a query based on aggre
 
 ## Prerequisites
 Ensure proper configuration of IAM roles and S3 buckets and run necessary crawleras outlined here:
-
-* [Prerequisites]((/prerequisites.md)) 
-* [Crawler Setup](/aws-glue-crawler.md)
-
+* [Crawler Prerequisites](/crawler-prerequisites.md)
+* [Crawler Setup Instructions](/set-up-instructions.md)
+  
 ##  PySpark Script - [pyspark-having](../glue-code/ti-pyspark-having.py)
 - Input tables          : electric_vehicle_population_data_csv
 - Output files          : csv, json and parquet files in S3 buckets.

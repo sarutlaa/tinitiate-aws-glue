@@ -53,13 +53,13 @@ AWS Glue crawlers rely on an IAM role to perform their data discovery and schema
 #### Step 1. Accessing the IAM Service:
 - Log in to the AWS Management Console.
 - In the navigation pane on the left side of the page, locate the "IAM" service and click on it.
-#### 2. Creating the IAM Role:
+#### Step 2. Creating the IAM Role:
 - Under IAM services, click on "Roles" from the left-hand sidebar.
 - Click the "Create role" button.
 - In the "Choose a role type" section, select "AWS service".
 - From the list of services, choose "Glue".
 - Click "Next: Permissions".
-#### 3. Attaching Permissions:
+#### Step 3. Attaching Permissions:
 Here, we'll define two separate policy documents to grant the required permissions:
 
 a) S3 Access Policy:

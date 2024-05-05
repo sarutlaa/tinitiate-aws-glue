@@ -34,7 +34,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 ### 1. Initializing Spark and Glue Contexts:
 * Objective: Establishes the necessary Spark and Glue contexts for data manipulation with logging set to INFO to control verbosity.
 * Implementation:
-  ```ruby
+  ```python
   from pyspark.context import SparkContext
   from awsglue.context import GlueContext
   sc = SparkContext()
@@ -44,13 +44,13 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 ### 2. Data Loading:
 * Objective: Loads the employee salary data from a CSV file stored in S3 into a DataFrame.
 * Implementation:
-  ```ruby
+  ```python
   df = spark.read.option("header", "true").csv("s3://ti-p-data/hr-data/employee_dept/")
   ```
 ### 3. Pivot Operation:
 * Objective: Transforms the dataset to create a new DataFrame where each selected month becomes a separate column with corresponding salary data.
 * Implementation:
-  ```ruby
+  ```python
   from pyspark.sql.functions import col
   months = ['January', 'February', 'March']
   pivot_df = df.select(
@@ -61,7 +61,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 ### 4. Unpivot Operation:
 * Objective: Transforms the pivoted DataFrame back into a long format where each row represents a month and its corresponding salary for easier comparison across different dimensions.
 * Implementation:
-  ```ruby
+  ```python
   unpivot_df = pivot_df.selectExpr(
       "employee_id", "employee_name", "department",
       "stack(3, 'January', January, 'February', February, 'March', March) as (month, salary)"
@@ -70,7 +70,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 ### 5. Output Formatting and Storage:
 * Objective: Store the results of both pivoted and unpivoted DataFrames in Amazon S3 in CSV, JSON, and Parquet formats to support diverse downstream uses.
 * Implementation:
-  ```ruby
+  ```python
   output_base_path = "s3://your-output-bucket/your-folder/"
   pivot_df.write.mode("overwrite").option("header", "true").csv(output_base_path + "pivot/csv/")
   pivot_df.write.mode("overwrite").json(output_base_path + "pivot/json/")

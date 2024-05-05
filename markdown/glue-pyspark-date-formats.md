@@ -22,7 +22,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 ### 1. Initializing Spark and Glue Contexts:
 * Objective: Establishes the necessary Spark and Glue contexts for data manipulation with logging set to INFO to control verbosity.
 * Code Example:
-  ```ruby
+  ```python
   from pyspark.context import SparkContext
   from awsglue.context import GlueContext
   sc = SparkContext()
@@ -33,13 +33,13 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 ### 2. Data Loading:
 * Objective: Loads the "dispatch" table from the Athena database into a DataFrame, preparing it for datetime conversion.
 * Implementation:
-  ```ruby
+  ```python
   df = glueContext.create_dynamic_frame.from_catalog(database="glue_db", table_name="dispatch").toDF()
   ```
 ### 3. Converting to UTC::
 * Objective: Converts the 'dispatch_date' string column to a UTC datetime format to standardize the timestamp data..
 * Implementation:
-  ```ruby
+  ```python
   from pyspark.sql.functions import from_utc_timestamp
   df_utc = df.withColumn("datetime_utc_column", from_utc_timestamp(df["dispatch_date"], "UTC"))
   ```  
@@ -48,7 +48,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 * Objective: Enhance the dataset with formatted date strings and calculated time differences for detailed temporal analysis.
 * Note: Replace 'desired_timezone' with the appropriate timezone string, like 'America/New_York'.
 * Implementation:
-  ```ruby
+  ```python
   df_formatted = df_with_timezone.withColumn("formatted_date", date_format("datetime_with_timezone_column", "yyyy-MM-dd HH:mm:ss"))
   df_time_diff = df_formatted.withColumn("time_difference_seconds", expr("unix_timestamp(current_timestamp()) - unix_timestamp(datetime_with_timezone_column)"))
 
@@ -57,7 +57,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 ### 5. Output Formatting and Storage:
 * Objective: Save the enriched data to Amazon S3 in multiple formats for accessibility and further use.
 * Implementation:
-  ```ruby
+  ```python
   output_base_path = "s3://your-bucket-name/your-folder/"
   df_time_diff.write.mode("overwrite").option("header", "true").csv(output_base_path + "csv/")
   df_time_diff.write.mode("overwrite").json(output_base_path + "json/")
@@ -67,7 +67,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 ### 6. Logging and Execution Verification:
 * Objective: Confirm successful execution and storage of the data, ensuring traceability and reliability of the process.
 * Implementation:
-  ```ruby
+  ```python
    glueContext.get_logger().info("Data successfully written to S3 in CSV, JSON, and Parquet formats.")
 
   ```

@@ -7,7 +7,7 @@ Crawlers act as automated data scouts, exploring and scanning various data sourc
 	* Relational databases (e.g., MySQL, Oracle)
 	* Data warehouses (e.g., Redshift)
 
-### Crawler Functionalities::
+## Crawler Functionalities::
 * *Data Source Discovery:* Crawlers automatically identify data locations within your specified sources.
 * *Schema Inference:* During a crawl, the crawler analyzes the data to infer its schema (structure). This includes determining data types for each column and understanding the overall organization.
 * *Metadata Generation:* Based on the inferred schema and details like location and format, the crawler generates metadata entries within the AWS Glue Data Catalog. This central registry acts as a catalog for your data assets, simplifying discovery and management.

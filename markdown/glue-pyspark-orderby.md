@@ -22,7 +22,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 ### 1. Initializing Spark and Glue Contexts:
 * Objective: Set up necessary contexts for PySpark and AWS Glue operations, ensuring that informative logging is enabled.
 * Implementation :
-  ```ruby
+  ```python
   from pyspark.context import SparkContext
   from awsglue.context import GlueContext
   sc = SparkContext()
@@ -33,14 +33,14 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 ### 2. Data Loading:
 * Objective: Load data from the AWS Glue Data Catalog into Spark DataFrames, preparing it for subsequent processing.
 * Implementation:
-  ```ruby
+  ```python
   grouped_df = glueContext.create_dynamic_frame.from_catalog(database="glue_db", table_name="electric_vehicle_population_data_csv").toDF()
   ```
 
 ### 3. Data Aggregation and Sorting:
 * Objective: Group data by 'make' and 'model', count occurrences, and sort the results in both ascending and descending order based on count.
 * Implementation:
-  ```ruby
+  ```python
   result_df = grouped_df.groupBy("make", "model").agg(count("*").alias("count"))
   result_df_desc = result_df.orderBy("count", ascending=False)
   result_df_asc = result_df.orderBy("count", ascending=True)
@@ -49,7 +49,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 ### 4. Output Formatting and Storage:
 * Objective: Save the sorted data in CSV, JSON, and Parquet formats to predefined S3 bucket paths for both ascending and descending orders.
 * Implementation:
-  ```ruby
+  ```python
   output_base_path = "s3://ti-author-scripts/ti-author-glue-scripts/ti-glue-pyspark-scripts-outputs/ti-pyspark-orderby-outputs/"
   result_df_desc.write.mode("overwrite").option("header", "true").csv(output_base_path + "csv/desc/")
   result_df_desc.write.mode("overwrite").json(output_base_path + "json/desc/")
@@ -63,6 +63,6 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 ### 5. Logging and Verification:
 * Objective: Log the completion of data writes, confirming successful storage in both orders and formats.
 * Implementation:
-  ```ruby
+  ```python
   glueContext.get_logger().info("Data successfully written to S3 in both ascending and descending order in CSV, JSON, and Parquet formats.")
   ```

@@ -95,9 +95,7 @@ b) Glue Service Role Policy:
 
 * Click on the "Attach existing policies" button.
 * In the search bar, type "AWSGlueServiceRole" and select the policy.
-*  ![Crawler_4](images/image-4.png)
 * Click "Attach policy".
-   ![Crawler_5](images/image-5.png)
 * Below Json policy is for Glue Service Role
 ```json
 {
@@ -155,6 +153,12 @@ b) Glue Service Role Policy:
 		]
 	}
 ```
+#### 4. Finalizing the IAM Role:
+* Review the attached policies and click "Next: Tags" (optional: add tags for better organization).
+  ![Crawler_5](images/image-5.png)
+* Click "Next: Review" to review the role details and permissions.
+  ![Crawler_4](images/image-4.png)
+* Enter a name for your IAM role (e.g., "GlueCrawlerRole") and click "Create role".
 
 
 

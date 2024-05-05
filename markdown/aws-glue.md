@@ -15,8 +15,8 @@
     * Source Dynamo - Target(S3,RDBMS,DynamoDB)
 
 ## Glue with PySpark
-* [Prerequisites](prerequisites.md)
-* [Setting up Instructions](set-up-instructions.md)
+* [IAM Prerequisites](prerequisites.md)
+* [Crawler Setup Instructions](set-up-instructions.md)
   
 ## SQL Like Implementations with PySpark and AWS Glue ETL Scripts
 

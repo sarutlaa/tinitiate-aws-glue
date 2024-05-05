@@ -11,10 +11,9 @@ This document outlines the procedures and code necessary to perform data joins, 
 ## Prerequisites
 
 Ensure proper configuration of IAM roles and S3 buckets and run necessary crawleras outlined here:
-
-* [Prerequisites]((/prerequisites.md)) 
-* [Crawler Setup](/aws-glue-crawler.md)
-
+* [Crawler Prerequisites](/crawler-prerequisites.md)
+* [Crawler Setup Instructions](/set-up-instructions.md)
+  
 ##  PySpark Script - [pyspark-select-alias](../glue-code/ti-pyspark-select.py)
 - Input tables          : products_csv, categories_csv
 - Output files          : csv, json and parquet files in S3 buckets.

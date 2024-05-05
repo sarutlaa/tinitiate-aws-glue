@@ -8,14 +8,14 @@ Crawlers act as automated data scouts, exploring and scanning various data sourc
 2. Relational databases (e.g., MySQL, Oracle)
 3. Data warehouses (e.g., Redshift)
 
-## Crawler Functionalities::
+## Crawler Functionalities:
 * *Data Source Discovery:* Crawlers automatically identify data locations within your specified sources.
 * *Schema Inference:* During a crawl, the crawler analyzes the data to infer its schema (structure). This includes determining data types for each column and understanding the overall organization.
 * *Metadata Generation:* Based on the inferred schema and details like location and format, the crawler generates metadata entries within the AWS Glue Data Catalog. This central registry acts as a catalog for your data assets, simplifying discovery and management.
 * *Schema Evolution Handling:* Crawlers can be configured to adapt to evolving data formats. If your data structure changes (e.g., adding new columns), the crawler detects these changes and updates the corresponding metadata in the Data Catalog.
 * *Scheduling:* Crawlers can be run on demand or scheduled to run periodically (e.g., daily, weekly) to ensure the Data Catalog stays up-to-date with changes in your data sources.
 
-### Role of Classifiers:
+## Role of Classifiers:
 Classifiers work alongside crawlers to accurately understand the format of your data:
 * *Data Format Detectives:* Classifiers are sets of rules or patterns that the crawler uses to identify the format of the data it encounters. AWS Glue provides built-in classifiers for common formats like CSV, JSON, Avro, and Parquet. You can also define custom classifiers for less common formats or specific needs.
 * *Classifier Workflow:* When a crawler scans a data source, it invokes its associated classifiers in a predefined order:
@@ -24,7 +24,7 @@ Classifiers work alongside crawlers to accurately understand the format of your 
 
 ![image](https://github.com/jaykumsi/aws-glue/assets/137452836/133157d9-b3fc-4716-b7b0-6d7c3ed06863)
   
- ## Data Sources that Glue Crawlers can crawl
+ ## Supported Data Stores for AWS Glue Crawlers
 | Connection Method  | Data stores     | 
 | :-------- | :------- | 
 | Native client | Amazon Simple Storage Service (Amazon S3)
@@ -41,18 +41,36 @@ Classifiers work alongside crawlers to accurately understand the format of your 
 |           | MongoDB Atlas|
 |           | Amazon DocumentDB |
 
-* IAM Roles
- * Initially, it is necessary to establish an AWS Identity and Access Management (IAM) policy before proceeding to create an IAM 
-   role.
-    
- * Go to IAM (Identity and Access Management) 
-  1. click the policies tab on the left side of the page
-  2. click the Create policy
- ![Alt text](images/image-2.png)
+## Crawler prerequisites:
 
- * Permissions : click on Json tab and paste the below 
-                 code and Click Next
-![Alt text](images/image-3.png)
+AWS Glue crawlers rely on an IAM role to perform their data discovery and schema inference tasks. The role needs permissions for the following:
+
+* Access AWS Glue: Permissions to list, create, and update crawlers within the Glue service.
+* Access Data Sources: Permissions to access the data stores that the crawler will be exploring. Here are some specific examples:
+	- S3 Bucket Read Access: If the crawler needs to crawl data from S3 buckets, the IAM role needs appropriate read permissions for those buckets.
+	- Database Connection Permissions: For relational databases (e.g., MySQL, Oracle), the role requires connection permissions to establish a connection and retrieve data.
+* Data Catalog Access: In some scenarios, the crawler might need permissions to write metadata to the AWS Glue Data Catalog.
+
+### Creating an IAM Role for Glue Crawlers:
+#### Step 1. Accessing the IAM Service:
+- Log in to the AWS Management Console.
+- In the navigation pane on the left side of the page, locate the "IAM" service and click on it.
+#### 2. Creating the IAM Role:
+- Under IAM services, click on "Roles" from the left-hand sidebar.
+- Click the "Create role" button.
+- In the "Choose a role type" section, select "AWS service".
+- From the list of services, choose "Glue".
+- Click "Next: Permissions".
+#### 3. Attaching Permissions:
+Here, we'll define two separate policy documents to grant the required permissions:
+
+a) S3 Access Policy:
+
+- Click on the "Create policy" button.
+   ![Alt text](images/image-2.png)
+- In the policy editor, choose the "JSON" tab.
+- Paste the following JSON code snippet into the editor:
+ ![Alt text](images/image-3.png)
  ```json
  {
 	"Version": "2012-10-17",
@@ -68,6 +86,30 @@ Classifiers work alongside crawlers to accurately understand the format of your 
 	]
 }
 ```
+
+ * Go to IAM (Identity and Access Management) 
+  1. click the policies tab on the left side of the page
+  2. click the Create policy
+  ```json
+ {
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Effect": "Allow",
+			"Action": [
+				"s3:GetObject",
+				"s3:PutObject"
+			],
+			"Resource": "arn:aws:s3:::tini-d-gluebucket-001*"
+		}
+	]
+}
+ ```
+
+ * Permissions : click on Json tab and paste the below 
+                 code and Click Next
+
+
 * Policy Name : Enter a Policy Name accordingly and click 
                 create policy to create a policy
  ![Alt text](images/image-4.png)

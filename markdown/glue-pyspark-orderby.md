@@ -9,8 +9,8 @@ Aggregation in PySpark involves summarizing data from multiple rows into a singl
 ## Prerequisites
 
 Ensure proper configuration of IAM roles and S3 buckets and run necessary crawleras outlined here:
-* [Crawler Prerequisites](/crawler-prerequisites.md)
-* [Crawler Setup Instructions](/set-up-instructions.md)
+* [Crawler Prerequisites](crawler-prerequisites.md)
+* [Crawler Setup Instructions](set-up-instructions.md)
 
 ##  PySpark Script - [pyspark-orderby](../glue-code/ti-pyspark-orderby.py)
 - Input tables          : purchase

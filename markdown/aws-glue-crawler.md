@@ -1,13 +1,25 @@
 # AWS Glue Crawler
 
-AWS Glue Crawler is a service that automates the discovery, classification, and cataloging of data across AWS data stores. It automatically scans data repositories, detects schemas, and updates metadata in the AWS Glue Data Catalog.  This pre-populated Data Catalog is empowered to build efficient ETL workflows that can readily access and process your data, all within the AWS ecosystem.
+This section dives into AWS Glue Crawlers and Classifiers, essential components for automating data discovery, classification, and cataloging within your data pipelines.
 
-### Glue Crawler Functionalities:
-* *Data Source Discovery:* Crawlers can connect to various data sources supported by AWS Glue, including S3 buckets, relational databases (e.g., MySQL, Oracle), and data warehouses (e.g., Redshift).
-* *Schema Inference:* During the crawl process, the crawler analyzes the data to infer its schema (structure). This includes identifying data types for each column and understanding the overall organization of the data.
-* *Metadata Generation:* Based on the discovered schema and other details like data location and format, the crawler generates metadata entries within the AWS Glue Data Catalog. This metadata acts as a central registry, allowing you to easily locate and understand your data assets.
-* *Schema Evolution Handling:* Crawlers can be configured to handle evolving schema. If your data format changes over time (e.g., adding new columns), the crawler can detect these changes and update the corresponding metadata in the Data Catalog.
-* *Scheduling:* Crawlers can be run on demand or scheduled to run periodically (e.g., daily, weekly) to ensure your Data Catalog stays up-to-date with any changes in your data sources.
+Crawlers act as automated data scouts, exploring and scanning various data sources supported by AWS Glue, including:
+	* Amazon S3 buckets (most common)
+	* Relational databases (e.g., MySQL, Oracle)
+	* Data warehouses (e.g., Redshift)
+
+### Crawler Functionalities::
+* **Data Source Discovery:** Crawlers automatically identify data locations within your specified sources.
+* **Schema Inference:** During a crawl, the crawler analyzes the data to infer its schema (structure). This includes determining data types for each column and understanding the overall organization.
+* **Metadata Generation:** Based on the inferred schema and details like location and format, the crawler generates metadata entries within the AWS Glue Data Catalog. This central registry acts as a catalog for your data assets, simplifying discovery and management.
+* **Schema Evolution Handling:** Crawlers can be configured to adapt to evolving data formats. If your data structure changes (e.g., adding new columns), the crawler detects these changes and updates the corresponding metadata in the Data Catalog.
+* **Scheduling:** Crawlers can be run on demand or scheduled to run periodically (e.g., daily, weekly) to ensure the Data Catalog stays up-to-date with changes in your data sources.
+
+### Role of Classifiers:
+Classifiers work alongside crawlers to accurately understand the format of your data:
+* Data Format Detectives: Classifiers are sets of rules or patterns that the crawler uses to identify the format of the data it encounters. AWS Glue provides built-in classifiers for common formats like CSV, JSON, Avro, and Parquet. You can also define custom classifiers for less common formats or specific needs.
+* Classifier Workflow: When a crawler scans a data source, it invokes its associated classifiers in a predefined order:
+	1. Crawlers first try built-in classifiers to recognize the format.
+	2. If no built-in classifier provides a confident match, the crawler attempts any custom classifiers defined for that source.
 
 ![image](https://github.com/jaykumsi/aws-glue/assets/137452836/133157d9-b3fc-4716-b7b0-6d7c3ed06863)
   

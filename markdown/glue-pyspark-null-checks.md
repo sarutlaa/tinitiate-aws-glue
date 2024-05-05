@@ -22,7 +22,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 ### 1. Initializing Spark and Glue Contexts:
 * Objective: Establishes the necessary Spark and Glue contexts for data manipulation with logging set to INFO to control verbosity.
 * Code Example:
-  ```ruby
+  ```python
   from pyspark.context import SparkContext
   from awsglue.context import GlueContext
   sc = SparkContext()
@@ -33,7 +33,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 ### 2. Data Loading and Transformation:
 * Objective: Load data from the Athena "categories_csv" table into a DataFrame, apply filters to segregate null and non-null values based on the 'categoryname' column.
 * Implementation:
-  ```ruby
+  ```python
   df = glueContext.create_dynamic_frame.from_catalog(database="glue_db", table_name="category").toDF()
   df_null = df.filter(col("categoryname").isNull())
   df_not_null = df.filter(col("categoryname").isNotNull())
@@ -41,7 +41,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 ### 3. Output Formatting and Storage:
 * Objective: Store the results of filtered data frames into Amazon S3 in multiple formats for various uses, enhancing data accessibility.
 * Implementation:
-  ```ruby
+  ```python
   output_base_path = "s3://your-bucket-name/your-folder/"
   df_null.write.mode("overwrite").option("header", "true").csv(output_base_path + "null/csv/")
   df_not_null.write.mode("overwrite").json(output_base_path + "not_null/json/")
@@ -51,7 +51,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 ### 4. Logging and Execution Verification:
 * Objective: Confirm the successful execution of the script and log the completion of data storage operations.
 * Implementation:
-  ```ruby
+  ```python
   glueContext.get_logger().info("Data with null and not null values successfully written to S3 in CSV, JSON, and Parquet formats.")
   ```
 

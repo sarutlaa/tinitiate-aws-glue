@@ -25,7 +25,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 ### 1. Context Initialization:
   - Objective: Establish necessary contexts for Spark and Glue operations and set appropriate log levels.
   - Implementation:
-    ```ruby
+    ```python
     from pyspark.context import SparkContext
     from awsglue.context import GlueContext
     sc = SparkContext.getOrCreate()
@@ -35,14 +35,14 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 ### 2. Data Loading and Preparation:
   - Objective: Load tables from Athena into Spark DataFrames, transforming them for aggregation
   - Implementation:
-    ```ruby
+    ```python
     electric_vehicles_df = glueContext.create_dynamic_frame.from_catalog(database="glue_db", table_name="electric_vehicle_population_data_csv").toDF()
     ```
 
 ### 3. Performing Group By and Saving Results:
    - Objective: Execute group by operations to aggregate data by specified keys and save the results to designated S3 buckets in multiple formats.
    - Implementation:
-      ```ruby
+      ```python
       result_df = electric_vehicles_df.groupBy("make", "model").agg(count("*").alias("count"))
       s3_bucket_paths = {
           "csv": "s3://bucket/csv/",
@@ -56,7 +56,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 ### 4. Logging and Output Verification:
    - Objective: Log operational details and confirm the success of data writes.
    - Implementatione:
-       ```ruby
+       ```python
       logger = glueContext.get_logger()
       logger.info("Results successfully written to S3 in all formats.")
 

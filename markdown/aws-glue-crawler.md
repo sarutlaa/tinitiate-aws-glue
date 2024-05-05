@@ -68,11 +68,11 @@ a) S3 Access Policy:
 
 - Click on the "Create policy" button.
   
-   ![Alt text](images/image-2.png)
+ ![Crawler_2](images/image-2.png)
 - In the policy editor, choose the "JSON" tab.
 - Paste the following JSON code snippet into the editor:
   
- ![Alt text](images/image-3.png)
+ ![Crawler_3](images/image-3.png)
  ```json
 	 {
 		"Version": "2012-10-17",
@@ -88,34 +88,20 @@ a) S3 Access Policy:
 		]
 	}
 ```
+Important Note:
 
- * Go to IAM (Identity and Access Management) 
-  1. click the policies tab on the left side of the page
-  2. click the Create policy
-  ```json
- {
-	"Version": "2012-10-17",
-	"Statement": [
-		{
-			"Effect": "Allow",
-			"Action": [
-				"s3:GetObject",
-				"s3:PutObject"
-			],
-			"Resource": "arn:aws:s3:::tini-d-gluebucket-001*"
-		}
-	]
-}
- ```
+- Replace '''<your-bucket-name>''' with the actual name of the S3 bucket(s) your crawler needs to access. You can use wildcards (*) for specific prefixes within the bucket.
+- This policy allows the crawler to read data (GetObject) and potentially write temporary files (PutObject) during the crawling process.
+- Enter a descriptive name for your policy (e.g., "S3AccessForGlueCrawler") and click "Create policy".
 
- * Permissions : click on Json tab and paste the below 
-                 code and Click Next
+b) Glue Service Role Policy:
 
+* Click on the "Attach existing policies" button.
+* In the search bar, type "AWSGlueServiceRole" and select the policy.
+* Click "Attach policy".
 
-* Policy Name : Enter a Policy Name accordingly and click 
-                create policy to create a policy
- ![Alt text](images/image-4.png)
- ![Alt text](images/image-5.png)
+ ![Crawler_4](images/image-4.png)
+ ![Crawler_5](images/image-5.png)
 
 * Below Json policy is for Glue Service Role
 ```json
@@ -175,11 +161,14 @@ a) S3 Access Policy:
 	}
 ```
 
+
+
+
 ## Create Crawler Roles for the policies created
  * Go to IAM (Identity and Access Management) , click the 
    Roles tab on the left side of the page and click on create role
 
- ![Alt text](images/image-6.png)
+ ![Crawler_6](images/image-6.png)
  
     1. select the trusted entity as below image, for trusted entity type, select AWS service 
     2. For Use case, select Glue

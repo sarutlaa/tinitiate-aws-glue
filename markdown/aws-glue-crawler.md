@@ -3,9 +3,9 @@
 This section dives into AWS Glue Crawlers and Classifiers, essential components for automating data discovery, classification, and cataloging within your data pipelines.
 
 Crawlers act as automated data scouts, exploring and scanning various data sources supported by AWS Glue, including:
-	* Amazon S3 buckets (most common)
-	* Relational databases (e.g., MySQL, Oracle)
-	* Data warehouses (e.g., Redshift)
+		1. Amazon S3 buckets (most common)
+		2. Relational databases (e.g., MySQL, Oracle)
+		3. Data warehouses (e.g., Redshift)
 
 ## Crawler Functionalities::
 * *Data Source Discovery:* Crawlers automatically identify data locations within your specified sources.

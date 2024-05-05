@@ -22,9 +22,7 @@ Classifiers work alongside crawlers to accurately understand the format of your 
 	1. Crawlers first try built-in classifiers to recognize the format.
 	2. If no built-in classifier provides a confident match, the crawler attempts any custom classifiers defined for that source.
 
- ![Crawler_1](images/image-1.png)
-  
- ## Supported Data Stores for AWS Glue Crawlers
+## Supported Data Stores for AWS Glue Crawlers
 | Connection Method  | Data stores     | 
 | :-------- | :------- | 
 | Native client | Amazon Simple Storage Service (Amazon S3)

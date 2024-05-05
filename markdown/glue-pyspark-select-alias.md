@@ -24,7 +24,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 ### 1. Initializing Spark and Glue Contexts:
 * Objective: Set up necessary contexts for PySpark and AWS Glue operations, ensuring that informative logging is enabled.
 * Implementation :
-  ```ruby
+  ```python
   from pyspark.context import SparkContext
   from awsglue.context import GlueContext
   sc = SparkContext()
@@ -35,14 +35,14 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 ### 2. Data Loading:
 * Objective: Load data from the AWS Glue Data Catalog into Spark DataFrames, preparing it for subsequent processing.
 * Implementation:
-  ```ruby
+  ```python
   product_df = glueContext.create_dynamic_frame.from_catalog(database="glue_db", table_name="products_csv").toDF()
   category_df = glueContext.create_dynamic_frame.from_catalog(database="glue_db", table_name="categories_csv").toDF()
   ```
 ### 3. Data Joining and Aliasing
 * Objective: Combine products and categories data based on the categoryid field, enriching product records with category names.
 * Implementation:
-    ```ruby
+    ```python
     joined_df = product_df.join(category_df, product_df.categoryid == category_df.categoryid, "inner").select(
     col("productid").alias("Product ID"),
     col("productname").alias("Product Name"),
@@ -55,7 +55,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 ### 3. Filtering and Output Formatting:
 * Objective: Save the sorted data in CSV, JSON, and Parquet formats to predefined S3 bucket paths for both ascending and descending orders.
 * Implementation:
-  ```ruby
+  ```python
   filtered_product_df = product_selected_df.filter(col("Cost Per Unit") > 5)
   output_base_path = "s3://ti-author-scripts/ti-author-glue-scripts/ti-glue-pyspark-scripts-outputs/ti-pyspark-aliasing-outputs/"
   filtered_product_df.write.mode("overwrite").option("header", "true").csv(output_base_path + "csv/")

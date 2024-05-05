@@ -1,12 +1,15 @@
 # AWS Glue Crawler
-> Jay Kumsi & Sravya Arutla
-## Glue Crawler
-  * A Program that connects to your data source (S3 ,DyDB) to scan your data and creates metadata tables in Glue Data Catalog
-  * Can scan multuple data sources in single run
-  * Once completed,it will create table in Data catalog
-  * This table can be used in Athena,ETL jobs,Redshift Spectrum
 
-  ![image](https://github.com/jaykumsi/aws-glue/assets/137452836/133157d9-b3fc-4716-b7b0-6d7c3ed06863)
+AWS Glue Crawler is a service that automates the discovery, classification, and cataloging of data across AWS data stores. It automatically scans data repositories, detects schemas, and updates metadata in the AWS Glue Data Catalog.  This pre-populated Data Catalog is empowered to build efficient ETL workflows that can readily access and process your data, all within the AWS ecosystem.
+
+### Glue Functionalities:
+* *Data Source Discovery:* Crawlers can connect to various data sources supported by AWS Glue, including S3 buckets, relational databases (e.g., MySQL, Oracle), and data warehouses (e.g., Redshift).
+* *Schema Inference:* During the crawl process, the crawler analyzes the data to infer its schema (structure). This includes identifying data types for each column and understanding the overall organization of the data.
+* *Metadata Generation:* Based on the discovered schema and other details like data location and format, the crawler generates metadata entries within the AWS Glue Data Catalog. This metadata acts as a central registry, allowing you to easily locate and understand your data assets.
+* *Schema Evolution Handling:* Crawlers can be configured to handle evolving schema. If your data format changes over time (e.g., adding new columns), the crawler can detect these changes and update the corresponding metadata in the Data Catalog.
+* *Scheduling:* Crawlers can be run on demand or scheduled to run periodically (e.g., daily, weekly) to ensure your Data Catalog stays up-to-date with any changes in your data sources.
+
+![image](https://github.com/jaykumsi/aws-glue/assets/137452836/133157d9-b3fc-4716-b7b0-6d7c3ed06863)
   
  ## Data Sources that Glue Crawlers can crawl
   * Native client

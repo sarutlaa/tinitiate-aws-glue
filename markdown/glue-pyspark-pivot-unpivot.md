@@ -21,9 +21,9 @@ Simplifying data structure for database storage or applications that require lon
 ## Prerequisites
 
 Ensure proper configuration of IAM roles and S3 buckets and run necessary crawleras outlined here:
-
-* [Prerequisites]((/prerequisites.md)) 
-* [Crawler Setup](/aws-glue-crawler.md)
+* [Crawler Prerequisites](/crawler-prerequisites.md)
+* [Crawler Setup Instructions](/set-up-instructions.md)
+  
 
 ##  PySpark Script - [pyspark-set-operations](../glue-code/ti-pyspark-pivot-unpivot.py)
 - Input Source          : CSV file from "employee_dept" stored in S3.

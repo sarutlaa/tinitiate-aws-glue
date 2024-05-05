@@ -9,9 +9,9 @@ The CTAS command is a powerful SQL operation commonly used in data warehousing. 
 
 Ensure proper configuration of IAM roles and S3 buckets and run necessary crawleras outlined here:
 
-* [Prerequisites]((/prerequisites.md)) 
-* [Crawler Setup](/aws-glue-crawler.md)
-
+* [Crawler Prerequisites](/crawler-prerequisites.md)
+* [Crawler Setup Instructions](/set-up-instructions.md)
+  
 ##  PySpark Script - [pyspark-ctas](../glue-code/ti-pyspark-ctas.py)
 - Input tables          : purchase
 - Output                : New table in the AWS Glue Data Catalog stored in S3.

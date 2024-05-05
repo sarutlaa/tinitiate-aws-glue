@@ -21,7 +21,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 ### 1. Initializing Spark and Glue Contexts:
   * Objective: Configures the Spark and Glue contexts to ensure proper execution of operations with informative logging.
   * Implementation:
-    ```ruby
+    ```python
     from pyspark.context import SparkContext
     from awsglue.context import GlueContext
     sc = SparkContext()
@@ -31,13 +31,13 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 ### 2. Data Loading:
   * Objective: Loads the "electric_vehicles" table from Athena into a DataFrame, preparing it for analysis.
   * Implementation:
-    ```ruby
+    ```python
     grouped_df = glueContext.create_dynamic_frame.from_catalog(database="glue_db", table_name="electric_vehicles").toDF()
     ```
 ### 3. Data Aggregation and Filtering:
   * Objective: Group data by 'make' and 'model', count occurrences, and filter results based on a predefined threshold.
   * Implementation:
-    ```ruby
+    ```python
     result_df = grouped_df.groupBy("make", "model").agg(count("*").alias("count"))
     result_df_filtered = result_df.filter(result_df["count"] > 1000)
 
@@ -46,7 +46,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 ### 4. Output Formatting and Storage:
   * Objective: Save the aggregated and filtered data in CSV, JSON, and Parquet formats to an S3 bucket, facilitating data utilization across different platforms and applications.
   * Implementation:
-    ```ruby
+    ```python
     output_base_path = "s3://your-bucket-name/your-folder/"
     result_df_filtered.write.mode("overwrite").option("header", "true").csv(output_base_path + "csv/")
     result_df_filtered.write.mode("overwrite").json(output_base_path + "json/")
@@ -57,7 +57,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 ### 5. Logging and Verification:
   * Objective: Log the successful execution and storage of data to confirm the operation completed as intended.
   * Implementation:
-    ```ruby
+    ```python
     glueContext.get_logger().info("Data successfully written to S3 in CSV, JSON, and Parquet formats.")
 
     ```

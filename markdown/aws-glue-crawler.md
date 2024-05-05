@@ -70,9 +70,8 @@ a) S3 Access Policy:
   
  ![Crawler_2](images/image-2.png)
 - In the policy editor, choose the "JSON" tab.
-- Paste the following JSON code snippet into the editor:
-  
  ![Crawler_3](images/image-3.png)
+- Paste the following JSON code snippet into the editor:
  ```json
 	 {
 		"Version": "2012-10-17",

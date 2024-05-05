@@ -4,9 +4,8 @@ This document provides a comprehensive guide on using PySpark within AWS Glue to
 ## Prerequisites
 
 Ensure proper configuration of IAM roles and S3 buckets and run necessary crawleras outlined here:
-
-* [Prerequisites]((/prerequisites.md)) 
-* [Crawler Setup](/aws-glue-crawler.md)
+* [Crawler Prerequisites](/crawler-prerequisites.md)
+* [Crawler Setup Instructions](/set-up-instructions.md)
   
 ##  PySpark Script - [pyspark-set-operations](../glue-code/ti-pyspark-union-unionall-intersect.py)
 - Input tables          : products_csv, products_csv

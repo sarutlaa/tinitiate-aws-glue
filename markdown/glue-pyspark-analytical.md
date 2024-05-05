@@ -32,7 +32,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 ### 1. Initializing Spark and Glue Contexts:
 * What It Does: Configures the Spark and Glue contexts necessary for data operations, with logging set to provide informative messages.
 * Implementation:
-  ```ruby
+  ```python
   from pyspark.context import SparkContext
   from awsglue.context import GlueContext
   sc = SparkContext()
@@ -43,7 +43,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 ### 2. Data Loading and Preparation:
 * Objective: Load data from Athena into Spark DataFrames and prepare them for analytical processing.
 * Implementation:
-  ```ruby
+  ```python
   analyzed_df = glueContext.create_dynamic_frame.from_catalog(database="glue_db", table_name="purchase").toDF()
   ```
 
@@ -51,7 +51,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 ### 3. Applying Window Functions:
 * Objective: Execute window functions to compute prior and next invoice prices, rank and dense rank by invoice price, and save the results to specified S3 buckets in 3 different formats.
 * Implementation:
-  ```ruby
+  ```python
   analyzed_df = analyzed_df.withColumn("previous_invoice_price", lag("invoice_price").over(Window.partitionBy("product_supplier_id").orderBy("purchase_tnxdate")))
   analyzed_df = analyzed_df.withColumn("next_invoice_price", lead("invoice_price").over(Window.partitionBy("product_supplier_id").orderBy("purchase_tnxdate")))
   analyzed_df = analyzed_df.withColumn("invoice_price_rank", rank().over(Window.partitionBy("product_supplier_id").orderBy(col("invoice_price").desc())))
@@ -61,7 +61,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 ### 4. Output Formatting and Storage:
 * Objective: Format the DataFrame with specific column names and save in CSV, JSON, and Parquet formats to an S3 bucket.
 * Implementation:
-  ```ruby
+  ```python
   column_names = ["purchase_tnx_id", "product_supplier_id", "purchase_tnxdate", "quantity", "invoice_price", "previous_invoice_price", "next_invoice_price", "invoice_price_rank", "invoice_price_dense_rank"]
   analyzed_df = analyzed_df.toDF(*column_names)
   output_base_path = "s3://ti-author-scripts/ti-author-glue-scripts/ti-glue-pyspark-scripts-outputs/glue-pyspark-analytical-outputs/"

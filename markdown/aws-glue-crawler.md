@@ -89,7 +89,7 @@ a) S3 Access Policy:
 ```
 Important Note:
 
-- Replace '''<your-bucket-name>''' with the actual name of the S3 bucket(s) your crawler needs to access. You can use wildcards (*) for specific prefixes within the bucket.
+- Replace <your-bucket-name> with the actual name of the S3 bucket(s) your crawler needs to access. You can use wildcards (*) for specific prefixes within the bucket.
 - This policy allows the crawler to read data (GetObject) and potentially write temporary files (PutObject) during the crawling process.
 - Enter a descriptive name for your policy (e.g., "S3AccessForGlueCrawler") and click "Create policy".
 

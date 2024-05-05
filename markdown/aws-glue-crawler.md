@@ -163,7 +163,7 @@ b) Glue Service Role Policy:
 * Enter a name for your IAM role (e.g., "GlueCrawlerRole") and click "Create role".
 
 
-## Create Crawler Roles for the policies created
+### Create Crawler Roles for the policies created
  * Go to IAM (Identity and Access Management) , click the 
    Roles tab on the left side of the page and click on create role
 
@@ -192,18 +192,17 @@ b) Glue Service Role Policy:
 
 
 ## Glue Catalog
-  * Go to AWS Glue, click the crawlers tab on the left   
-   side of the page ,click create crawler.
+* Go to AWS Glue, click the crawlers tab on the left side of the page ,click create crawler.
    1. Click Crawler tab
    2. Click Create Crawler
     ![Alt text](images/image-11.png)
  
- * Set Crawler properties
+* Set Crawler properties
    1. Name :: Enter Unique Name for the Crawler
    2. Click Next
     ![Alt text](images/image-12.png)   
 
-  * Choose the data source and classifiers,Data source configuration , Add a 
+* Choose the data source and classifiers,Data source configuration , Add a 
    data source.
    1. Select S3 as a Data Source
    2. Select S3 bucket path

@@ -68,9 +68,9 @@ a) S3 Access Policy:
 
 - Click on the "Create policy" button.
   
- ![Crawler_2](images/image-2.png)
+  ![Crawler_2](images/image-2.png)
 - In the policy editor, choose the "JSON" tab.
- ![Crawler_3](images/image-3.png)
+  ![Crawler_3](images/image-3.png)
 - Paste the following JSON code snippet into the editor:
  ```json
 	 {
@@ -97,11 +97,9 @@ b) Glue Service Role Policy:
 
 * Click on the "Attach existing policies" button.
 * In the search bar, type "AWSGlueServiceRole" and select the policy.
+*  ![Crawler_4](images/image-4.png)
 * Click "Attach policy".
-
- ![Crawler_4](images/image-4.png)
- ![Crawler_5](images/image-5.png)
-
+   ![Crawler_5](images/image-5.png)
 * Below Json policy is for Glue Service Role
 ```json
 {

@@ -10,9 +10,9 @@ Pseudo columns are columns generated through functions rather than retrieved dir
 ## Prerequisites
 Ensure proper configuration of IAM roles and S3 buckets and run necessary crawleras outlined here:
 
-* [Prerequisites]((/prerequisites.md)) 
-* [Crawler Setup](/aws-glue-crawler.md)
-
+* [Crawler Prerequisites](/crawler-prerequisites.md)
+* [Crawler Setup Instructions](/set-up-instructions.md)
+  
 ##  PySpark Script - [pyspark-psuedo-columns](../glue-code/ti-pyspark-psuedo.py)
 - Input tables          : purchase
 - Output files          : csv, json and parquet files in S3 buckets.

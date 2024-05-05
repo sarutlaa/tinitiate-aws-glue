@@ -85,6 +85,7 @@ a) S3 Access Policy:
 		]
 	}
 ```
+
 Important Note:
 
 - Replace <your-bucket-name> with the actual name of the S3 bucket(s) your crawler needs to access. You can use wildcards (*) for specific prefixes within the bucket.
@@ -160,8 +161,6 @@ b) Glue Service Role Policy:
 * Click "Next: Review" to review the role details and permissions.
   ![Crawler_4](images/image-4.png)
 * Enter a name for your IAM role (e.g., "GlueCrawlerRole") and click "Create role".
-
-
 
 
 ## Create Crawler Roles for the policies created

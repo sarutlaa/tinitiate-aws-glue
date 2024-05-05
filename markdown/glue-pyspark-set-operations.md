@@ -18,7 +18,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 ### 1. Initializing Spark and Glue Contexts:
 * Objective: Establishes the necessary Spark and Glue contexts for data manipulation with logging set to INFO to control verbosity.
 * Implementation:
-  ```ruby
+  ```python
   from pyspark.context import SparkContext
   from awsglue.context import GlueContext
   sc = SparkContext()
@@ -29,29 +29,29 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 ### 2. Data Loading:
 * Objective: Loads the "product" and "product_un_in" tables from the Athena database into DataFrames to prepare them for set operations.
 * Implementation:
-  ```ruby
+  ```python
   df1 = glueContext.create_dynamic_frame.from_catalog(database="glue_db", table_name="product").toDF()
   df2 = glueContext.create_dynamic_frame.from_catalog(database="glue_db", table_name="product_un_in").toDF()
 
   ```
 ### 3. Applying Set Operations:
 * Union Operation: Combines rows from two datasets while removing duplicates.
-  ```ruby
+  ```python
    union_df = df1.union(df2)
   ```
 * Union All Operation: Combines all rows from two datasets, including duplicates (Note: In newer versions of PySpark, use union() to include duplicates).
-  ```ruby
+  ```python
    union_all_df = df1.unionAll(df2)  # In newer versions of PySpark, use union() instead
   ```
 * Intersect Operation: Retrieves only the common rows between two datasets.
-  ```ruby
+  ```python
    intersect_df = df1.intersect(df2)
   ```
 
 ### 4. Output Formatting and Storage:
 * Objective: Store the results of each set operation in CSV, JSON, and Parquet formats in predefined paths on an S3 bucket.
 * Implementation:
-  ```ruby
+  ```python
   output_base_path = "s3://your-bucket-name/your-folder/"
   union_df.write.mode("overwrite").option("header", "true").csv(output_base_path + "union/csv/")
   union_df.write.mode("overwrite").json(output_base_path + "union/json/")
@@ -67,6 +67,6 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 ### 5. Logging and Execution Verification:
 * Objective: Log the completion of operations and confirm the successful storage of data in all specified formats and operations.
 * Implementation:
-  ```ruby
+  ```python
    glueContext.get_logger().info("Set operations data successfully written to S3 in CSV, JSON, and Parquet formats.")
   ```

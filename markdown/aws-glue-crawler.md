@@ -67,24 +67,26 @@ Here, we'll define two separate policy documents to grant the required permissio
 a) S3 Access Policy:
 
 - Click on the "Create policy" button.
+  
    ![Alt text](images/image-2.png)
 - In the policy editor, choose the "JSON" tab.
 - Paste the following JSON code snippet into the editor:
+  
  ![Alt text](images/image-3.png)
  ```json
- {
-	"Version": "2012-10-17",
-	"Statement": [
-		{
-			"Effect": "Allow",
-			"Action": [
-				"s3:GetObject",
-				"s3:PutObject"
-			],
-			"Resource": "arn:aws:s3:::tini-d-gluebucket-001*"
-		}
-	]
-}
+	 {
+		"Version": "2012-10-17",
+		"Statement": [
+			{
+				"Effect": "Allow",
+				"Action": [
+					"s3:GetObject",
+					"s3:PutObject"
+				],
+				"Resource": "arn:aws:s3:::tini-d-gluebucket-001*"
+			}
+		]
+	}
 ```
 
  * Go to IAM (Identity and Access Management) 

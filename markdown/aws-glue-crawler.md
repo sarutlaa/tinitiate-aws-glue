@@ -24,22 +24,21 @@ Classifiers work alongside crawlers to accurately understand the format of your 
 ![image](https://github.com/jaykumsi/aws-glue/assets/137452836/133157d9-b3fc-4716-b7b0-6d7c3ed06863)
   
  ## Data Sources that Glue Crawlers can crawl
-  * Native client
-    * S3:
-    * Dynamo DB:
-  * JDBC 
-      * Amazon Redshift
-      * Snowflake
-      * Amazon Aurora
-      * MariaDB
-      * Microsoft SQL Server
-      * MySQL
-      * Oracle
-      * PostgreSQL
-  * MangoDB client 
-      * Mongo DB
-      * MongoDB Atlas
-      * Amazon DocumentDB
+| Connection Method  | Data stores     | 
+| :-------- | :------- | 
+| Native client | Amazon Simple Storage Service (Amazon S3)
+|                      | Amazon DynamoDB |  
+| JDBC | Amazon Redshift |
+|           | Snowflake |  
+|           | Amazon Aurora |  
+|           | Maria DB |  
+|           | Microsoft SQL Server |  
+|           | MySQL | 
+|           | Oracle |  
+|           | PostgreSQL |
+| MongoDB Client          | MongoDB |
+|           | MongoDB Atlas|
+|           | Amazon DocumentDB |
 
 * IAM Roles
  * Initially, it is necessary to establish an AWS Identity and Access Management (IAM) policy before proceeding to create an IAM 

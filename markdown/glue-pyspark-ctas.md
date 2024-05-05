@@ -22,7 +22,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 ### 1. Initializing Spark and Glue Contexts:
 * Objective: Establishes the necessary Spark and Glue contexts for data manipulation with logging set to INFO to control verbosity.
 * Implementation:
-  ```ruby
+  ```python
   from pyspark.context import SparkContext
   from awsglue.context import GlueContext
   sc = SparkContext()
@@ -32,7 +32,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 ### 2. Data Loading and Transformation:
 * Objective: Load the "purchase" data from Athena, apply transformations, and prepare for storage.
 * Implementation:
-  ```ruby
+  ```python
   purchase_df = glueContext.create_dynamic_frame.from_catalog(database="glue_db", table_name="purchase").toDF()
   result_df = purchase_df.select("purchase_tnx_id", "product_supplier_id", "purchase_tnxdate", "quantity", "invoice_price").filter(purchase_df["quantity"] > 100)
 
@@ -40,7 +40,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 ### 3. Executing the CTAS Operation:
 * Objective: Use the CTAS command to create a new table from the transformed data, specifying Parquet as the storage format and S3 as the location
 * Implementation:
-  ```ruby
+  ```python
   result_df.createOrReplaceTempView("temp_table")
   spark.sql("""
     CREATE TABLE glue_db.new_purchase_table
@@ -54,7 +54,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 ### 4. Verification and Logging:
 * Objective: Log the successful creation of the table and verify that the operation has been executed as expected.
 * Implementation:
-  ```ruby
+  ```python
   glueContext.get_logger().info("CTAS operation completed and new table created in S3.")
   ```
 

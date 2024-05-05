@@ -7,9 +7,9 @@ DateTime manipulations are crucial for preparing data for analyses that depend o
 
 Ensure proper configuration of IAM roles and S3 buckets and run necessary crawleras outlined here:
 
-* [Prerequisites]((/prerequisites.md)) 
-* [Crawler Setup](/aws-glue-crawler.md)
-
+* [Crawler Prerequisites](/crawler-prerequisites.md)
+* [Crawler Setup Instructions](/set-up-instructions.md)
+  
 
 ##  PySpark Script - [pyspark-date-formats](../glue-code/ti-pyspark-datetime.py)
 - Input tables          : dispatch

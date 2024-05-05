@@ -18,7 +18,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 ### 1. Initializing Spark and Glue Contexts:
 * Objective: Establish the foundational Spark and Glue contexts necessary for data manipulation, with logging configured to INFO level to manage verbosity.
 * Implementation:
-  ```ruby
+  ```python
   from pyspark.context import SparkContext
   from awsglue.context import GlueContext
   sc = SparkContext()
@@ -29,37 +29,37 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 ### 2. Data Loading:
 * Objective: Loads the "purchase" table from the Athena database into a DataFrame for subsequent filtering operations.
 * Implementation:
-  ```ruby
+  ```python
   df = glueContext.create_dynamic_frame.from_catalog(database="glue_db", table_name="purchase").toDF()
   ```
 ### 3. Applying Filters:
 * Objective: Apply various SQL-like filters to demonstrate data segmentation based on specified criteria.
 * Filters Applied:
   -  IN Condition: Filters rows where product_supplier_id matches any of the specified values.
-    ```ruby
+    ```python
     df_in = df.filter(df["product_supplier_id"].isin([150, 259, 21]))
     ```
   - NOT IN Condition: Excludes rows where quantity matches any of the specified values.
-    ```ruby
+    ```python
     df_not_in = df.filter(~df["quantity"].isin([295, 743, 67]))
     ```
   - Greater Than Condition: Selects rows where quantity is greater than 200.
-    ```ruby
+    ```python
     df_gt = df.filter(df["quantity"] > 200)
     ```
   - Less Than Condition: Selects rows where quantity is less than 200.
-    ```ruby
+    ```python
     df_lt = df.filter(df["quantity"] < 200)
     ```
   - Not Equal To Condition: Filters out rows where quantity is not equal to 743.
-    ```ruby
+    ```python
     df_ne = df.filter(df["quantity"] != 743)
     ```    
     
 ### 4. Output Formatting and Storage:
 * Objective: Format and save the filtered results in CSV, JSON, and Parquet formats to designated S3 paths for both ascending and descending orders.
 * Implementation:
-  ```ruby
+  ```python
   output_base_path = "s3://ti-author-scripts/ti-author-glue-scripts/ti-glue-pyspark-scripts-outputs/ti-pyspark-filtering-outputs/"
   df_in.write.mode("overwrite").option("header", "true").csv(output_base_path + "csv/in_condition/")
   df_in.write.mode("overwrite").json(output_base_path + "json/in_condition/")

@@ -33,7 +33,7 @@
 * [Analytical Functions](glue-pyspark-analytical.md)
 * [Pivot, UnPivot](glue-pyspark-pivot-unpivot.md)
 * [Common Table Expressions(CTE)](glue-pyspark-cte.md)
-* [CTAS](glue-pyspark-ctas.md)
+* [Create Table As Select](glue-pyspark-ctas.md)
 
 ### Date and Null Handling
 * [Date Formats](glue-pyspark-date-formats.md)

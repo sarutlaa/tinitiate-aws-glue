@@ -35,18 +35,14 @@
 * [Null Checks](glue-pyspark-null-checks.md)
 * [Built in Psuedo Columns](glue-pyspark-built-in-pseudo-columns.md)
 * [S3 Data Partitioning](glue-s3-data-partitioning.md)
+* [Hierarchial Queries](glue-hierarchial-queries.md)
 
 * Glue Generate PySpark DataFrame from Single JSON, Multiple JSONs without Athena / Crawler - Todo 
 * Glue Generate PySpark DataFrame from Single CSV, Multiple CSVs without Athena / Crawler - Todo
 * Glue Generate PySpark DataFrame from Single Parquet, Multiple Parquets without Athena / Crawler - Todo
 * Glue Generate PySpark DataFrame from RDBMS (Oracle, SQL Server, Postgresql, MySQL) - Pending
 * Glue Generate PySpark DataFrame from DynamoDB - Pending ( nested and non nested table building )
-
-
-
 * Glue PySpark DataFrame Built in Psuedo --done ( Current date or time, location - check?? )
-* Glue PySpark DataFrame Connect by prior(hierarchial queries) -- recurisive
-
 
 ### Data Frame Writing into different targets:
 

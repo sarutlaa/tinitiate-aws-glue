@@ -47,7 +47,7 @@
 ### Advanced I/O Concepts:
 * [Data Repartition](glue-repartition.md)
 * [Data Partitioning](glue-s3-data-partitioning.md)
-* [Bucketing](glue-bucketting.md)
+* [Bucketing](glue-bucketing.md)
 
 
 * Glue Generate PySpark DataFrame from Single JSON, Multiple JSONs without Athena / Crawler - Todo 

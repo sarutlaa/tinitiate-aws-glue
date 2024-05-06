@@ -45,7 +45,7 @@ All the below codes are taking csv file from S3 as input and then storing result
 
 ### Advanced Query Techniques
 * [Built in Psuedo Columns](glue-pyspark-built-in-pseudo-columns.md)
-* [Hierarchial Queries](glue-hierarchial-queries.md)
+* [Hierarchial Queries](glue-hierarchial-queries.md) - ERROR , check pyspark version of running a recursive query
   
 ### Advanced I/O Concepts:
 * [Data Repartition](glue-repartition.md)

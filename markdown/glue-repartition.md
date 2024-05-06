@@ -1,4 +1,4 @@
-# Managing Data Partitions with PySpark in AWS Glue
+# Managing Data Re Partitions with PySpark in AWS Glue
 This documentation details a PySpark script used within AWS Glue to manage data partitions effectively. The script loads data, checks its current partitioning, adjusts the partition count, and writes the results to Amazon S3 in various formats. The main goal is to demonstrate handling large datasets with varying partitions to optimize read and write performance.
 
 Managing Data Partitions with PySpark in AWS Glue

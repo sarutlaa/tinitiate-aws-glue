@@ -62,7 +62,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
     <img width="934" alt="repartition_1" src="https://github.com/sarutlaa/tinitiate-aws-glue/assets/141533429/e9978b2f-3e8c-4796-aa97-7b677674d68b">
 
   - For example, increasing partitions before writing can distribute the workload more evenly across multiple nodes, potentially decreasing the time taken to write large datasets. After repartitioning output writes into two part as in below image.
-   <img width="931" alt="repartition_2" src="https://github.com/sarutlaa/tinitiate-aws-glue/assets/141533429/36c22e15-2c0d-4909-94cd-54e5df857aa1">
+    <img width="931" alt="repartition_2" src="https://github.com/sarutlaa/tinitiate-aws-glue/assets/141533429/36c22e15-2c0d-4909-94cd-54e5df857aa1">
 
   
 ### 5. Monitoring and Logging:

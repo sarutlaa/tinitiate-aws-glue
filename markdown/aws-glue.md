@@ -15,6 +15,7 @@
 
 ## Glue with PySpark
 * [IAM Prerequisites](IAM-prerequisites.md)
+* [S3 Data Generation](s3-data-generation.md)
 * [Crawler Setup Instructions](set-up-instructions.md)
   
 ## SQL Like Implementations with PySpark and AWS Glue ETL Scripts

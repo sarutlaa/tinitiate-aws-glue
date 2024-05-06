@@ -34,7 +34,7 @@
 * [Date Formats](glue-pyspark-date-formats.md)
 * [Null Checks](glue-pyspark-null-checks.md)
 * [Built in Psuedo Columns](glue-pyspark-built-in-pseudo-columns.md)
-  
+* [S3 Data Partitioning](glue-s3-data-partitioning.md)
 
 * Glue Generate PySpark DataFrame from Single JSON, Multiple JSONs without Athena / Crawler - Todo 
 * Glue Generate PySpark DataFrame from Single CSV, Multiple CSVs without Athena / Crawler - Todo
@@ -46,7 +46,7 @@
 
 * Glue PySpark DataFrame Built in Psuedo --done ( Current date or time, location - check?? )
 * Glue PySpark DataFrame Connect by prior(hierarchial queries) -- recurisive
-* Glue PySpark DataFrame partitions -- done (Can we partition in pyspark and what is its use case? )
+
 
 ### Data Frame Writing into different targets:
 

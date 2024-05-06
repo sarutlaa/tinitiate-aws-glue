@@ -8,9 +8,9 @@ The CTAS command is a powerful SQL operation commonly used in data warehousing. 
 ## Prerequisites
 
 Ensure proper configuration of IAM roles and S3 buckets and run necessary crawleras outlined here:
-
-* [Crawler Prerequisites](/crawler-prerequisites.md)
-* [Crawler Setup Instructions](/set-up-instructions.md)
+* [IAM Prerequisites](IAM-prerequisites.md)
+* [S3 Data Generation](s3-data-generation.md)
+* [Crawler Setup Instructions](set-up-instructions.md)
   
 ##  PySpark Script - [pyspark-ctas](../glue-code/ti-pyspark-ctas.py)
 - Input tables          : purchase

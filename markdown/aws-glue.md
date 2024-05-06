@@ -18,6 +18,7 @@
 * [Crawler Setup Instructions](set-up-instructions.md)
   
 ## SQL Like Implementations with PySpark and AWS Glue ETL Scripts
+### Data Retrieval and Manipulation
 
 * [Order By](glue-pyspark-orderby.md)
 * [Group By](glue-pyspark-groupby.md)
@@ -27,12 +28,18 @@
 * [Joins](glue-pyspark-joins.md)
 * [Select & Alias](glue-pyspark-select-alias.md)
 * [Set Operations](glue-pyspark-set-operations.md)
+
+### Advanced Data Manipulation
 * [Analytical Functions](glue-pyspark-analytical.md)
 * [Pivot, UnPivot](glue-pyspark-pivot-unpivot.md)
 * [Common Table Expressions(CTE)](glue-pyspark-cte.md)
 * [CTAS](glue-pyspark-ctas.md)
+
+### Date and Null Handling
 * [Date Formats](glue-pyspark-date-formats.md)
 * [Null Checks](glue-pyspark-null-checks.md)
+
+### Advanced Query Techniques
 * [Built in Psuedo Columns](glue-pyspark-built-in-pseudo-columns.md)
 * [Hierarchial Queries](glue-hierarchial-queries.md)
   

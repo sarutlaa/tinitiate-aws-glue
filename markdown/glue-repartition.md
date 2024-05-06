@@ -13,7 +13,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 * [Crawler Prerequisites](/crawler-prerequisites.md)
 * [Crawler Setup Instructions](/set-up-instructions.md)
   
-##  PySpark Script - [pyspark-psuedo-columns](../glue-code/ti-pyspark-psuedo.py)
+##  PySpark Script - [pyspark-repartitioning](../glue-code/ti-pyspark-repartitioning.py)
 * Input Table: products_csv
 * Output Formats: CSV, JSON, and Parquet files in S3 buckets.
 * Crawlers Used : products_crawler

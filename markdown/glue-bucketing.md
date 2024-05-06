@@ -68,3 +68,6 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 ### Note: 
 * Parquet: Directly supports bucketing, so bucketBy is used.
 * JSON and CSV: Do not support direct bucketing with bucketBy. Instead, we use repartition to simulate bucketing by distributing the data across multiple files based on the category column. This will not be true bucketing but will help in managing large datasets by reducing file sizes and potentially improving read times for filtered queries.
+* Distinct Count Calculation: Before setting the number of buckets, the script calculates the distinct count of the values in the bucket_column. This count determines how many unique paths or directories will be needed.
+* Dynamic Number of Buckets: The number of buckets is set to the lesser of the distinct count or a maximum value. This approach ensures that there are no more buckets than necessary, reducing the chance of creating empty buckets. It’s important to set a reasonable maximum based on the expected workload and data distribution.
+* Flexibility and Optimization: This dynamic adjustment makes the bucketing process more flexible and optimized for the actual data characteristics. If the column has fewer distinct values than the maximum number of buckets you are willing to create, it uses just as many buckets as there are distinct values.

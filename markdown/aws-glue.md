@@ -19,6 +19,9 @@
 * [Crawler Setup Instructions](set-up-instructions.md)
   
 ## SQL Like Implementations with PySpark and AWS Glue ETL Scripts
+All the below codes are taking csv file from S3 as input and then storing results in csv, json and parquet formats. ---- Check with Venkat garu. 
+
+
 ### Data Retrieval and Manipulation
 
 * [Select & Alias](glue-pyspark-select-alias.md)

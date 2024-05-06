@@ -49,9 +49,7 @@
 * [Data Partitioning](glue-s3-data-partitioning.md)
 * [Bucketing](glue-bucketing.md)
 
-
-
-
+### Pending Ones
 * Glue Generate PySpark DataFrame from Single JSON, Multiple JSONs without Athena / Crawler - Todo 
 * Glue Generate PySpark DataFrame from Single CSV, Multiple CSVs without Athena / Crawler - Todo
 * Glue Generate PySpark DataFrame from Single Parquet, Multiple Parquets without Athena / Crawler - Todo
@@ -60,8 +58,7 @@
 * Glue PySpark DataFrame Built in Psuedo --done ( Current date or time, location - check?? )
 
 ### Data Frame Writing into different targets:
-
-* Glue PySpark Targets write DataFrame to S3 (CSV,Parquet,JSON,AWS ION) - done
+* Glue PySpark Targets write DataFrame to S3 (CSV,Parquet,JSON,AWS ION) - AWS ION is pending done
 * Glue PySpark Targets write DataFrame to RDBMS (Oracle, SQL Server, Postgresql, MySQL)
 * Glue PySpark Targets write DataFrame to NoSQL DynamoDB
 * Glue PySpark DataFrame index

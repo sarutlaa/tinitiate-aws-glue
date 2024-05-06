@@ -11,8 +11,9 @@ This document outlines the procedures and code necessary to perform data joins, 
 ## Prerequisites
 
 Ensure proper configuration of IAM roles and S3 buckets and run necessary crawleras outlined here:
-* [Crawler Prerequisites](/crawler-prerequisites.md)
-* [Crawler Setup Instructions](/set-up-instructions.md)
+* [IAM Prerequisites](IAM-prerequisites.md)
+* [S3 Data Generation](s3-data-generation.md)
+* [Crawler Setup Instructions](set-up-instructions.md)
   
 ##  PySpark Script - [pyspark-select-alias](../glue-code/ti-pyspark-select.py)
 - Input tables          : products_csv, categories_csv

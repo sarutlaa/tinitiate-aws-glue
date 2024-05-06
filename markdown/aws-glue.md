@@ -37,7 +37,8 @@
 * [Hierarchial Queries](glue-hierarchial-queries.md)
   
 ### Advanced I/O Concepts:
-* [S3 Data Partitioning](glue-s3-data-partitioning.md)
+* [Data Repartition](glue-repartition.md)
+* [Data Partitioning](glue-s3-data-partitioning.md)
 * [Bucketting](glue-bucketting.md)
 
 

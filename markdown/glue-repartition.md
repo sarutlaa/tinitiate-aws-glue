@@ -50,12 +50,12 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
   * Implementation:
     ```python
     def write_data(df, path_suffix, repartition=None):
-    if repartition is not None:
-        df = df.repartition(repartition)
-    
-    df.write.format("parquet").mode("overwrite").save(base_path + path_suffix + "parquet/")
-    df.write.format("json").mode("overwrite").save(base_path + path_suffix + "json/")
-    df.write.format("csv").option("header", "true").mode("overwrite").save(base_path + path_suffix + "csv/")
+      if repartition is not None:
+          df = df.repartition(repartition)
+      
+      df.write.format("parquet").mode("overwrite").save(base_path + path_suffix + "parquet/")
+      df.write.format("json").mode("overwrite").save(base_path + path_suffix + "json/")
+      df.write.format("csv").option("header", "true").mode("overwrite").save(base_path + path_suffix + "csv/")
     ```
   Explanation of Parallel Writing:
   By default, each partition of the DataFrame results in a separate file when written to a storage system like S3. Adjusting the number of partitions can directly influence the number of output files, allowing for better control over parallelism and resource utilization.

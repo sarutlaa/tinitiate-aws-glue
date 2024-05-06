@@ -51,7 +51,11 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
     df.write.partitionBy(*partition_columns).format("csv").option("header", "true").mode("overwrite").save(s3_base_path + "csv/")
 
     ```
-  
+  * Sample output for Partition By Column : "Model Year"
+    <img width="928" alt="partition_1" src="https://github.com/sarutlaa/tinitiate-aws-glue/assets/141533429/fe59fb7c-75a1-4b6a-a84a-a4e2e2337d7d">
+  * Sample output for Next Partition By Columns : "Make"
+    <img width="934" alt="repartition_1" src="https://github.com/sarutlaa/tinitiate-aws-glue/assets/141533429/0bed9b85-7a29-4657-9d0c-081ab9ca895e">
+    
 ### 5. Verify Data Structure:
   * Objective: Track the success and details of the data processing and writing operations.
   * Implementation:

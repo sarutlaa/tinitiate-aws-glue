@@ -34,8 +34,12 @@
 * [Date Formats](glue-pyspark-date-formats.md)
 * [Null Checks](glue-pyspark-null-checks.md)
 * [Built in Psuedo Columns](glue-pyspark-built-in-pseudo-columns.md)
-* [S3 Data Partitioning](glue-s3-data-partitioning.md)
 * [Hierarchial Queries](glue-hierarchial-queries.md)
+  
+### Advanced I/O Concepts:
+* [S3 Data Partitioning](glue-s3-data-partitioning.md)
+* [Bucketting](glue-bucketting.md)
+
 
 * Glue Generate PySpark DataFrame from Single JSON, Multiple JSONs without Athena / Crawler - Todo 
 * Glue Generate PySpark DataFrame from Single CSV, Multiple CSVs without Athena / Crawler - Todo

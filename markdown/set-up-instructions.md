@@ -5,14 +5,14 @@ Go to AWS Glue, click the crawlers tab on the left side of the page ,click creat
    1. Click Crawler tab
    2. Click Create Crawler
       
-    ![Alt text](images/image-11.png)
+   ![Alt text](images/image-11.png)
  
 ### Step 2: 
 Set Crawler properties
    1. Name : Enter Unique Name for the Crawler
    2. Click Next
       
-    ![Alt text](images/image-12.png)   
+   ![Alt text](images/image-12.png)   
 
 ### Step 3:
 Choose the data source and classifiers,Data source configuration , Add a data source.
@@ -21,15 +21,16 @@ Choose the data source and classifiers,Data source configuration , Add a data so
    3. crawl all the folders(it will crawl all subfolder, you choose according to your requirement)
    4. Add a Data Source
 
-     ![Alt text](images/image-13.png)
+   ![Alt text](images/image-13.png)
   
-     ![Alt text](images/image-14.png)
+   ![Alt text](images/image-14.png)
  
 ### Step 4:
 Configure Security Setting
    1. Choose the existing IAM role for crawler
    2. Click Next
-         ![Alt text](images/image-15.png)
+      
+      ![Alt text](images/image-15.png)
 
 ### Step 5:
 * Set Output and Scheduling
@@ -37,7 +38,8 @@ Configure Security Setting
    2. If Database is not created then click Add Database to create one.
    3. select the frequency on which the crawler to run. 
    4. Click next
-         ![Alt text](images/image-16.png)
+      
+      ![Alt text](images/image-16.png)
 
 * Crawler Schedule, you can select the crawler schedule  
     on how to run it, below you can choose anyone.

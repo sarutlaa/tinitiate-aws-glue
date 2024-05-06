@@ -20,13 +20,13 @@
 ## SQL Like Implementations with PySpark and AWS Glue ETL Scripts
 ### Data Retrieval and Manipulation
 
+* [Select & Alias](glue-pyspark-select-alias.md)
 * [Order By](glue-pyspark-orderby.md)
 * [Group By](glue-pyspark-groupby.md)
 * [Distinct](glue-pyspark-distinct.md)
 * [Filtering](glue-pyspark-condition.md)
 * [Having](glue-pyspark-having.md)
 * [Joins](glue-pyspark-joins.md)
-* [Select & Alias](glue-pyspark-select-alias.md)
 * [Set Operations](glue-pyspark-set-operations.md)
 
 ### Advanced Data Manipulation

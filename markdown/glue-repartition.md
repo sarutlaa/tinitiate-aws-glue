@@ -57,9 +57,9 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
       df.write.format("json").mode("overwrite").save(base_path + path_suffix + "json/")
       df.write.format("csv").option("header", "true").mode("overwrite").save(base_path + path_suffix + "csv/")
     ```
-  Explanation of Parallel Writing:
-  By default, each partition of the DataFrame results in a separate file when written to a storage system like S3. Adjusting the number of partitions can directly influence the number of output files, allowing for better control over parallelism and resource utilization.
-  For example, increasing partitions before writing can distribute the workload more evenly across multiple nodes, potentially decreasing the time taken to write large datasets.
+  #### Explanation of Parallel Writing:
+  - By default, each partition of the DataFrame results in a separate file when written to a storage system like S3. Adjusting the number of partitions can directly influence the number of output files, allowing for better control over parallelism and resource utilization.
+  - For example, increasing partitions before writing can distribute the workload more evenly across multiple nodes, potentially decreasing the time taken to write large datasets.
   
 ### 5. Monitoring and Logging:
   * Objective: Track the success and details of the data processing and writing operations.

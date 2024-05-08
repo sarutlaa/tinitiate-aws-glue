@@ -25,22 +25,12 @@ electric_vehicles_df = glueContext.create_dynamic_frame.from_catalog(database=da
 # Group by 'make' and 'model' columns, and count the occurrences
 result_df = electric_vehicles_df.groupBy("make", "model").agg(count("*").alias("count"))
 
-# Define the paths to store the output in different formats in S3
-s3_bucket_path_csv = "s3://ti-author-scripts/ti-author-glue-scripts/ti-glue-pyspark-scripts-outputs/ti-pyspark-joins-output/csv/"
-s3_bucket_path_json = "s3://ti-author-scripts/ti-author-glue-scripts/ti-glue-pyspark-scripts-outputs/ti-pyspark-joins-output/json/"
-s3_bucket_path_parquet = "s3://ti-author-scripts/ti-author-glue-scripts/ti-glue-pyspark-scripts-outputs/ti-pyspark-joins-output/parquet/"
+# Display the aggregated results in the console
+print("Aggregated Results:")
+result_df.show()
 
-# Save the results to S3 in CSV format
-result_df.write.csv(s3_bucket_path_csv, mode="overwrite", header=True)
-logger.info(f"Results written to CSV at {s3_bucket_path_csv}")
-
-# Save the results to S3 in JSON format
-result_df.write.json(s3_bucket_path_json, mode="overwrite")
-logger.info(f"Results written to JSON at {s3_bucket_path_json}")
-
-# Save the results to S3 in Parquet format
-result_df.write.parquet(s3_bucket_path_parquet, mode="overwrite")
-logger.info(f"Results written to Parquet at {s3_bucket_path_parquet}")
+# Log that results are displayed
+logger.info("Aggregated data displayed in console successfully.")
 
 # Final log to indicate successful completion of the script
 logger.info("Script execution completed successfully.")

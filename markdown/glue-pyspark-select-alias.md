@@ -46,8 +46,8 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
     ```python
   from pyspark.sql.functions import col
   selected_columns_df = products_df.select(
-      col("product_name").alias("ProductName"), 
-      col("unit_price").alias("UnitPrice")
+      col("productname").alias("Product Name"), 
+      col("unit_price").alias("Unit Price")
   )
   ```
   

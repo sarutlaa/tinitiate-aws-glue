@@ -14,7 +14,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 * [S3 Data Generation](s3-data-generation.md)
 * [Crawler Setup Instructions](set-up-instructions.md)
   
-##  PySpark Script - [pyspark-select-alias](../glue-code/ti-pyspark-select.py)
+##  PySpark Script - [pyspark-select-alias.py](../glue-code/ti-pyspark-select.py)
 - Input tables          : products_csv
 - Output                : Cloudwatch logs
 - Crawlers used         : product_crawler

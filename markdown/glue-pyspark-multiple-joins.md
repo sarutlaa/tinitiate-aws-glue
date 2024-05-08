@@ -10,7 +10,7 @@ The script facilitates the integration of product, category, and dispatch inform
 ### 1. Context Initialization:
   - Objective: Establish necessary contexts for Spark and Glue operations and set appropriate log levels.
   - Implementation:
-    ```ruby
+    ```python
     from pyspark.context import SparkContext
     from awsglue.context import GlueContext
     sc = SparkContext.getOrCreate()
@@ -20,7 +20,7 @@ The script facilitates the integration of product, category, and dispatch inform
 ### 2. Data Loading and Preparation:
   - Objective: Load tables from Athena into Spark DataFrames and prepare them for joining.
   - Implementation:
-    ```ruby
+    ```python
      products_df = glueContext.create_dynamic_frame.from_catalog(database="glue_db", table_name="products_csv").toDF()
     categories_df = glueContext.create_dynamic_frame.from_catalog(database="glue_db", table_name="categories_csv").toDF()
     dispatch_df = glueContext.create_dynamic_frame.from_catalog(database="glue_db", table_name="dispatch").toDF()
@@ -28,16 +28,15 @@ The script facilitates the integration of product, category, and dispatch inform
 ### 3. Executing Joins:
   - Objective: Perform inner joins between products_csv and categories_csv on categoryid, and between the resulting DataFrame and dispatch on productid.
   - Implementation:
-    ```ruby
+    ```python
     product_category_df = products_df.join(categories_df, products_df.categoryid == categories_df.categoryid, "inner")
     final_df = product_category_df.join(dispatch_df, product_category_df.productid == dispatch_df.product_id, "inner")
       ```
 ### 4. Output Formatting and Storage:
-   - Objective: Format the resulting data and save it to Amazon S3 in multiple formats for accessibility and further use.
+   - Objective: Display the resulting data in the console for real-time viewing and log the completion of operations in AWS CloudWatch.
    - Implementation:
-     ```ruby
-     output_base_path = "s3://your-bucket-name/your-folder/"
-     final_df.write.mode("overwrite").option("header", "true").csv(output_base_path + "csv/")
-     final_df.write.mode("overwrite").json(output_base_path + "json/")
-     final_df.write.mode("overwrite").parquet(output_base_path + "parquet/")
-      ```
+     ```python
+    print("Final DataFrame:")
+    final_df.show()
+    glueContext.get_logger().info("Join operation completed successfully. Results displayed in console.")
+    ```

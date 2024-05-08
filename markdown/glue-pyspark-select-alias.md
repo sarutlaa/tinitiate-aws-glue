@@ -1,6 +1,6 @@
 # Selecting and Aggregation with PySpark in AWS Glue
 
-This document outlines the procedures and code necessary to perform data joins, selections, and transformations using PySpark within AWS Glue. The process includes joining two datasets (products_csv and categories_csv), filtering based on specific criteria, and saving the results in various data formats to Amazon S3. The operation aims to refine product data for better accessibility and further analysis.
+This document describes the process of selecting specific columns from a products table in the AWS Glue Data Catalog, applying aliases to these columns, and displaying the modified output using PySpark. The goal is to simplify data representation and enhance readability for further data processing tasks or analytical reporting.
 
 ## Objectives
 

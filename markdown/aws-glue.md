@@ -58,9 +58,20 @@
 * Glue Generate PySpark DataFrame from RDBMS (Oracle, SQL Server, Postgresql, MySQL) - Pending
 * Glue Generate PySpark DataFrame from DynamoDB - Pending ( nested and non nested table building )
 * Glue PySpark DataFrame Built in Psuedo --done ( Current date or time, location - check?? )
-
+* 
+### Reading data from different sources into a Data Frame:
+* [Reading from CSV](read-from-csv.md)
+* [Reading from JSON](read-from-json.md)
+* [Reading from Parquet](read-from-parquet.md)
+* [Reading from AWS ION](read-from-awsion.md)
+  
 ### Data Frame Writing into different targets:
-* Glue PySpark Targets write DataFrame to S3 (CSV,Parquet,JSON,AWS ION) - AWS ION is pending done
+Source : CSV files stored in S3, Target : Stored in S3
+* [Writing to CSV](write-to-csv.md)
+* [Writing to Parquet](write-to-parquet.md)
+* [Writing to JSON](write-to-json.md)
+* [Writing to AWS ION](write-to-awsion.md)
+  
 * Glue PySpark Targets write DataFrame to RDBMS (Oracle, SQL Server, Postgresql, MySQL)
 * Glue PySpark Targets write DataFrame to NoSQL DynamoDB
 * Glue PySpark DataFrame index

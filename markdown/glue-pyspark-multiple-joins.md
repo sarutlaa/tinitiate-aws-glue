@@ -31,7 +31,7 @@ The script facilitates the integration of product, category, and dispatch inform
     ```python
     product_category_df = products_df.join(categories_df, products_df.categoryid == categories_df.categoryid, "inner")
     final_df = product_category_df.join(dispatch_df, product_category_df.productid == dispatch_df.product_id, "inner")
-      ```
+    ```
 ### 4. Output Formatting and Storage:
    - Objective: Display the resulting data in the console for real-time viewing and log the completion of operations in AWS CloudWatch.
    - Implementation:
@@ -39,4 +39,4 @@ The script facilitates the integration of product, category, and dispatch inform
       print("Final DataFrame:")
       final_df.show()
       glueContext.get_logger().info("Join operation completed successfully. Results displayed in console.")
-    ```
+     ```

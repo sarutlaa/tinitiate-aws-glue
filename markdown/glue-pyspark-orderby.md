@@ -15,7 +15,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 
 ##  PySpark Script - [pyspark-orderby.py](../glue-code/ti-pyspark-orderby.py)
 - Input tables          : purchase
-- Output files          : csv, json and parquet files in S3 buckets.
+- Output                : cloudwatch logs
 - Crawlers used         : purchase_crawler
 
 ## Main Operations

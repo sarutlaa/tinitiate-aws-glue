@@ -37,7 +37,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
   ```python
   products_df = glueContext.create_dynamic_frame.from_catalog(
     database="glue_db", 
-    table_name="products"
+    table_name="products_csv"
   ).toDF()
   ```
 ### 3. Selecting and Aliasing Columns:

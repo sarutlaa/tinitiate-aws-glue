@@ -36,7 +36,7 @@ The script facilitates the integration of product, category, and dispatch inform
    - Objective: Display the resulting data in the console for real-time viewing and log the completion of operations in AWS CloudWatch.
    - Implementation:
      ```python
-    print("Final DataFrame:")
-    final_df.show()
-    glueContext.get_logger().info("Join operation completed successfully. Results displayed in console.")
+      print("Final DataFrame:")
+      final_df.show()
+      glueContext.get_logger().info("Join operation completed successfully. Results displayed in console.")
     ```

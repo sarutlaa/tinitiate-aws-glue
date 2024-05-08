@@ -10,7 +10,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
   
 ##  PySpark Script - [pyspark-filtering](../glue-code/ti-pyspark-condition.py)
 - Input tables          : purchase
-- Output files          : csv, json and parquet files in S3 buckets.
+- Output files          : Displays filtered records in Cloudwatch Logs
 - Crawlers used         : purchase_crawler
 
 ## Main Operations
@@ -38,37 +38,43 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
   -  IN Condition: Filters rows where product_supplier_id matches any of the specified values.
     ```python
     df_in = df.filter(df["product_supplier_id"].isin([150, 259, 21]))
+    print("IN Condition Results:")
+    df_in.show()
     ```
   - NOT IN Condition: Excludes rows where quantity matches any of the specified values.
     ```python
     df_not_in = df.filter(~df["quantity"].isin([295, 743, 67]))
+    print("NOT IN Condition Results:")
+    df_not_in.show()
+
     ```
   - Greater Than Condition: Selects rows where quantity is greater than 200.
     ```python
     df_gt = df.filter(df["quantity"] > 200)
+    print("Greater Than Condition Results:")
+    df_gt.show()
     ```
   - Less Than Condition: Selects rows where quantity is less than 200.
     ```python
     df_lt = df.filter(df["quantity"] < 200)
+    print("Less Than Condition Results:")
+    df_lt.show()
     ```
   - Not Equal To Condition: Filters out rows where quantity is not equal to 743.
     ```python
     df_ne = df.filter(df["quantity"] != 743)
+    print("Not Equal To Condition Results:")
+    df_ne.show()
     ```    
     
-### 4. Output Formatting and Storage:
-* Objective: Format and save the filtered results in CSV, JSON, and Parquet formats to designated S3 paths for both ascending and descending orders.
-* Implementation:
-  ```python
-  output_base_path = "s3://ti-author-scripts/ti-author-glue-scripts/ti-glue-pyspark-scripts-outputs/ti-pyspark-filtering-outputs/"
-  df_in.write.mode("overwrite").option("header", "true").csv(output_base_path + "csv/in_condition/")
-  df_in.write.mode("overwrite").json(output_base_path + "json/in_condition/")
-  df_in.write.mode("overwrite").parquet(output_base_path + "parquet/in_condition/")
-  ```
+### 4. Output Display:
+* Objective: Display the filtered results directly in the console for immediate inspection and verification.
+* Implementation: All results are shown using the show() method in the console.
+
 
 ### 5. Logging and Verification:
-* Objective: Confirm the successful execution and storage of filtered data in all specified formats and conditions.
+* Objective: Log the completion of the filter operations and confirm the successful display of data.
 * Implementation:
-  ```ruby
-    glueContext.get_logger().info("Data successfully written to S3 in all specified filters and formats.")
+  ```python
+    glueContext.get_logger().info("Filtered data successfully displayed in the console for all conditions.")
   ```  

@@ -16,8 +16,8 @@ products_df = glueContext.create_dynamic_frame.from_catalog(
 
 # Select two specific columns with aliasing: 'product_name' as 'ProductName' and 'price' as 'UnitPrice'
 selected_columns_df = products_df.select(
-    col("product_name").alias("ProductName"), 
-    col("price").alias("UnitPrice")
+    col("productname").alias("Product Name"), 
+    col("unit_price").alias("Unit Price")
 )
 
 # Show the output with the new column names

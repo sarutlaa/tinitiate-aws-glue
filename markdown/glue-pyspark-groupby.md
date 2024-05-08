@@ -15,9 +15,9 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 * [S3 Data Generation](s3-data-generation.md)
 * [Crawler Setup Instructions](set-up-instructions.md)
   
-## PySpark Script - [pyspark-groupby](../glue-code/ti-pyspark-groupby.py)
+## PySpark Script - [pyspark-groupby.py](../glue-code/ti-pyspark-groupby.py)
 - Input tables         : electric_vehicle_population_data_csv in Data Catalog
-- Output files         : csv, json and parquet files in S3 buckets.
+- Output files         : cloudwatch logs
 - Crawlers used        : electric_vechiles
 
 
@@ -39,25 +39,19 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
     electric_vehicles_df = glueContext.create_dynamic_frame.from_catalog(database="glue_db", table_name="electric_vehicle_population_data_csv").toDF()
     ```
 
-### 3. Performing Group By and Saving Results:
-   - Objective: Execute group by operations to aggregate data by specified keys and save the results to designated S3 buckets in multiple formats.
+### 3. Performing GroupBy and Displaying Results:
+   - Objective: Execute GroupBy operations to aggregate data by 'make' and 'model', and display the results directly in the console.
    - Implementation:
       ```python
       result_df = electric_vehicles_df.groupBy("make", "model").agg(count("*").alias("count"))
-      s3_bucket_paths = {
-          "csv": "s3://bucket/csv/",
-          "json": "s3://bucket/json/",
-          "parquet": "s3://bucket/parquet/"
-      }
-      for format, path in s3_bucket_paths.items():
-          result_df.write.format(format).save(path, mode="overwrite")
+      print("Aggregated Results:")
+      result_df.show()
      ```
       
 ### 4. Logging and Output Verification:
-   - Objective: Log operational details and confirm the success of data writes.
+   - Objective: Log operational details and confirm the success of displaying data in the console.
    - Implementatione:
        ```python
       logger = glueContext.get_logger()
-      logger.info("Results successfully written to S3 in all formats.")
-
+      logger.info("Aggregated data displayed in console successfully.")
      ```

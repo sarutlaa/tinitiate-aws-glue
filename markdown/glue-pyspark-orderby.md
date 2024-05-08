@@ -13,7 +13,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 * [S3 Data Generation](s3-data-generation.md)
 * [Crawler Setup Instructions](set-up-instructions.md)
 
-##  PySpark Script - [pyspark-orderby](../glue-code/ti-pyspark-orderby.py)
+##  PySpark Script - [pyspark-orderby.py](../glue-code/ti-pyspark-orderby.py)
 - Input tables          : purchase
 - Output files          : csv, json and parquet files in S3 buckets.
 - Crawlers used         : purchase_crawler
@@ -46,23 +46,19 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
   result_df_asc = result_df.orderBy("count", ascending=True)
   ```
   
-### 4. Output Formatting and Storage:
-* Objective: Save the sorted data in CSV, JSON, and Parquet formats to predefined S3 bucket paths for both ascending and descending orders.
+### 4. Displaying Results:
+* Objective: Display the sorted data in the console for real-time observation, useful for debugging and quick data checks.
 * Implementation:
   ```python
-  output_base_path = "s3://ti-author-scripts/ti-author-glue-scripts/ti-glue-pyspark-scripts-outputs/ti-pyspark-orderby-outputs/"
-  result_df_desc.write.mode("overwrite").option("header", "true").csv(output_base_path + "csv/desc/")
-  result_df_desc.write.mode("overwrite").json(output_base_path + "json/desc/")
-  result_df_desc.write.mode("overwrite").parquet(output_base_path + "parquet/desc/")
-  result_df_asc.write.mode("overwrite").option("header", "true").csv(output_base_path + "csv/asc/")
-  result_df_asc.write.mode("overwrite").json(output_base_path + "json/asc/")
-  result_df_asc.write.mode("overwrite").parquet(output_base_path + "parquet/asc/")
-
+  print("Ordered Descending:")
+  result_df_desc.show()
+  print("Ordered Ascending:")
+  result_df_asc.show()
   ```
   
 ### 5. Logging and Verification:
-* Objective: Log the completion of data writes, confirming successful storage in both orders and formats.
+* Objective: Log the completion of data processing, confirming that the results have been successfully displayed.
 * Implementation:
   ```python
-  glueContext.get_logger().info("Data successfully written to S3 in both ascending and descending order in CSV, JSON, and Parquet formats.")
+  print("Data successfully displayed in both ascending and descending order.")
   ```

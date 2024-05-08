@@ -4,9 +4,8 @@ This document outlines the procedures and code necessary to perform data joins, 
 
 ## Objectives
 
-- Data Joining: Combine data from the products_csv and categories_csv tables using a common key to enrich product information with category details.
-- Data Filtering: Filter the data to focus on products with a unit price greater than 5, identifying higher-value items.
-- Data Storage: Save the transformed data in multiple formats (CSV, JSON, Parquet) to S3 for varied application use cases.
+- Column Selection: Extract only the necessary columns from a larger dataset to focus on relevant data.
+- Column Aliasing: Apply user-friendly names to the selected columns to improve the clarity of output displays and reports.
 
 ## Prerequisites
 
@@ -16,9 +15,9 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 * [Crawler Setup Instructions](set-up-instructions.md)
   
 ##  PySpark Script - [pyspark-select-alias](../glue-code/ti-pyspark-select.py)
-- Input tables          : products_csv, categories_csv
-- Output files          : csv, json and parquet files in S3 buckets.
-- Crawlers used         : product_crawler, category_crawler
+- Input tables          : products_csv
+- Output                : Cloudwatch logs
+- Crawlers used         : product_crawler
 
 ## Main Operations
 ### 1. Initializing Spark and Glue Contexts:
@@ -36,34 +35,27 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 * Objective: Load data from the AWS Glue Data Catalog into Spark DataFrames, preparing it for subsequent processing.
 * Implementation:
   ```python
-  product_df = glueContext.create_dynamic_frame.from_catalog(database="glue_db", table_name="products_csv").toDF()
-  category_df = glueContext.create_dynamic_frame.from_catalog(database="glue_db", table_name="categories_csv").toDF()
+  products_df = glueContext.create_dynamic_frame.from_catalog(
+    database="glue_db", 
+    table_name="products"
+  ).toDF()
   ```
-### 3. Data Joining and Aliasing
-* Objective: Combine products and categories data based on the categoryid field, enriching product records with category names.
+### 3. Selecting and Aliasing Columns:
+* Objective: Select specific columns from the DataFrame and rename them using aliases to enhance data readability and prepare for downstream processing.
 * Implementation:
     ```python
-    joined_df = product_df.join(category_df, product_df.categoryid == category_df.categoryid, "inner").select(
-    col("productid").alias("Product ID"),
-    col("productname").alias("Product Name"),
-    category_df["categoryname"].alias("Category Name"),
-    col("unit_price").alias("Unit Price")
+  from pyspark.sql.functions import col
+  selected_columns_df = products_df.select(
+      col("product_name").alias("ProductName"), 
+      col("price").alias("UnitPrice")
   )
+  ```
+  
+### 4. Displaying Results:
+* Objective: Show the final DataFrame in the console, displaying the aliased columns to verify the correct execution and result format.
+* Implementation:
+  ```python
+  print("Selected Columns with Aliases from Products Table:")
+  selected_columns_df.show()
+  ```
 
-  ```
-  
-### 4. Filtering and Displaying:
-* Objective: Save the sorted data in CSV, JSON, and Parquet formats to predefined S3 bucket paths for both ascending and descending orders.
-* Implementation:
-  ```python
-  filtered_df = joined_df.filter(col("Unit Price") > 5)
-  print("Filtered DataFrame:")
-  filtered_df.show(truncate=False)
-  ```
-  
-### 4. Logging and Verification:
-* Objective: Log the completion of data processing, confirming that the results have been successfully displayed.
-* Implementation:
-  ```python
-  print("Filtered data displayed in console successfully.")
-  ```

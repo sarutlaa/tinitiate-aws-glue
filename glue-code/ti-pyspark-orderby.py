@@ -20,20 +20,15 @@ grouped_df = glueContext.create_dynamic_frame.from_catalog(database=database, ta
 # Group by electric vehicle column and count the occurrences
 result_df = grouped_df.groupBy("make", "model").agg(count("*").alias("count"))
 
-# Specify the output path for the S3 bucket
-output_base_path = "s3://ti-author-scripts/ti-author-glue-scripts/ti-glue-pyspark-scripts-outputs/ti-pyspark-orderby-outputs/"
-
-# Order by 'count' descending and save the results
+# Order by 'count' descending and display the results
 result_df_desc = result_df.orderBy("count", ascending=False)
-result_df_desc.write.mode("overwrite").option("header", "true").csv(output_base_path + "csv/desc/")
-result_df_desc.write.mode("overwrite").json(output_base_path + "json/desc/")
-result_df_desc.write.mode("overwrite").parquet(output_base_path + "parquet/desc/")
+print("Ordered Descending:")
+result_df_desc.show()
 
-# Order by 'count' ascending and save the results
+# Order by 'count' ascending and display the results
 result_df_asc = result_df.orderBy("count", ascending=True)
-result_df_asc.write.mode("overwrite").option("header", "true").csv(output_base_path + "csv/asc/")
-result_df_asc.write.mode("overwrite").json(output_base_path + "json/asc/")
-result_df_asc.write.mode("overwrite").parquet(output_base_path + "parquet/asc/")
+print("Ordered Ascending:")
+result_df_asc.show()
 
-# Log information after saving to S3
-glueContext.get_logger().info("Data successfully written to S3 in both ascending and descending order in CSV, JSON, and Parquet formats.")
+# Log information in console
+print("Data successfully displayed in both ascending and descending order.")

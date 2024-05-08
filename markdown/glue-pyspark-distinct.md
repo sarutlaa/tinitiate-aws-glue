@@ -10,7 +10,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
   
 ##  PySpark Script - [pyspark-distinct](../glue-code/ti-pyspark-distinct.py)
 - Input tables          : purchase
-- Output files          : csv, json and parquet files in S3 buckets.
+- Output files          : Displays distinct records in AWS CloudWatch logs.
 - Crawlers used         : purchase_crawler
 
 
@@ -40,18 +40,18 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
   distinct_df = df.distinct()
   ```
  
-### 4. Output Formatting and Storage:
-* Objective: Save the filtered data in CSV, JSON, and Parquet formats to predefined paths in an S3 bucket, facilitating easy access and utilization across different platforms.
+### 4. Displaying Results:
+* Objective: Display the unique records in the console for immediate verification, useful for debugging and quick data checks.
 * Implementation :
   ```python
-  output_base_path = "s3://your-bucket-name/your-folder/"
-  distinct_df.write.mode("overwrite").option("header", "true").csv(output_base_path + "csv/")
-  distinct_df.write.mode("overwrite").json(output_base_path + "json/")
-  distinct_df.write.mode("overwrite").parquet(output_base_path + "parquet/")
+   print("Distinct Records:")
+   distinct_df.show()
+
   ```
 ### 5. Logging and Execution Verification:
-* Objective: Log the completion of the distinct operation and confirm the successful storage of data in all specified formats.
+* Objective: Log the completion of the distinct operation and confirm the successful display of data.
 * Implementation :
   ```python
-  glueContext.get_logger().info("Distinct records successfully written to S3 in CSV, JSON, and Parquet formats.")
+  logger = glueContext.get_logger()
+  logger.info("Distinct records successfully displayed in the console.")
   ```

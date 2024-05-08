@@ -52,20 +52,18 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 
   ```
   
-### 3. Filtering and Output Formatting:
+### 4. Filtering and Displaying:
 * Objective: Save the sorted data in CSV, JSON, and Parquet formats to predefined S3 bucket paths for both ascending and descending orders.
 * Implementation:
   ```python
-  filtered_product_df = product_selected_df.filter(col("Cost Per Unit") > 5)
-  output_base_path = "s3://ti-author-scripts/ti-author-glue-scripts/ti-glue-pyspark-scripts-outputs/ti-pyspark-aliasing-outputs/"
-  filtered_product_df.write.mode("overwrite").option("header", "true").csv(output_base_path + "csv/")
-  filtered_product_df.write.mode("overwrite").json(output_base_path + "json/")
-  filtered_product_df.write.mode("overwrite").parquet(output_base_path + "parquet/")
+  filtered_df = joined_df.filter(col("Unit Price") > 5)
+  print("Filtered DataFrame:")
+  filtered_df.show(truncate=False)
   ```
   
 ### 4. Logging and Verification:
-* Objective: Log the completion of data writes, confirming successful storage in both orders and formats.
+* Objective: Log the completion of data processing, confirming that the results have been successfully displayed.
 * Implementation:
-  ```ruby
-  glueContext.get_logger().info("Filtered data successfully written to S3 in CSV, JSON, and Parquet formats.")
+  ```python
+  print("Filtered data displayed in console successfully.")
   ```

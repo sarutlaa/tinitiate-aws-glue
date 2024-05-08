@@ -19,15 +19,8 @@ dispatch_df = glueContext.create_dynamic_frame.from_catalog(database="glue_db", 
 product_category_df = products_df.join(categories_df, products_df.categoryid == categories_df.categoryid, "inner")
 
 # Join the result with dispatch
-final_df = product_category_df.join(dispatch_df, product_category_df.productid == dispatch_df.product_id, "inner")\
-    .select(
-        dispatch_df.dispatch_tnx_id,
-        product_category_df.productname,
-        categories_df.categoryname,
-        dispatch_df.dispatch_date,
-        dispatch_df.quantity,
-        product_category_df.unit_price
-    )
+product_category_df = products_df.join(categories_df, products_df.categoryid == categories_df.categoryid, "inner")
+final_df = product_category_df.join(dispatch_df, product_category_df.productid == dispatch_df.product_id, "inner")
 
 # Display results in console for CloudWatch logging
 print("Final DataFrame:")

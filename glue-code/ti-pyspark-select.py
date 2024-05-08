@@ -11,7 +11,7 @@ glueContext = GlueContext(sc)
 # Load the products table from the AWS Glue Data Catalog
 products_df = glueContext.create_dynamic_frame.from_catalog(
     database="glue_db", 
-    table_name="products"
+    table_name="products_csv"
 ).toDF()
 
 # Select two specific columns with aliasing: 'product_name' as 'ProductName' and 'price' as 'UnitPrice'

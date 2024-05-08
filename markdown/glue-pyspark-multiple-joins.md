@@ -21,7 +21,7 @@ The script facilitates the integration of product, category, and dispatch inform
   - Objective: Load tables from Athena into Spark DataFrames and prepare them for joining.
   - Implementation:
     ```python
-     products_df = glueContext.create_dynamic_frame.from_catalog(database="glue_db", table_name="products_csv").toDF()
+    products_df = glueContext.create_dynamic_frame.from_catalog(database="glue_db", table_name="products_csv").toDF()
     categories_df = glueContext.create_dynamic_frame.from_catalog(database="glue_db", table_name="categories_csv").toDF()
     dispatch_df = glueContext.create_dynamic_frame.from_catalog(database="glue_db", table_name="dispatch").toDF()
     ```

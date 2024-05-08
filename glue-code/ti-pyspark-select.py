@@ -28,19 +28,9 @@ joined_df = product_df.join(category_df, product_df.categoryid == category_df.ca
 # Filter the joined DataFrame where the unit price is greater than 5
 filtered_df = joined_df.filter(col("Unit Price") > 5)
 
-# Specify the output path for the S3 bucket
-output_base_path_csv = "s3://your-bucket-name/csv/"
-output_base_path_json = "s3://your-bucket-name/json/"
-output_base_path_parquet = "s3://your-bucket-name/parquet/"
+# Display the final filtered DataFrame in the console
+print("Filtered DataFrame:")
+filtered_df.show(truncate=False)
 
-# Save the filtered DataFrame to the S3 bucket in CSV format
-filtered_df.write.mode("overwrite").option("header", "true").csv(output_base_path_csv)
-
-# Save the filtered DataFrame to the S3 bucket in JSON format
-filtered_df.write.mode("overwrite").json(output_base_path_json)
-
-# Save the filtered DataFrame to the S3 bucket in Parquet format
-filtered_df.write.mode("overwrite").parquet(output_base_path_parquet)
-
-# Log a completion message to indicate successful writing of data to S3.
-glueContext.get_logger().info("Filtered data successfully written to S3 in CSV, JSON, and Parquet formats.")
+# Log a completion message using print instead of using the Glue logger
+print("Filtered data displayed in console successfully.")

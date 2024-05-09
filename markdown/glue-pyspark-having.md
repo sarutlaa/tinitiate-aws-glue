@@ -13,7 +13,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
   
 ##  PySpark Script - [pyspark-having](../glue-code/ti-pyspark-having.py)
 - Input tables          : electric_vehicle_population_data_csv
-- Output files          : csv, json and parquet files in S3 buckets.
+- Output files          : Cloudwatch logs
 - Crawlers used         : purchase_crawler
 
 

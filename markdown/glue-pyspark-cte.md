@@ -15,7 +15,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
   
 ##  PySpark Script - [pyspark-set-operations](../glue-code/ti-pyspark-cte.py)
 - Input tables          : purchase
-- Output files          : csv, json and parquet files in S3 buckets.
+- Output files          : cloudwatch logs
 - Crawlers used         : purchase_crawler
 
 ## Main Operations
@@ -43,25 +43,18 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
   df.createOrReplaceTempView("temp_table")
   ```
 
-### 4. Executing SQL Queries:
+### 4. Executing SQL Queries and Displaying Result:
 * Objective: Uses the temporary view to perform SQL queries, simplifying access to and manipulation of the data.
 * Implementation:
   ```python
   result_df = spark.sql("SELECT * FROM temp_table")
+  print("SQL Query Results:")
+  result_df.show(truncate=False)
   ```
 
-### 5. Output Formatting and Storage:
-* Objective: Save the SQL query results in CSV, JSON, and Parquet formats to predefined S3 bucket paths, ensuring data is accessible for further analysis.
+### 5. Logging and Execution Verification:
+* Objective: Log the completion of SQL queries and confirm the successful display of data.
 * Implementation:
   ```python
-  output_base_path = "s3://your-bucket-name/your-folder/"
-  result_df.write.mode("overwrite").option("header", "true").csv(output_base_path + "csv/")
-  result_df.write.mode("overwrite").json(output_base_path + "json/")
-  result_df.write.mode("overwrite").parquet(output_base_path + "parquet/")
-  ```
-### 6. Logging and Execution Verification:
-* Objective: Log operational details and confirm the successful execution and storage of data in all specified formats.
-* Implementation:
-  ```python
-  glueContext.get_logger().info("Data successfully written to S3 in CSV, JSON, and Parquet formats.")
+  glueContext.get_logger().info("SQL query results successfully displayed in the console.")
   ```

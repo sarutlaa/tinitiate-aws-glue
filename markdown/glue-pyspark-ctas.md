@@ -3,7 +3,11 @@
 This documentation guides you through the process of using PySpark within AWS Glue to perform a Create Table As Select (CTAS) operation. The workflow focuses on transforming data from the "purchase" table stored in Athena, creating a new table in the AWS Glue Data Catalog, and storing the transformed data directly in Amazon S3 using the CTAS approach.
 
 ## Overview of CTAS
-The CTAS command is a powerful SQL operation commonly used in data warehousing. It creates a new table by executing a SELECT query. This operation is particularly useful in data transformation processes where the transformed data needs to be stored persistently for future use. In AWS Glue, utilizing CTAS allows for efficient management and querying of large datasets by leveraging the scalable storage of S3 and the metadata management capabilities of the Glue Data Catalog.
+Temporary Views in PySpark:
+- Scope: Temporary views are limited to the Spark session they are created in and disappear once the session ends.
+- Purpose: They allow SQL queries on DataFrame data without saving it in a database, enabling more complex SQL operations.
+- Usage: Once a temporary view is created, you can run SQL queries on it as though it's a table in a database, until the Spark session ends.
+- Creation: Temporary views are created with the createOrReplaceTempView method on a DataFrame, registering it as a view in Spark’s SQL catalog.
 
 ## Prerequisites
 
@@ -14,7 +18,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
   
 ##  PySpark Script - [pyspark-ctas](../glue-code/ti-pyspark-ctas.py)
 - Input tables          : purchase
-- Output                : New table in the AWS Glue Data Catalog stored in S3.
+- Output                : Glue data catalog, new_purchase_table
 - Crawlers used         : purchase_crawler
 
 

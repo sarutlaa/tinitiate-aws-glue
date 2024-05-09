@@ -23,17 +23,9 @@ result_df = grouped_df.groupBy("make", "model").agg(count("*").alias("count"))
 # Apply filter similar to HAVING clause
 result_df_filtered = result_df.filter(result_df["count"] > 1000)
 
-# Specify the output path for the S3 bucket
-output_base_path = "s3://ti-author-scripts/ti-author-glue-scripts/ti-glue-pyspark-scripts-outputs/ti-pyspark-having-outputs/"
+# Display the filtered DataFrame in the console
+print("Filtered Results:")
+result_df_filtered.show()
 
-# Save the filtered DataFrame to S3 bucket in CSV format
-result_df_filtered.write.mode("overwrite").option("header", "true").csv(output_base_path + "csv/")
-
-# Save the filtered DataFrame to S3 bucket in JSON format
-result_df_filtered.write.mode("overwrite").json(output_base_path + "json/")
-
-# Save the filtered DataFrame to S3 bucket in Parquet format
-result_df_filtered.write.mode("overwrite").parquet(output_base_path + "parquet/")
-
-# Log information after saving to S3
-glueContext.get_logger().info("Data successfully written to S3 in CSV, JSON, and Parquet formats.")
+# Log information after displaying in the console
+glueContext.get_logger().info("Filtered data successfully displayed in the console.")

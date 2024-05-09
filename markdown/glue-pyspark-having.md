@@ -40,24 +40,19 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
     ```python
     result_df = grouped_df.groupBy("make", "model").agg(count("*").alias("count"))
     result_df_filtered = result_df.filter(result_df["count"] > 1000)
-
     ```
 
-### 4. Output Formatting and Storage:
-  * Objective: Save the aggregated and filtered data in CSV, JSON, and Parquet formats to an S3 bucket, facilitating data utilization across different platforms and applications.
+### 4. Displaying Results:
+  * Objective: Display the aggregated and filtered results directly in the console for immediate inspection and verification.
   * Implementation:
     ```python
-    output_base_path = "s3://your-bucket-name/your-folder/"
-    result_df_filtered.write.mode("overwrite").option("header", "true").csv(output_base_path + "csv/")
-    result_df_filtered.write.mode("overwrite").json(output_base_path + "json/")
-    result_df_filtered.write.mode("overwrite").parquet(output_base_path + "parquet/")
-
+    print("Filtered Results:")
+    result_df_filtered.show()
     ```
 
-### 5. Logging and Verification:
-  * Objective: Log the successful execution and storage of data to confirm the operation completed as intended.
+### 5. Logging and Execution Verification
+  * Objective: Log the completion of the data filtering operation and confirm the successful display of data.
   * Implementation:
     ```python
-    glueContext.get_logger().info("Data successfully written to S3 in CSV, JSON, and Parquet formats.")
-
+    glueContext.get_logger().info("Filtered data successfully displayed in the console.")
     ```

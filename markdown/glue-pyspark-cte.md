@@ -3,8 +3,10 @@ This document outlines using PySpark within AWS Glue to create temporary views a
 The script sets up the necessary Spark and Glue contexts, loads data, creates a temporary view, and queries it.
 
 ## CTE (Common Table Expression)
-In this context, creating a temporary view can be seen as analogous to using a CTE in SQL. The temporary view allows for the data to be manipulated and queried as if 
-it were a standalone table, aiding in simplifying SQL queries and improving readability.
+- Scope: Temporary views in PySpark are session-scoped and will not be visible in different Spark sessions. Once the Spark session ends, these views are destroyed.
+- Purpose: They are used to make DataFrame data queryable using SQL without permanently storing the data in a database. It allows for more complex SQL operations to be performed on DataFrame data.
+- Usage: After creating a temporary view, you can perform SQL queries on the data as if it were a table in a relational database. The view exists as long as the Spark session is active.
+- Creation: Temporary views in PySpark are created using the createOrReplaceTempView method on a DataFrame, which registers the DataFrame as a temporary view in the Spark SQL catalog.
 
 ## Prerequisites
 
@@ -13,7 +15,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 * [S3 Data Generation](s3-data-generation.md)
 * [Crawler Setup Instructions](set-up-instructions.md)
   
-##  PySpark Script - [pyspark-set-operations](../glue-code/ti-pyspark-cte.py)
+##  PySpark Script - [pyspark-cte](../glue-code/ti-pyspark-cte.py)
 - Input tables          : purchase
 - Output files          : cloudwatch logs
 - Crawlers used         : purchase_crawler

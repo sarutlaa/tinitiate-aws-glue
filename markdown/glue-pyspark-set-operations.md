@@ -10,7 +10,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
   
 ##  PySpark Script - [pyspark-set-operations](../glue-code/ti-pyspark-union-unionall-intersect.py)
 - Input tables          : products_csv, products_csv
-- Output files          : csv, json and parquet files in S3 buckets.
+- Output files          : cloudwatch logs
 - Crawlers used         : products_crawler
 
 ## Main Operations
@@ -34,39 +34,30 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
   df2 = glueContext.create_dynamic_frame.from_catalog(database="glue_db", table_name="product_un_in").toDF()
 
   ```
-### 3. Applying Set Operations:
+### 3. Applying Set Operations and Displaying Results:
 * Union Operation: Combines rows from two datasets while removing duplicates.
   ```python
-   union_df = df1.union(df2)
+  union_df = df1.union(df2).distinct()
+  print("Union Results:")
+  union_df.show()
   ```
 * Union All Operation: Combines all rows from two datasets, including duplicates (Note: In newer versions of PySpark, use union() to include duplicates).
   ```python
-   union_all_df = df1.unionAll(df2)  # In newer versions of PySpark, use union() instead
+  union_all_df = df1.union(df2)
+  print("Union All Results:")
+  union_all_df.show()
+
   ```
 * Intersect Operation: Retrieves only the common rows between two datasets.
   ```python
-   intersect_df = df1.intersect(df2)
-  ```
-
-### 4. Output Formatting and Storage:
-* Objective: Store the results of each set operation in CSV, JSON, and Parquet formats in predefined paths on an S3 bucket.
-* Implementation:
-  ```python
-  output_base_path = "s3://your-bucket-name/your-folder/"
-  union_df.write.mode("overwrite").option("header", "true").csv(output_base_path + "union/csv/")
-  union_df.write.mode("overwrite").json(output_base_path + "union/json/")
-  union_df.write.mode("overwrite").parquet(output_base_path + "union/parquet/")
-  union_all_df.write.mode("overwrite").option("header", "true").csv(output_base_path + "union_all/csv/")
-  union_all_df.write.mode("overwrite").json(output_base_path + "union_all/json/")
-  union_all_df.write.mode("overwrite").parquet(output_base_path + "union_all/parquet/")
-  intersect_df.write.mode("overwrite").option("header", "true").csv(output_base_path + "intersect/csv/")
-  intersect_df.write.mode("overwrite").json(output_base_path + "intersect/json/")
-  intersect_df.write.mode("overwrite").parquet(output_base_path + "intersect/parquet/")
+  union_all_df = df1.union(df2)
+  print("Union All Results:")
+  union_all_df.show()
   ```
 
 ### 5. Logging and Execution Verification:
-* Objective: Log the completion of operations and confirm the successful storage of data in all specified formats and operations.
+* Objective: Log the completion of the set operations and confirm the successful display of data.
 * Implementation:
   ```python
-   glueContext.get_logger().info("Set operations data successfully written to S3 in CSV, JSON, and Parquet formats.")
+  glueContext.get_logger().info("Set operations successfully displayed in the console.")
   ```

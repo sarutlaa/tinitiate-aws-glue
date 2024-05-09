@@ -54,6 +54,12 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
   print("Union All Results:")
   union_all_df.show()
   ```
+* Except Operation: Retrieves records from the first DataFrame that do not exist in the second DataFrame.
+  ```python
+   except_df = df1.exceptAll(df2)
+  print("Except Operation Results:")
+  except_df.show()
+  ```
 
 ### 5. Logging and Execution Verification:
 * Objective: Log the completion of the set operations and confirm the successful display of data.

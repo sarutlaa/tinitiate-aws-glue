@@ -23,17 +23,9 @@ df.createOrReplaceTempView("temp_table")
 # Use the temporary view in a SQL query
 result_df = spark.sql("SELECT * FROM temp_table")
 
-# Specify the output path for the S3 bucket
-output_base_path = "s3://your-bucket-name/your-folder/"
+# Display the resulting DataFrame
+print("Query Result:")
+result_df.show(truncate=False)
 
-# Save the resulting DataFrame to the S3 bucket in CSV format
-result_df.write.mode("overwrite").option("header", "true").csv(output_base_path + "csv/")
-
-# Save the resulting DataFrame to the S3 bucket in JSON format
-result_df.write.mode("overwrite").json(output_base_path + "json/")
-
-# Save the resulting DataFrame to the S3 bucket in Parquet format
-result_df.write.mode("overwrite").parquet(output_base_path + "parquet/")
-
-# Log information after saving to S3
-glueContext.get_logger().info("Data successfully written to S3 in CSV, JSON, and Parquet formats.")
+# Log information after displaying the results
+glueContext.get_logger().info("Data successfully displayed in the console.")

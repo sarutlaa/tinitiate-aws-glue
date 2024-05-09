@@ -9,7 +9,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 * [Crawler Setup Instructions](set-up-instructions.md)
   
 ##  PySpark Script - [pyspark-set-operations](../glue-code/ti-pyspark-union-unionall-intersect.py)
-- Input tables          : products_csv, products_csv
+- Input tables          : products_csv, product_un_in
 - Output files          : cloudwatch logs
 - Crawlers used         : products_crawler
 

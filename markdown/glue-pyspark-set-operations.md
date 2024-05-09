@@ -56,7 +56,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
   ```
 * Except Operation: Retrieves records from the first DataFrame that do not exist in the second DataFrame.
   ```python
-   except_df = df1.exceptAll(df2)
+  except_df = df1.exceptAll(df2)
   print("Except Operation Results:")
   except_df.show()
   ```

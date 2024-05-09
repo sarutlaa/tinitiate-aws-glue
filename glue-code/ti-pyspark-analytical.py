@@ -5,8 +5,6 @@ from pyspark.sql import SparkSession
 from pyspark.sql.functions import col, lag, lead, rank, dense_rank
 from pyspark.sql.window import Window
 
-import logging
-
 # Initialize Spark context with log level
 sc = SparkContext()
 
@@ -19,8 +17,7 @@ spark = glueContext.spark_session # Getting the Spark session from the Glue cont
 
 # Set up logging
 logger = glueContext.get_logger()
-print("Logger: ", logger)
-logger.info("IM Using Logger")
+print("Logger initialized. Starting script execution.")
 
 # Define Athena catalog and database.
 catalog = "awsglue_data_catalog"
@@ -30,8 +27,9 @@ database = "glue_db"
 analyzed_df = glueContext.create_dynamic_frame.from_catalog(database=database, table_name="purchase").toDF()
 
 # Applying analytical functions using window functions
-analyzed_df = analyzed_df.withColumn("previous_invoice_price", lag("invoice_price").over(Window.partitionBy("product_supplier_id").orderBy("purchase_tnxdate")))
-analyzed_df = analyzed_df.withColumn("next_invoice_price", lead("invoice_price").over(Window.partitionBy("product_supplier_id").orderBy("purchase_tnxdate")))
+window_spec = Window.partitionBy("product_supplier_id").orderBy("purchase_tnxdate")
+analyzed_df = analyzed_df.withColumn("previous_invoice_price", lag("invoice_price").over(window_spec))
+analyzed_df = analyzed_df.withColumn("next_invoice_price", lead("invoice_price").over(window_spec))
 analyzed_df = analyzed_df.withColumn("invoice_price_rank", rank().over(Window.partitionBy("product_supplier_id").orderBy(col("invoice_price").desc())))
 analyzed_df = analyzed_df.withColumn("invoice_price_dense_rank", dense_rank().over(Window.partitionBy("product_supplier_id").orderBy(col("invoice_price").desc())))
 
@@ -44,17 +42,9 @@ column_names = [
 # Rename DataFrame columns
 analyzed_df = analyzed_df.toDF(*column_names)
 
-# Specify the output path for the S3 bucket
-output_base_path = "s3://ti-author-scripts/ti-author-glue-scripts/ti-glue-pyspark-scripts-outputs/glue-pyspark-analytical-outputs/"
+# Display the DataFrame with analytical results
+print("Displaying analyzed DataFrame results:")
+analyzed_df.show(truncate=False)
 
-# Save DataFrame to S3 bucket in CSV format
-analyzed_df.write.mode("overwrite").option("header", "true").csv(output_base_path + "csv/")
-
-# Save DataFrame to S3 bucket in JSON format
-analyzed_df.write.mode("overwrite").json(output_base_path + "json/")
-
-# Save DataFrame to S3 bucket in Parquet format
-analyzed_df.write.mode("overwrite").parquet(output_base_path + "parquet/")
-
-# Log information after saving to S3
-logger.info("DataFrame saved in CSV, JSON, and Parquet formats to S3 successfully, including dense rank.")
+# Log information after displaying results
+logger.info("Analyzed DataFrame results displayed in the console successfully.")

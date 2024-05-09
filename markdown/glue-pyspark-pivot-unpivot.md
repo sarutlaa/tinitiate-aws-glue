@@ -28,7 +28,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 
 ##  PySpark Script - [pyspark-set-operations](../glue-code/ti-pyspark-pivot-unpivot.py)
 - Input Source          : CSV file from "employee_dept" stored in S3.
-- Output files          : csv, json and parquet files in S3 buckets.
+- Output files          : cloudwatch logs
 
 ## Main Operations
 
@@ -58,6 +58,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
       "employee_id", "employee_name", "department",
       *[col(month + "_salary").alias(month) for month in months]
   )
+  pivot_df.show(truncate=False)
   ```
 ### 4. Unpivot Operation:
 * Objective: Transforms the pivoted DataFrame back into a long format where each row represents a month and its corresponding salary for easier comparison across different dimensions.
@@ -67,17 +68,11 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
       "employee_id", "employee_name", "department",
       "stack(3, 'January', January, 'February', February, 'March', March) as (month, salary)"
   )
+  unpivot_df.show(truncate=False)
   ```
-### 5. Output Formatting and Storage:
-* Objective: Store the results of both pivoted and unpivoted DataFrames in Amazon S3 in CSV, JSON, and Parquet formats to support diverse downstream uses.
+### 6. Logging and Verification:
+* Objective: Log the completion of the pivot and unpivot operations and confirm the successful display of data.
 * Implementation:
   ```python
-  output_base_path = "s3://your-output-bucket/your-folder/"
-  pivot_df.write.mode("overwrite").option("header", "true").csv(output_base_path + "pivot/csv/")
-  pivot_df.write.mode("overwrite").json(output_base_path + "pivot/json/")
-  pivot_df.write.mode("overwrite").parquet(output_base_path + "pivot/parquet/")
-  unpivot_df.write.mode("overwrite").option("header", "true").csv(output_base_path + "unpivot/csv/")
-  unpivot_df.write.mode("overwrite").json(output_base_path + "unpivot/json/")
-  unpivot_df.write.mode("overwrite").parquet(output_base_path + "unpivot/parquet/")
-
+  logger.info("Pivoted and unpivoted DataFrames successfully displayed in the console.")
   ```

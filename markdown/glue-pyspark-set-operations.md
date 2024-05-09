@@ -1,5 +1,5 @@
-# Set Operations (Union, Union All, Intersect) with PySpark in AWS Glue
-This document provides a comprehensive guide on using PySpark within AWS Glue to perform set operations such as union, union all, and intersect, focusing on data from "product" and "product_un_in" tables stored in Athena. The script sets up the necessary Spark and Glue contexts, loads the data, applies set operations to combine and compare datasets, and displays the results.
+# Set Operations with PySpark in AWS Glue
+This document provides a comprehensive guide on using PySpark within AWS Glue to perform set operations such as union, union all, and intersect and except focusing on data from "product" and "product_un_in" tables stored in Athena. The script sets up the necessary Spark and Glue contexts, loads the data, applies set operations to combine and compare datasets, and displays the results.
 
 ## Prerequisites
 

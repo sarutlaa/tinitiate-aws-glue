@@ -24,7 +24,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
   
 ##  PySpark Script - [pyspark-analytical-functions](../glue-code/ti-pyspark-analytical.py)
 - Input tables          : purchase
-- Output files          : csv, json and parquet files in S3 buckets.
+- Output files          : cloudwatch logs
 - Crawlers used         : purchase_crawler
 
 ## Main Operations
@@ -58,17 +58,19 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
   analyzed_df = analyzed_df.withColumn("invoice_price_dense_rank", dense_rank().over(Window.partitionBy("product_supplier_id").orderBy(col("invoice_price").desc())))
   ```
 
-### 4. Output Formatting and Storage:
-* Objective: Format the DataFrame with specific column names and save in CSV, JSON, and Parquet formats to an S3 bucket.
-* Implementation:
-  ```python
-  column_names = ["purchase_tnx_id", "product_supplier_id", "purchase_tnxdate", "quantity", "invoice_price", "previous_invoice_price", "next_invoice_price", "invoice_price_rank", "invoice_price_dense_rank"]
-  analyzed_df = analyzed_df.toDF(*column_names)
-  output_base_path = "s3://ti-author-scripts/ti-author-glue-scripts/ti-glue-pyspark-scripts-outputs/glue-pyspark-analytical-outputs/"
-  analyzed_df.write.mode("overwrite").option("header", "true").csv(output_base_path + "csv/")
-  analyzed_df.write.mode("overwrite").json(output_base_path + "json/")
-  analyzed_df.write.mode("overwrite").parquet(output_base_path + "parquet/")
-  ```
+### 4. Displaying Results:
+  - Objective: Display the results of the analytical queries directly in the console for immediate inspection.
+  - Implementation:
+    ```python
+    analyzed_df.show(truncate=False)
+    ```
+### 5. Logging and Verification:
+  - Objective: Log the completion of the analysis and the display of results.
+  - Implementation:
+    ```python
+    logger.info("Analyzed data successfully displayed in the console.")
+    ```
+
 
 ### 5. Logging and Verification:
 * Objective: Log operational details and confirm the success of data writes.

@@ -32,5 +32,10 @@ intersect_df = df1.intersect(df2)
 print("Intersect Results:")
 intersect_df.show()
 
+# Perform Except operation
+except_df = df1.exceptAll(df2)
+print("Except Operation Results:")
+except_df.show()
+
 # Log information after displaying results
 glueContext.get_logger().info("Results successfully displayed in the console for union, union all, and intersect operations.")

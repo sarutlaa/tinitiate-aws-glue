@@ -54,10 +54,12 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 * Objective: Utilize recursive self joins to simulate a hierarchical tree structure.
 * Implemetation:
   ```python
-  df = employees.alias("df")
-  for i in range(1, 4):  # Assuming a hierarchy depth of 3
-    df = df.join(employees.alias(f"lvl{i}"), col(f"lvl{i-1}.manager_id") == col(f"lvl{i}.employee_id"), "left_outer") \
-               .select("df.employee_id", "df.name", col(f"lvl{i}.name").alias(f"manager_lvl_{i}"))
+  # Join with itself on manager_id = employee_id
+  for i in range(1, 4):  # assuming a maximum hierarchy depth of 3
+      df = df.join(employees.alias(f"lvl{i}"), 
+                   col("df.manager_id") == col(f"lvl{i}.employee_id"), "left_outer") \
+             .select(col("df.employee_id"), col("df.name"), col(f"lvl{i}.name").alias(f"manager_lvl_{i}"))
+  print("Method 1 Output Dataframe:")
   ```
 #### Method 2: GraphFrames
 * Objective: Leverage GraphFrames to analyze hierarchical structures using graph algorithms that uses "BFS Approach" from vertices and edges.

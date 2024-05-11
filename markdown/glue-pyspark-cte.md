@@ -1,4 +1,4 @@
-# Temporary Views and SQL Queries 
+# Temporary Views and CTEs Queries 
 This document outlines using PySpark within AWS Glue to create temporary views and execute SQL queries, focusing on data from the "purchase" table stored in Athena. 
 The script sets up the necessary Spark and Glue contexts, loads data, creates a temporary view, and queries it.
 

@@ -14,7 +14,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 
 ##  PySpark Script - [pyspark-null-checks](../glue-code/ti-pyspark-isnull-notnull.py)
 - Input tables          : categories_csv
-- Output                : Stored in CSV, JSON, and Parquet formats in the specified S3 bucket.
+- Output                : Cloudwatch logs
 - Crawlers used         : category_crawler
 
 
@@ -31,29 +31,45 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
   glueContext = GlueContext(sc)
   ```
 
-### 2. Data Loading and Transformation:
-* Objective: Load data from the Athena "categories_csv" table into a DataFrame, apply filters to segregate null and non-null values based on the 'categoryname' column.
+### 2. Data Embedding and Loading
+* Objective: Embed and load sample data into a DataFrame with predefined schema including null values, suitable for demonstrating null handling.
 * Implementation:
   ```python
-  df = glueContext.create_dynamic_frame.from_catalog(database="glue_db", table_name="category").toDF()
-  df_null = df.filter(col("categoryname").isNull())
-  df_not_null = df.filter(col("categoryname").isNotNull())
+   from pyspark.sql.types import StructType, StructField, IntegerType, StringType
+  schema = StructType([
+      StructField("category_id", IntegerType(), True),
+      StructField("categoryname", StringType(), True),
+      StructField("description", StringType(), True)
+  ])
+  data = [
+      (1, "Electronics", "Devices and gadgets"),
+      (2, None, None),
+      (3, "Clothing", "Wearables"),
+      (4, "Home and Garden", "Home essentials"),
+      (5, None, "All items for the kitchen")
+  ]
+  df = spark.createDataFrame(data, schema=schema)
+
   ```
-### 3. Output Formatting and Storage:
-* Objective: Store the results of filtered data frames into Amazon S3 in multiple formats for various uses, enhancing data accessibility.
+### 3. Null Value Handling:
+* Objective: Filter the DataFrame to segregate records where the 'categoryname' column contains null and non-null values, and display these records.
 * Implementation:
   ```python
-  output_base_path = "s3://your-bucket-name/your-folder/"
-  df_null.write.mode("overwrite").option("header", "true").csv(output_base_path + "null/csv/")
-  df_not_null.write.mode("overwrite").json(output_base_path + "not_null/json/")
-  df_not_null.write.mode("overwrite").parquet(output_base_path + "not_null/parquet/")
+  df_null = df.filter(col("categoryname").isNull())
+  print("Displaying DataFrame with null values in 'categoryname':")
+  df_null.show()
+  
+  df_not_null = df.filter(col("categoryname").isNotNull())
+  print("Displaying DataFrame with non-null values in 'categoryname':")
+  df_not_null.show()
+
   ```  
     
 ### 4. Logging and Execution Verification:
-* Objective: Confirm the successful execution of the script and log the completion of data storage operations.
+* Objective: Utilize GlueContext's logging capabilities to log the execution status and verify the correct handling of data.
 * Implementation:
   ```python
-  glueContext.get_logger().info("Data with null and not null values successfully written to S3 in CSV, JSON, and Parquet formats.")
+  glueContext.get_logger().info("Displayed DataFrames with null and not null values for 'categoryname'.")
   ```
 
 

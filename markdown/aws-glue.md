@@ -36,17 +36,17 @@
 * [Analytical Functions](glue-pyspark-analytical.md)
 * [Pivot, UnPivot](glue-pyspark-pivot-unpivot.md)
 * [Common Table Expressions](glue-pyspark-cte.md)
-* [Create Table As Select](glue-pyspark-ctas.md)
+* [Create Table As Select](glue-pyspark-ctas.md) - Need more clarity
 
 ### Date and Null Handling
 * [Date Formats](glue-pyspark-date-formats.md)
 * [Null Checks](glue-pyspark-null-checks.md)
 
 ### Advanced Query Techniques
-* [Built in Psuedo Columns](glue-pyspark-built-in-pseudo-columns.md)
+* [Psuedo Columns](glue-pyspark-built-in-pseudo-columns.md)
 * [Hierarchial Queries](glue-hierarchial-queries.md) - ERROR , check pyspark version of running a recursive query
   
-### Advanced I/O Concepts:
+### Partitioning Concepts:
 * [Data Repartition](glue-repartition.md)
 * [Data Partitioning](glue-s3-data-partitioning.md)
 * [Bucketing](glue-bucketing.md)

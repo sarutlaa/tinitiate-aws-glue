@@ -1,4 +1,4 @@
-# Hierarchical Data Processing and Storage with PySpark in AWS Glue
+# Hierarchical Queries with PySpark in AWS Glue
 
 This document details a PySpark script designed to handle hierarchical data structures within AWS Glue, ideal for scenarios like organizational charts or nested relationships. The script demonstrates two distinct methods for constructing and exploring hierarchical relationships: recursive joins and graph processing using GraphFrames.
 

@@ -1,11 +1,17 @@
 # Hierarchical Data Processing and Storage with PySpark in AWS Glue
-This documentation describes a PySpark script used within AWS Glue to handle hierarchical data from a catalog table, perform a recursive query, and save the outputs in multiple formats (Parquet, JSON, and CSV). The script is designed to process hierarchical structures, making it suitable for scenarios like organizational charts, category trees, or any nested relationship data.
 
-Managing Data Partitions with PySpark in AWS Glue
-## Key Concepts:
-1. Hierarchical Query: Processes data recursively to build a hierarchical structure.
-2. Data Formats: Outputs data in multiple formats to suit various downstream processing needs.
-3. Parallel Writing: Writing data in parallel to reduce execution time and improve throughput.
+This document details a PySpark script designed to handle hierarchical data structures within AWS Glue, ideal for scenarios like organizational charts or nested relationships. The script demonstrates two distinct methods for constructing and exploring hierarchical relationships: recursive joins and graph processing using GraphFrames.
+
+
+## Hierarchical queries Overview:
+Hierarchical queries are used to handle data where rows have a parent-child relationship within the same table. These queries are common in SQL, particularly with the use of constructs like "CONNECT BY" in Oracle. In PySpark, however, there isn’t a built-in equivalent function, so these relationships must be handled programmatically.
+
+Implementing hierarchical queries in PySpark usually involves using recursive joins or using graph theory libraries like GraphFrames
+
+### Method 1: Recursive Joins
+This method involves manually coding the logic to perform recursive joins to resolve parent-child relationships. This approach can be resource-intensive and tricky to manage for very deep or very large hierarchies.
+### Method 2: Using GraphFrames
+GraphFrames is a Spark package that extends DataFrames to support graph processing. With GraphFrames, you can manage complex relationships and perform recursive queries much more naturally.
 
 ## Prerequisites
 Ensure proper configuration of IAM roles and S3 buckets and run necessary crawleras outlined here:
@@ -13,9 +19,9 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 * [S3 Data Generation](s3-data-generation.md)
 * [Crawler Setup Instructions](set-up-instructions.md)
   
-##  PySpark Script - [pyspark-repartitioning.py](../glue-code/ti-pyspark-repartitioning.py)
-* Input Table: Sample inputs through list.
-* Output Formats: CSV, JSON, and Parquet files in S3 buckets.
+##  PySpark Script - [pyspark-pyspark-hierarchical](../glue-code/ti-pyspark-hierarchical.py)
+* Input Table: Sample data in dataframe
+* Output Formats: Displays the result in cloudwatch logs
 
 ## Main Operations
 ### 1. Initializing Spark and Glue Contexts:
@@ -29,4 +35,47 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
     glueContext = GlueContext(sc)
     ```
 ### 2. Data Generation and Loading:
- 
+* Objective: Generate and load sample data into a DataFrame for processing.
+* Implementation:
+  ```python
+    data = [
+    ("1", "Alice", None),
+    ("2", "Bob", "1"),
+    ("3", "Charlie", "2"),
+    ("4", "David", "2"),
+    ("5", "Eve", "3")
+  ]
+  columns = ["employee_id", "name", "manager_id"]
+  employees = spark.createDataFrame(data, schema=columns)
+  employees.createOrReplaceTempView("employees")
+  ```
+### 3. Hierarchical Data Processing:
+#### Method 1: Recursive Joins
+* Objective: Utilize recursive self joins to simulate a hierarchical tree structure.
+* Implemetation:
+  ```python
+  df = employees.alias("df")
+  for i in range(1, 4):  # Assuming a hierarchy depth of 3
+    df = df.join(employees.alias(f"lvl{i}"), col(f"lvl{i-1}.manager_id") == col(f"lvl{i}.employee_id"), "left_outer") \
+               .select("df.employee_id", "df.name", col(f"lvl{i}.name").alias(f"manager_lvl_{i}"))
+  ```
+#### Method 2: GraphFrames
+* Objective: Leverage GraphFrames to analyze hierarchical structures using graph algorithms that uses "BFS Approach" from vertices and edges.
+* Implementation:
+  ```python
+  from graphframes import GraphFrame
+  vertices = employees.withColumnRenamed("employee_id", "id")
+  edges = employees.selectExpr("employee_id as src", "manager_id as dst").filter("dst is not null")
+  g = GraphFrame(vertices, edges)
+  results = g.bfs(fromExpr="id = '1'", toExpr="id = '5'", edgeFilter="src != dst")
+  results.show(truncate=False)
+   ```
+### 4. Output Display and Validation:
+* Objective: Display and validate the results of the hierarchical queries directly in the console.
+* Implemnetation:
+  ```python
+  print("Displaying results for Method 1:")
+  df.show(truncate=False)
+  print("Displaying results for Method 2:")
+  results.show(truncate=False)
+  ```

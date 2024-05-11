@@ -53,10 +53,31 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
   print("SQL Query Results:")
   result_df.show(truncate=False)
   ```
-
-### 5. Logging and Execution Verification:
-* Objective: Log the completion of SQL queries and confirm the successful display of data.
+### 5. Executing a CTE:
+* Objective: Executes the cte using the 'with' statement.
 * Implementation:
   ```python
-  glueContext.get_logger().info("SQL query results successfully displayed in the console.")
+  # Define and execute a CTE
+  cte_query = """
+  WITH SupplierTransactions AS (
+      SELECT product_supplier_id, quantity, invoice_price, purchase_tnxdate
+      FROM purchase_table
+      WHERE purchase_tnxdate >= '2022-01-01'
+  )
+  SELECT product_supplier_id,
+         SUM(quantity) AS total_quantity,
+         SUM(quantity * invoice_price) AS total_spent
+  FROM SupplierTransactions
+  GROUP BY product_supplier_id
+  ORDER BY total_spent DESC
+  """
+  ```
+### 6. Displayng Result and Logging for Execution Verification:
+* Objective: Displays the cte result and logs the completion of SQL queries and confirm the successful display of data.
+* Implementation:
+  ```python
+  result_df = spark.sql(cte_query)
+  print("SQL Query Results:")
+  result_df.show(truncate=False)
+  glueContext.get_logger().info("CTE query executed and results successfully displayed.")
   ```

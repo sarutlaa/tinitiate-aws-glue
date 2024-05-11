@@ -19,7 +19,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 * [S3 Data Generation](s3-data-generation.md)
 * [Crawler Setup Instructions](set-up-instructions.md)
   
-##  PySpark Script - [pyspark-pyspark-hierarchical](../glue-code/ti-pyspark-hierarchical.py)
+##  PySpark Script - [pyspark-hierarchical](../glue-code/ti-pyspark-hierarchical.py)
 * Input Table: Sample data in dataframe
 * Output Formats: Displays the result in cloudwatch logs
 

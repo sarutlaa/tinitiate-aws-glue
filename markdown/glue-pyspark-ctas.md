@@ -3,11 +3,7 @@
 This documentation guides you through the process of using PySpark within AWS Glue to perform a Create Table As Select (CTAS) operation. The workflow focuses on transforming data from the "purchase" table stored in Athena, creating a new table in the AWS Glue Data Catalog, and storing the transformed data directly in Amazon S3 using the CTAS approach.
 
 ## Overview of CTAS
-Temporary Views in PySpark:
-- Scope: Temporary views are limited to the Spark session they are created in and disappear once the session ends.
-- Purpose: They allow SQL queries on DataFrame data without saving it in a database, enabling more complex SQL operations.
-- Usage: Once a temporary view is created, you can run SQL queries on it as though it's a table in a database, until the Spark session ends.
-- Creation: Temporary views are created with the createOrReplaceTempView method on a DataFrame, registering it as a view in Spark’s SQL catalog.
+
 
 ## Prerequisites
 
@@ -18,7 +14,7 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
   
 ##  PySpark Script - [pyspark-ctas](../glue-code/ti-pyspark-ctas.py)
 - Input tables          : purchase
-- Output                : Glue data catalog, new_purchase_table
+- Output                : New table in csv format stored in S3 bucket.
 - Crawlers used         : purchase_crawler
 
 
@@ -41,24 +37,49 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
   result_df = purchase_df.select("purchase_tnx_id", "product_supplier_id", "purchase_tnxdate", "quantity", "invoice_price").filter(purchase_df["quantity"] > 100)
 
   ```
-### 3. Executing the CTAS Operation:
-* Objective: Use the CTAS command to create a new table from the transformed data, specifying Parquet as the storage format and S3 as the location
+### 3. Data Transformation:
+* Objective: Filtering the 'purchase' table data and chossing the specific columns. 
 * Implementation:
   ```python
-  result_df.createOrReplaceTempView("temp_table")
-  spark.sql("""
-    CREATE TABLE glue_db.new_purchase_table
-    USING PARQUET
-    LOCATION 's3://your-bucket-name/your-folder/new_purchase_table/'
-    AS SELECT * FROM temp_table
+  # Filter purchases where the quantity is greater than a threshold, e.g., 100
+  filtered_df = purchase_df.filter(purchase_df["quantity"] > 100)
+  
+  # Optionally, further transformations or selections can be applied here
+  selected_df = filtered_df.select("purchase_tnx_id", "product_supplier_id", "purchase_tnxdate", "quantity", "invoice_price")
+  ```
+### 4. Creating the new table:
+* Objective: Creating a temporary view ctas_purchase_view in glue datacatalog for storing the CTAS results the query results. 
+* Implementation:
+  ```python
+   # Create or replace a temporary view to use in an SQL query
+    selected_df.createOrReplaceTempView("ctas_purchase_view")
+    
+    # Define an SQL query to manipulate data further if needed
+    query_results = spark.sql("""
+    SELECT product_supplier_id, SUM(quantity) as total_quantity, AVG(invoice_price) as average_price
+    FROM ctas_purchase_view
+    GROUP BY product_supplier_id
+    ORDER BY total_quantity DESC
   """)
-
+  ```
+### 5. Executing CTAS and Displaying the result
+* Objective: Executes the CTAS query and displays the result in cloudwatch logs.
+* Implementation:
+  ```python
+  # Execute the CTAS operation
+  result_df = spark.sql(ctas_query)
+  print("Sample CTAS Table")
+  result_df.show()
   ```
 
-### 4. Verification and Logging:
-* Objective: Log the successful creation of the table and verify that the operation has been executed as expected.
+### 5. Logging and Verification:
+* Objective: Logging and verifying that the operation has been executed as expected and stopping the spark context.
 * Implementation:
   ```python
-  glueContext.get_logger().info("CTAS operation completed and new table created in S3.")
+  # Log the completion of the CTAS operation
+  glueContext.get_logger().info("CTAS operation completed and new table 'ctas_purchase_table' created in the Glue Data Catalog.")
+  
+  # Stop the Spark context to free up resources and close the session
+sc.stop()
   ```
 

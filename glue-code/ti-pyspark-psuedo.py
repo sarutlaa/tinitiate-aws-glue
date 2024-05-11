@@ -1,42 +1,38 @@
 from pyspark.context import SparkContext
 from awsglue.context import GlueContext
-from pyspark.sql import SparkSession
-from pyspark.sql.functions import monotonically_increasing_id, row_number
-from pyspark.sql.window import Window
+from pyspark.sql import SparkSession, functions as F # Import for built in pseudo functions in spark 
+from pyspark.sql.types import IntegerType, StringType
+from pyspark.sql.functions import lit, current_date, current_timestamp, expr # Import for custom pseudo columns in spark
 
-# Initialize Spark context with log level
-sc = SparkContext.getOrCreate()
-sc.setLogLevel("INFO")  # Setting log level for Spark context
-
+# Initialize Spark and Glue contexts
+sc = SparkContext()
+sc.setLogLevel("INFO")
 glueContext = GlueContext(sc)
-spark = SparkSession.builder.appName("Data Processing with Pseudo Columns").getOrCreate()
+spark = glueContext.spark_session
 
-# Define Athena catalog and database
-catalog = "awsglue_data_catalog"
-database = "glue_db"
+# Sample data with two columns
+data = [("Alice", 28), ("Bob", 34)]
+schema = ["Name", "Age"]
 
-# Load tables from Athena into data frames
-df = glueContext.create_dynamic_frame.from_catalog(database=database, table_name="purchase").toDF()
+# Create DataFrame
+test_df = spark.createDataFrame(data, schema=schema)
+print("Dataframe Created:")
+test_df.show()
 
-# Add a monotonically increasing id column
-df_with_id = df.withColumn("row_id", monotonically_increasing_id())
+# Add a primary key column using inbuilt pseudo function 'monotonically_increasing_id()'.
+test_df = test_df.withColumn("Primary_Key", F.monotonically_increasing_id())
+print("Dataframe after add PK:")
+test_df.show()
 
-# Define a window specification and add a row number column
-window_spec = Window.partitionBy("product_supplier_id").orderBy("quantity")
-df_with_row_number = df.withColumn("row_number", row_number().over(window_spec))
+# Add custom columns with fixed values and current timestamps
+test_df = test_df.withColumn("Custom_String", lit("Employee").cast(StringType())) \
+                 .withColumn("Custom_Int", lit(100).cast(IntegerType())) \
+                 .withColumn("Custom_Float", lit(123.456).cast("float")) \
+                 .withColumn("Custom_Date", current_date()) \
+                 .withColumn("Custom_DateTime", current_timestamp()) \
+                 .withColumn("Custom_TimeZone", expr("from_utc_timestamp(current_timestamp(), 'America/New_York')"))
 
-# Specify the output path for the S3 bucket
-output_base_path = "s3://ti-author-scripts/ti-author-glue-scripts/ti-glue-pyspark-scripts-outputs/ti-pyspark-psuedo-columns-outputs/"
+print("Final Dataframe:")
+test_df.show(truncate=False)
 
-# Save the DataFrame with row_id to the S3 bucket in CSV, JSON, and Parquet formats
-df_with_id.write.mode("overwrite").option("header", "true").csv(output_base_path + "with_id/csv/")
-df_with_id.write.mode("overwrite").json(output_base_path + "with_id/json/")
-df_with_id.write.mode("overwrite").parquet(output_base_path + "with_id/parquet/")
 
-# Save the DataFrame with row_number to the S3 bucket in CSV, JSON, and Parquet formats
-df_with_row_number.write.mode("overwrite").option("header", "true").csv(output_base_path + "with_row_number/csv/")
-df_with_row_number.write.mode("overwrite").json(output_base_path + "with_row_number/json/")
-df_with_row_number.write.mode("overwrite").parquet(output_base_path + "with_row_number/parquet/")
-
-# Log a completion message to indicate successful writing of data to S3
-glueContext.get_logger().info("Data with pseudo columns successfully written to S3 in CSV, JSON, and Parquet formats.")

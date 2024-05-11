@@ -18,14 +18,29 @@ database = "glue_db"
 df = glueContext.create_dynamic_frame.from_catalog(database=database, table_name="purchase").toDF()
 
 # Create a temporary view of the DataFrame
-df.createOrReplaceTempView("temp_table")
+df.createOrReplaceTempView("purchase_table")
 
-# Use the temporary view in a SQL query
-result_df = spark.sql("SELECT * FROM temp_table")
+# Define a CTE within a SQL query
+cte_query = """
+WITH SupplierTransactions AS (
+    SELECT product_supplier_id, quantity, invoice_price, purchase_tnxdate
+    FROM purchase_table
+    WHERE purchase_tnxdate >= '2022-01-01'
+)
+SELECT product_supplier_id,
+       SUM(quantity) AS total_quantity,
+       SUM(quantity * invoice_price) AS total_spent
+FROM SupplierTransactions
+GROUP BY product_supplier_id
+ORDER BY total_spent DESC
+"""
+
+# Use the CTE to execute the query
+result_df = spark.sql(cte_query)
 
 # Display the resulting DataFrame
 print("Query Result:")
 result_df.show(truncate=False)
 
 # Log information after displaying the results
-glueContext.get_logger().info("Data successfully displayed in the console.")
+glueContext.get_logger().info("CTE query executed and results displayed successfully.")

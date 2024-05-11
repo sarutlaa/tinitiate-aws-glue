@@ -11,7 +11,6 @@ spark = glueContext.spark_session
 # Load the 'purchase' table from the AWS Glue Data Catalog
 purchase_df = glueContext.create_dynamic_frame.from_catalog(database="glue_db", table_name="purchase").toDF()
 
-# Assuming 'purchase' table has columns: purchase_tnx_id, product_supplier_id, purchase_tnxdate, quantity, invoice_price
 # Filter purchases where the quantity is greater than a threshold, e.g., 100
 filtered_df = purchase_df.filter(purchase_df["quantity"] > 100)
 

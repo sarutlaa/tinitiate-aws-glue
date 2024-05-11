@@ -1,11 +1,13 @@
+from pyspark.context import SparkContext
+from awsglue.context import GlueContext
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col
 from pyspark.sql.types import StructType, StructField, IntegerType, StringType
 
-# Initialize Spark Session
-spark = SparkSession.builder \
-    .appName("Handle Nulls in DataFrame") \
-    .getOrCreate()
+# Initialize Spark and Glue Contexts
+sc = SparkContext()
+glueContext = GlueContext(sc)
+spark = glueContext.spark_session
 
 # Define the schema for our DataFrame
 schema = StructType([
@@ -43,3 +45,6 @@ df_not_null = df.filter(col("categoryname").isNotNull())
 # Display DataFrame with non-null values in 'categoryname'
 print("Displaying DataFrame with non-null values in 'categoryname':")
 df_not_null.show()
+
+# Log information using GlueContext
+glueContext.get_logger().info("Completed displaying null and non-null values.")

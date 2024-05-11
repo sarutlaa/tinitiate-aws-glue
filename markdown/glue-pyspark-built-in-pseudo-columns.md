@@ -1,6 +1,6 @@
 # Pseudo Columns with PySpark in AWS Glue
 
-This document provides a detailed guide on utilizing PySpark in AWS Glue to enhance data with built-in and custom pseudo columns. The process involves transforming data from the "purchase" table stored in Athena by adding unique identifiers and other artificial attributes to facilitate data processing and analysis.
+This document provides a detailed guide on utilizing PySpark in AWS Glue to enhance data with built-in and custom pseudo columns. The process involves transforming data from the from a sample dataframe created adding unique identifiers and other artificial attributes to facilitate data processing and analysis.
 
 ## Pseudo Columns in PySpark:
 Pseudo columns are not directly stored within the data source but are generated on-the-fly during data processing. They are invaluable for creating unique row identifiers or adding sortable attributes that do not originally exist in the source data.

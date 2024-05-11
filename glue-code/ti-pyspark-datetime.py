@@ -1,11 +1,10 @@
 from pyspark.context import SparkContext
 from awsglue.context import GlueContext
-from pyspark.sql import SparkSession
-from pyspark.sql.functions import from_utc_timestamp, current_timestamp, date_format, unix_timestamp, expr
+from pyspark.sql.functions import to_timestamp, from_utc_timestamp, date_add, date_sub, year, month, dayofmonth, datediff, current_date, expr
 
 # Initialize Spark context with log level
 sc = SparkContext()
-sc.setLogLevel("INFO")  # Setting log level for Spark context
+sc.setLogLevel("INFO")
 
 glueContext = GlueContext(sc)
 spark = glueContext.spark_session
@@ -17,31 +16,30 @@ database = "glue_db"
 # Load tables from Athena into data frames
 df = glueContext.create_dynamic_frame.from_catalog(database=database, table_name="dispatch").toDF()
 
-# Convert string column to DateTime type and then to UTC timezone
-df_utc = df.withColumn("datetime_utc_column", from_utc_timestamp(df["dispatch_date"], "UTC"))
+# Convert 'dispatch_date' to TimestampType
+df_prepared = df.withColumn("parsed_date", to_timestamp(df["dispatch_date"], "dd-MMM-yyyy HH:mm:ss"))
+df_prepared.show()
 
-# Convert UTC datetime to desired timezone
-# Note: Replace 'desired_timezone' with the desired timezone string, such as 'America/New_York'
-df_with_timezone = df_utc.withColumn("datetime_with_timezone_column", from_utc_timestamp(df_utc["datetime_utc_column"], "America/New_York"))
+# Add and subtract days
+df_add_days = df_prepared.withColumn("date_plus_10_days", date_add("parsed_date", 10))
+df_sub_days = df_add_days.withColumn("date_minus_10_days", date_sub("parsed_date", 10))
+df_sub_days.show()
 
-# Additional DateTime operations
-# 1. Formatting DateTime
-df_formatted = df_with_timezone.withColumn("formatted_date", date_format("datetime_with_timezone_column", "yyyy-MM-dd HH:mm:ss"))
+# Extract year, month, and day from date
+df_extracted = df_sub_days.withColumn("year", year("parsed_date"))
+df_extracted = df_extracted.withColumn("month", month("parsed_date"))
+df_extracted = df_extracted.withColumn("day", dayofmonth("parsed_date"))
+df_extracted.show()
 
-# 2. Time Difference in seconds between current time and dispatch time
-df_time_diff = df_formatted.withColumn("time_difference_seconds", unix_timestamp(current_timestamp()) - unix_timestamp("datetime_with_timezone_column"))
+# Calculate the difference in years from the dispatch date to now
+df_date_diff = df_extracted.withColumn("years_from_now", expr("floor(datediff(current_date(), parsed_date)/365)"))
+df_date_diff.show()
 
-# Specify the output path for the S3 bucket
-output_base_path = "s3://your-bucket-name/your-folder/"
+# Log and print messages for each significant operation
+print("Initial data loaded and date parsed.")
+print("Added and subtracted 10 days from the original date.")
+print("Extracted year, month, and day components from the date.")
+print("Calculated the number of years from the current date to each dispatch date.")
 
-# Save the resulting DataFrame to the S3 bucket in CSV format
-df_time_diff.write.mode("overwrite").option("header", "true").csv(output_base_path + "csv/")
-
-# Save the resulting DataFrame to the S3 bucket in JSON format
-df_time_diff.write.mode("overwrite").json(output_base_path + "json/")
-
-# Save the resulting DataFrame to the S3 bucket in Parquet format
-df_time_diff.write.mode("overwrite").parquet(output_base_path + "parquet/")
-
-# Log information after saving to S3
-glueContext.get_logger().info("Data successfully written to S3 in CSV, JSON, and Parquet formats.")
+# Optionally, you can also log using the GlueContext logger
+glueContext.get_logger().info("Data processing completed.")

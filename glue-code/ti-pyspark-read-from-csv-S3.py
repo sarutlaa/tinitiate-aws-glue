@@ -33,9 +33,9 @@ dynamic_frame_gzip_csv = glueContext.create_dynamic_frame.from_options(
 df_csv = dynamic_frame_csv.toDF()
 df_gzip_csv = dynamic_frame_gzip_csv.toDF()
 
-# Example processing (simple count)
-print("Count of rows in regular CSV:", df_csv.count())
-print("Count of rows in gzip CSV:", df_gzip_csv.count())
+# Showing the Dataframe Contents
+print("Reading CSV Contents:", df_csv.show(5))
+print("Reading ZIP CSV Contents:", df_gzip_csv.show(5))
 
 # Initialize and commit the job
 job.init("manual-job-name", {})

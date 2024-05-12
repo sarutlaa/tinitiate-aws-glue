@@ -22,9 +22,6 @@ df = sc.parallelize(data).toDF()
 # Coalesce the DataFrame to one partition for a single output file
 df_single = df.coalesce(1)
 
-# Convert the coalesced DataFrame to DynamicFrame
-dynamic_df_single = DynamicFrame.fromDF(df_single, glueContext, "dynamic_df_single")
-
 # Specify the S3 path for output of NDJSON format
 output_dir_ndjson = "s3://ti-author-scripts/ti-author-glue-scripts/ti-glue-pyspark-scripts-outputs/ti-pyspark-write-to-ndjson-outputs/ndjson/"
 output_dir_ndjson_gz = "s3://ti-author-scripts/ti-author-glue-scripts/ti-glue-pyspark-scripts-outputs/ti-pyspark-write-to-ndjson-outputs/ndjson-gz/"

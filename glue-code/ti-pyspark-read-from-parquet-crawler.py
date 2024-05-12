@@ -31,8 +31,8 @@ df_pq = dynamic_frame_pq.toDF()
 df_snappy_pq = dynamic_frame_snappy_pq.toDF()
 
 # Example processing (simple count)
-print("Reading PARQUET Conetents:", df_pq.show(5))
-print("Reading PARQUET SNAPPY Conetents:", df_snappy_pq.show(5))
+print("Reading JSON Conetents:", df_pq.show(5))
+print("Reading JSON ZIP Conetents:", df_snappy_pq.show(5))
 
 # Initialize and commit the job
 job.init("manual-job-name", {})

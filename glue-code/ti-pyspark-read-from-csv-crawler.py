@@ -29,7 +29,7 @@ dynamic_frame_gzip_csv = glueContext.create_dynamic_frame.from_catalog(
 df_csv = dynamic_frame_csv.toDF()
 df_gzip_csv = dynamic_frame_gzip_csv.toDF()
 
-# Example processing (simple count)
+# Showing the Dataframe Contents
 print("Reading CSV Contents:", df_csv.show(5))
 print("Reading ZIP CSV Contents:", df_gzip_csv.show(5))
 

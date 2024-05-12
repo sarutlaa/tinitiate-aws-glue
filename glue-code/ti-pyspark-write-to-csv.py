@@ -26,8 +26,8 @@ df_single = df.coalesce(1)
 dynamic_df_single = DynamicFrame.fromDF(df_single, glueContext, "dynamic_df_single")
 
 # Specify the S3 path for output
-output_dir_csv = "s3://ti-author-scripts/ti-author-glue-scripts/ti-glue-pyspark-scripts-outputs/ti-pyspark-write-to-csv-outputs/csv/data_csv.csv"
-output_dir_csv_gz = "s3://ti-author-scripts/ti-author-glue-scripts/ti-glue-pyspark-scripts-outputs/ti-pyspark-write-to-csv-outputs/csv-gz/data_csv_gz.csv.gz"
+output_dir_csv = "s3://ti-author-scripts/ti-author-glue-scripts/ti-glue-pyspark-scripts-outputs/ti-pyspark-write-to-csv-outputs/csv/"
+output_dir_csv_gz = "s3://ti-author-scripts/ti-author-glue-scripts/ti-glue-pyspark-scripts-outputs/ti-pyspark-write-to-csv-outputs/csv-gz/"
 
 # Write the data to S3 as a single CSV file
 glueContext.write_dynamic_frame.from_options(

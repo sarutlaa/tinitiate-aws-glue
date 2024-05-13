@@ -62,14 +62,14 @@
 ## Adding External Python libraries in AWS Glue:
 * [External Libraries](adding-external-libraries.md)
 
-## Building a Dynamic DataFrame from Various Source types:
+## Building a DataFrame from Various Source types:
 * [Reading from CSV](read-from-csv.md)
 * [Reading from JSON](read-from-json.md)
 * [Reading from NDJSON](read-from-ndjson.md)
 * [Reading from Parquet](read-from-parquet.md)
 * [Reading from AWS ION](read-from-awsion.md)
   
-## Exporting a Dynamic DataFrame into different targets:
+## Exporting a DataFrame into different targets:
 #### Source : CSV files stored in S3, Target : Stored in S3
 * [Writing to CSV](write-to-csv.md)
 * [Writing to JSON](write-to-json.md)

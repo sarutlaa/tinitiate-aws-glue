@@ -63,7 +63,7 @@
 * [External Libraries](adding-external-libraries.md)
 
 ## Building a Dynamic DataFrame from Various Source types:
-* [Reading from CSV](read-from-csv-s3.md)
+* [Reading from CSV](read-from-csv.md)
 * [Reading from JSON](read-from-json.md)
 * [Reading from NDJSON](read-from-ndjson.md)
 * [Reading from Parquet](read-from-parquet.md)

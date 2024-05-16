@@ -61,7 +61,16 @@ This setup makes it easy to work with big data in Spark without needing to learn
 - Configuration: You can configure Spark Session with various settings to control cluster connection, memory allocation, and execution behavior.
 - Context Management: Spark Session manages the Spark context, which represents the connection to the Spark cluster and provides resources for computations.
 - Multiple Sessions: While typically you'll use a single Spark Session per application, you can create new sessions with isolated configurations for specific purposes.
+- Sample Spark Session : 
+```python
+# Import SparkSession from pyspark.sql
+from pyspark.sql import SparkSession
 
+# Create a SparkSession
+spark = SparkSession.builder \
+    .appName("DataFrame Example") \
+    .getOrCreate()
+```
 ### Spark DataFrames: A Distributed Spreadsheet for Big Data
 
 Spark DataFrames are the workhorses of data manipulation in Apache Spark. Imagine a giant spreadsheet that can handle massive datasets spread across multiple computers. Each row represents a data record, and each column holds a specific feature or attribute. DataFrames offer a familiar table structure for you to:
@@ -70,6 +79,24 @@ Spark DataFrames are the workhorses of data manipulation in Apache Spark. Imagin
 - Performance: DataFrames are highly optimized for performance, utilizing Spark's Catalyst optimizer for query execution and Tungsten for physical execution.
 - APIs: Offers rich APIs for complex data transformations, aggregations, and SQL operations, which are highly expressive and widely used in data processing and analytics.
 - Interoperability: DataFrames support seamless conversion to and from RDDs and can be easily integrated with other Spark components like Spark SQL and MLlib.
+- Sample dataframe :
+```python
+# Sample data: a list of tuples, each representing a row in the DataFrame
+data = [
+    ("James", "Smith", 30),
+    ("Anna", "Rose", 41),
+    ("Robert", "Williams", 62)
+]
+
+# Define the schema of the data - names of columns
+columns = ["FirstName", "LastName", "Age"]
+
+# Create a DataFrame from the data and columns
+df = spark.createDataFrame(data, columns)
+
+# Show the contents of the DataFrame
+df.show()
+```
 
 ### AWS Glue Dynamic Dataframe
 AWS Glue offers a unique component known as the DynamicFrame, which is designed specifically for use within the AWS Glue environment.

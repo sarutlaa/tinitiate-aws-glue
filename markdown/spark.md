@@ -30,6 +30,7 @@
 
 ### Spark’s Language APIs
 Apache Spark provides APIs for several programming languages, making it flexible for developers to use their preferred language for big data projects. Here's a simplified overview:
+
 ![Spark APIS](https://github.com/sarutlaa/tinitiate-aws-glue/assets/141533429/fffd1253-6972-40a3-8942-1d5f90dc276a)
 
 - Scala: Being written in Scala, Spark’s native API is highly optimized and powerful, making it a natural choice for those familiar with Scala.

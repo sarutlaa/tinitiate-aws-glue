@@ -1,4 +1,5 @@
 # Apache Spark Overview
+
 * Open-Source and Distributed: Apache Spark is an open-source, distributed processing system utilized for big data workloads, which allows for data processing on a large scale across clustered computers.
 
 * In-Memory Caching: It leverages in-memory caching and optimized execution strategies to provide high-speed analytic queries, making it efficient for handling very large datasets.
@@ -12,7 +13,7 @@
 * Widely Adopted in Various Industries: Used by numerous organizations across different industries for critical data processing tasks. Notable adopters include FINRA, Yelp, Zillow, DataXu, Urban Institute, and CrowdStrike.
 
 ## SparK Architecture
-![Spark-architecture](https://github.com/sarutlaa/tinitiate-aws-glue/assets/141533429/28d29218-1167-469c-92b1-1040b96994f8)
+![Spark-architecture](https://github.com/sarutlaa/tinitiate-aws-glue/assets/141533429/08cf1a59-46be-4ff8-b1e9-7d3e57084309)
 
 ### Spark Applications
 #### Driver Process:

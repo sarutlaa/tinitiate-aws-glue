@@ -8,6 +8,7 @@ This document describes the process of reading JSON data into AWS Glue, utilizin
 ## Prerequisites:
 * Input Sources:
   * Method 1: Read JSON data from S3 bucket directly to dynamic dataframe.
+    S3 buckets: s3://ti-author-data/customer-billing/json/, s3://ti-author-data/customer-billing/ndjson-gz/
   * Method 2: Utilize AWS Glue Data Catalog to manage metadata and read JSON data stored in S3.
 * Output: Dynamic Dataframe results logged in CloudWatch.
 * Crawlers: For Method 2, utilize "customer_billing_json", "customer_billing_gz_json" for automated metadata cataloging.

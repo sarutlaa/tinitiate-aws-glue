@@ -57,7 +57,6 @@
 * Glue Generate PySpark DataFrame from Single Parquet, Multiple Parquets without Athena / Crawler - Todo
 * Glue Generate PySpark DataFrame from RDBMS (Oracle, SQL Server, Postgresql, MySQL) - Pending
 * Glue Generate PySpark DataFrame from DynamoDB - Pending ( nested and non nested table building )
-* Glue PySpark DataFrame Built in Psuedo --done ( Current date or time, location - check?? )
   
 ## Building a DataFrame from Various Source types:
 * [Reading from CSV](read-from-csv.md)

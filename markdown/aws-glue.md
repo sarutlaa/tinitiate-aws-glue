@@ -66,7 +66,7 @@
 * [Reading from AWS ION](read-from-awsion.md)
   
 ## Exporting a DataFrame into different targets:
-#### Source : CSV files stored in S3, Target : Stored in S3
+#### Source : CSV files stored in S3, Target : Dynamic/Spark DataFrame
 * [Writing to CSV](write-to-csv.md)
 * [Writing to JSON](write-to-json.md)
 * [Writing to Parquet](write-to-parquet.md)

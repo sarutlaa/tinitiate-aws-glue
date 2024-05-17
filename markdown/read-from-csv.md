@@ -1,8 +1,8 @@
 # Reading data from CSV files into Dataframe
 This document describes the process of reading CSV data into AWS Glue, utilizing both direct S3 access and AWS Glue Data Catalog, which includes data stored as uncompressed CSV files and gzip-compressed CSV files. The aim is to provide a detailed overview of handling CSV data in various formats, ensuring efficient data ingestion and processing in AWS Glue.
 
-  * Method 1- Read from S3 - CSV data from S3 bucket to dynamic dataframe
-  * Method 2: Utilize AWS Glue Data Catalog to manage metadata and read CSV data stored in S3.
+* Method 1- Read from S3 - CSV data from S3 bucket to dynamic dataframe.
+* Method 2: Utilize AWS Glue Data Catalog to manage metadata and read CSV data stored in S3.
 
 ## Objective:
 - Format Handling: Manage both uncompressed and gzip-compressed CSV files reads into dyamic dataframe.

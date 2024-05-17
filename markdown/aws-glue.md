@@ -59,9 +59,6 @@
 * Glue Generate PySpark DataFrame from DynamoDB - Pending ( nested and non nested table building )
 * Glue PySpark DataFrame Built in Psuedo --done ( Current date or time, location - check?? )
   
-## Adding External Python libraries in AWS Glue:
-* [External Libraries](adding-external-libraries.md)
-
 ## Building a DataFrame from Various Source types:
 * [Reading from CSV](read-from-csv.md)
 * [Reading from JSON](read-from-json.md)

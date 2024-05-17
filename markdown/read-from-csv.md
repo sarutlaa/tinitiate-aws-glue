@@ -15,7 +15,7 @@ This document describes the process of reading CSV data into AWS Glue, utilizing
 - Output: Dynamic Dataframe results in cloudwatch
 - Cralwers: Method 2 : "customer_billing_csv", "customer_billing_csv_zip"
 
-##PySpark Scripts:
+## PySpark Scripts:
 ### Method 1: [Read from S3](../glue-code/ti-pyspark-read-from-csv-S3.py)
 ### Method 2: [Read from Data Catalog](../glue-code/ti-pyspark-read-from-csv-crawler.py)
 

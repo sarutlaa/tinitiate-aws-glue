@@ -52,9 +52,9 @@
 * [Bucketing](glue-bucketing.md)
 
 ### Pending Ones
-* Glue Generate PySpark DataFrame from Single JSON, Multiple JSONs without Athena / Crawler - Todo 
-* Glue Generate PySpark DataFrame from Single CSV, Multiple CSVs without Athena / Crawler - Todo
-* Glue Generate PySpark DataFrame from Single Parquet, Multiple Parquets without Athena / Crawler - Todo
+* Glue Generate PySpark DataFrame from Single JSON, Multiple JSONs without Athena / Crawler - Todo - From S3 done
+* Glue Generate PySpark DataFrame from Single CSV, Multiple CSVs without Athena / Crawler - Todo - From S3 done
+* Glue Generate PySpark DataFrame from Single Parquet, Multiple Parquets without Athena / Crawler - Todo - From S3 done
 * Glue Generate PySpark DataFrame from RDBMS (Oracle, SQL Server, Postgresql, MySQL) - Pending
 * Glue Generate PySpark DataFrame from DynamoDB - Pending ( nested and non nested table building )
   

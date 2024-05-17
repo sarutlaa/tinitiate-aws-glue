@@ -10,8 +10,8 @@ This document describes the process of reading CSV data into AWS Glue, utilizing
 
 ## Prerequisites
 - Input Sources:
-  Method 1 : S3 buckets s3://ti-author-data/customer-billing/csv/, s3://ti-author-data/customer-billing/csv-gz/
-  Method 2: Data Catalog tables - customer_billing_csv, customer_billing_csv_gz
+  * Method 1 : S3 buckets s3://ti-author-data/customer-billing/csv/, s3://ti-author-data/customer-billing/csv-gz/
+  * Method 2: Data Catalog tables - customer_billing_csv, customer_billing_csv_gz
 - Output: Dynamic Dataframe results in cloudwatch
 - Cralwers: Method 2 : "customer_billing_csv", "customer_billing_csv_zip"
 

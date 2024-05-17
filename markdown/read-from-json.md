@@ -31,7 +31,8 @@ This document describes the process of reading JSON data into AWS Glue, utilizin
 ### 2. Reading CSV Data from S3:
 
 * Objective:  Load JSON and gzip-compressed JSON files directly from S3 into dynamic dataframes/Spark dataframe.
-  Note : JSON compressed cannot be read into dynamic dataframe, hence spark dataframe is used. 
+
+  *Note* : JSON compressed cannot be read into dynamic dataframe, hence spark dataframe is used. 
 * Implemnetation:
   ```python
   # Read the regular JSON file

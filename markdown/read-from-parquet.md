@@ -6,8 +6,8 @@ This document describes the methods for reading Parquet data into AWS Glue, util
 * Method 2: Utilize AWS Glue Data Catalog to manage metadata and read parquet data stored in S3.
 
 ## Objective:
-- Format Handling: Manage both uncompressed and gzip-compressed CSV files reads into dyamic dataframe.
-- Data Transformation: Leverage AWS Glue's capabilities to transform and process CSV data effectively.
+- Format Handling: Manage both standard and Snappy-compressed Parquet file reads into dynamic dataframes.
+- Data Transformation: Leverage AWS Glue's capabilities to transform and process Parquet data effectively.
 
 ## Prerequisites
 - Input Sources:

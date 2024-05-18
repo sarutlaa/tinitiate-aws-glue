@@ -51,6 +51,9 @@
 * [Data Partitioning](glue-s3-data-partitioning.md)
 * [Bucketing](glue-bucketing.md)
 
+## Adding External Libraies
+* [External Libraries](adding-external-libraries.md)
+
 ### Pending Ones
 * Glue Generate PySpark DataFrame from RDBMS (Oracle, SQL Server, Postgresql, MySQL) - Pending
 * Glue Generate PySpark DataFrame from DynamoDB - Pending ( nested and non nested table building )

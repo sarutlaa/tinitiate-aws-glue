@@ -16,7 +16,7 @@ To integrate the amazon.ion library into your AWS Glue job, configure the job pa
 If you need to utilize external libraries such as amazon.ion in your AWS Glue script, they must be specified in the Job Details section when setting up or running the script. Since amazon.ion is not included by default in AWS Glue, it needs to be explicitly added. Here’s how you can do this:
 
 1. Navigate to the Job Details page in the AWS Glue console.
-2. In the job parameters section, add --additional-python-modules "amazon.ion==0.5.0".
+2. Go to Advanced Details and In the job parameters section, add --additional-python-modules "amazon.ion==0.5.0".
 3. Save the changes to the job configuration.
 4. Execute the job. During runtime, the specified amazon.ion library will be automatically imported and ready to use.
 5. Below is an example screenshot illustrating where to enter the library details:

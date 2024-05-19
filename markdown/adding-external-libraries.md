@@ -2,7 +2,7 @@
 
 AWS Glue provides several parameters that allow users to customize the Python environment for their ETL jobs. These parameters enable the inclusion of additional Python libraries, custom Python files, and the use of specific installation options for Python packages.
 
-## 1. Including Additional Python Modules (--additional-python-modules)
+## Method 1. Including Additional Python Modules (--additional-python-modules)
 ### Description:
 The --additional-python-modules parameter in AWS Glue is a powerful tool for customizing the Python environment of your Glue jobs. This parameter enables you to specify additional Python libraries that are not included in the default AWS Glue environment, which can be installed via pip.
 ### Usage:

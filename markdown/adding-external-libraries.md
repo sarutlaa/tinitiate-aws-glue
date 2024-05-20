@@ -26,7 +26,7 @@ Glue Configuration for this is as below.
 
 ## Method 2: Utilizing Custom Python Files (--extra-py-files)
 
-This method involves including custom Python scripts or dependencies stored in S3, packaged as .zip or .egg files.
+This method involves including custom Python scripts or dependencies stored in S3, packaged as .zip or .egg files. For sample custom package, we are importing pdf_genrator custom package as mentioned below steps.
 
 ### Step 1: Prepare your Python files: Develop your custom Python scripts.
 Let's create a custom Python package that generates a PDF with sample data and then package it for use in an AWS Glue script. We'll use the ReportLab library, which is great for generating PDFs in Python.
@@ -37,7 +37,7 @@ Steps to create custom package for writing sample data into PDF file are as belo
    ```python
     pip install reportlab
    ```
-2. Write a Python Script to Generate a PDF --> refer [generate_pdf.py](../glue-code/generate_pdf.py)
+2. Write a Python Script to [Generate a PDF](../glue-code/generate_pdf.py)
 3. Package the Script
 * Create a directory for your package, e.g., pdf_generator.
 * Move generate_pdf.py into this directory.

@@ -67,10 +67,10 @@
   
 ## Exporting a DataFrame into different targets:
 #### Source : CSV files stored in S3, Target : Dynamic/Spark DataFrame
-* [Writing to CSV](write-to-csv.md)
-* [Writing to JSON](write-to-json.md)
-* [Writing to Parquet](write-to-parquet.md)
-* [Writing to AWS ION](write-to-awsion.md)
+* [Writing CSV to S3](write-to-csv.md)
+* [Writing JSON to S3](write-to-json.md)
+* [Writing Parquet to S3](write-to-parquet.md)
+* [Writing AWS ION to S3](write-to-awsion.md)
 
 ### 
 * Glue PySpark Targets write DataFrame to RDBMS (Oracle, SQL Server, Postgresql, MySQL)

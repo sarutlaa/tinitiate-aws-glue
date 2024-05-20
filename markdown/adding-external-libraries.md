@@ -88,5 +88,7 @@ Second way workflow: This uses the .whl for installing reportlab dependency pack
 
 <img width="934" alt="External_Libraries_4" src="https://github.com/sarutlaa/tinitiate-aws-glue/assets/141533429/f95ca31f-d716-461d-9ca8-c5f3e23e4825">
 
+Link the packaged scripts and libraries in the job settings, ensuring all dependencies are configured correctly for seamless job execution.
 
+This streamlined documentation provides clear, actionable steps for enhancing AWS Glue jobs with additional Python capabilities.
 

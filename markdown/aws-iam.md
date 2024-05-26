@@ -51,7 +51,7 @@ All the IAM Core components can be accessed from IAM dashboard as shown below.
   - Controlling the level of access a user or service has (e.g., granting full access vs. read-only access).
 
 ### Multi-Factor Authentication (MFA)
-- **Description**: Adds an extra layer of security by requiring a second form of authentication.
+- **Description**: Adds an extra layer of security by requiring a second form of authentication for users
 - **Common Uses**:
   - Enhancing security for accessing the AWS console.
   - Protecting sensitive transactions.

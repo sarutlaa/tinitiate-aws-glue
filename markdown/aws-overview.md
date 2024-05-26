@@ -1,6 +1,17 @@
-#AWS Cloud Computing
+# AWS Cloud Computing
+
 Amazon Web Services (AWS) offers reliable, scalable, and inexpensive cloud computing services. AWS is a comprehensive and broadly adopted cloud platform that offers over 200 fully-featured services from data centers globally. 
 It powers a wide range of infrastructure services, such as computing power, storage options, networking, and databases, offered on-demand, with pay-as-you-go pricing.
+
+## On-Premises vs. Cloud
+| Aspect                  | On-Premises                               | AWS Cloud                                  |
+|-------------------------|-------------------------------------------|--------------------------------------------|
+| **Capital Costs**       | High initial investment for infrastructure. | Low initial cost with pay-as-you-go billing. |
+| **Maintenance**         | Managed by internal IT; requires upkeep and updates. | Handled by AWS, reducing internal workload. |
+| **Scalability**         | Time-consuming and costly to scale.       | Easily scalable with minimal delay.        |
+| **Security**            | Managed in-house, requiring significant resources. | Provided by AWS with top-tier security measures. |
+| **Disaster Recovery**   | Complex and expensive to implement.       | Simplified and cost-effective solutions.   |
+| **Global Reach**        | Limited by physical infrastructure.       | Quick deployment globally with reduced latency. |
 
 ## Benefits of AWS
 
@@ -23,13 +34,7 @@ AWS maintains a massive global infrastructure that enhances the performance of i
   They are strategically located in Availability Zones all over the world to ensure redundancy and resilience of AWS services.
 * Edge Locations: These are sites deployed in major cities and highly populated areas globally.
   They are used to deliver content, reducing latency by caching data closer to end users. Edge Locations are integral to services like Amazon CloudFront and AWS Lambda@Edge.
-
-## On-Premises vs. Cloud
-* Capital Expenditure: On-premises infrastructure requires upfront capital expenditure for hardware and software, whereas AWS eliminates upfront costs, operating on a pay-as-you-go billing model.
-* Maintenance and Upgrades: On-premises solutions require ongoing maintenance and periodic upgrades of hardware and software, which can be costly and time-consuming. AWS handles maintenance and upgrades, reducing the operational burden on your team.
-* Scalability: Scaling on-premises infrastructure can be limited and typically requires significant planning and capital investment. In contrast, AWS provides immediate scalability and elasticity, allowing you to scale resources up or down as needed almost instantly.
-* Security and Compliance: On-premises environments require significant investment in security and compliance measures. AWS provides a secure infrastructure and offers compliance certifications for a wide range of industry standards, reducing the complexity and cost of meeting regulatory requirements.
-* Disaster Recovery: Implementing robust disaster recovery solutions on-premises can be expensive and complex. AWS offers cost-effective disaster recovery solutions that can be quickly implemented and scaled, providing greater flexibility and reliability.
+  
 ## AWS Access Management
 1. AWS Console
 2. Command Line

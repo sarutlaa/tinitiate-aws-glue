@@ -60,3 +60,17 @@ Amazon S3 is represented by:
     ]
   }
 
+## Bucket Versioning
+- **Description**: Keeps multiple versions of an object in the same bucket.
+- **Uses:**
+  - Protects against accidental deletions and overwrites.
+  - Enables easy recovery of previous versions of objects.
+## Storage Classes
+Amazon S3 offers different storage classes for cost-efficient storage of your data:
+
+- S3 Standard: General-purpose storage for frequently accessed data.
+- S3 Intelligent-Tiering: Optimizes costs by automatically moving data to the most cost-effective access tier.
+- S3 Standard-IA (Infrequent Access): For data that is accessed less frequently but requires rapid access when needed.
+- S3 One Zone-IA: Lower-cost option for infrequently accessed data that doesn't require multiple availability zone resilience.
+- S3 Glacier: Low-cost storage for archival data with retrieval times ranging from minutes to hours.
+- S3 Glacier Deep Archive: Lowest-cost storage for data that is rarely accessed, with retrieval times of 12 hours or more.

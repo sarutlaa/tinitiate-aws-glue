@@ -46,6 +46,9 @@ In essence, IAM helps you control who can access what within your AWS cloud envi
 ## IAM Policy Examples
 
 ### Read-Only Access to an S3 Bucket
+#### What is an S3 Bucket? 
+An S3 bucket is a virtual container within AWS Simple Storage Service (S3) designed to store and manage any amount of data.
+
 Here's an example of a policy that grants read-only access to an S3 bucket:
 ```json
 {

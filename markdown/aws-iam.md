@@ -43,6 +43,7 @@ All the IAM Core components can be accessed from IAM dashboard as shown below.
   - **SAML 2.0 Providers**: Enable users to authenticate with their existing corporate credentials to have access to AWS resources.
   - **OpenID Connect Providers**: Allow users to authenticate using identity services like Google, Facebook, or any OpenID Connect-compatible identity provider.
 
+## Additional Features
 ### IAM Permissions
 - **Description**: Defines what actions are allowed or denied on specific AWS resources.
 - **Common Uses**:

@@ -1,4 +1,4 @@
-# Amazon S3 (Simple Storage Service) Documentation
+# Amazon S3 (Simple Storage Service) Overview
 
 ## Overview
 Amazon Simple Storage Service (Amazon S3) is an object storage service that offers industry-leading scalability, data availability, security, and performance. Organizations of all sizes can use S3 to store and protect any amount of data for a range of use cases.

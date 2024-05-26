@@ -56,6 +56,17 @@ All the IAM Core components can be accessed from IAM dashboard as shown below.
   - Enhancing security for accessing the AWS console.
   - Protecting sensitive transactions.
 
+### Access Keys
+- **Description**: Access keys consist of an access key ID and a secret access key, which are used to sign programmatic requests to AWS.
+- **Common Uses**:
+  - Enabling programmatic access to AWS services via AWS CLI, SDKs, or APIs.
+  - Allowing applications to authenticate and interact with AWS resources without manual login.
+- **Best Practices**:
+  - **Rotate Access Keys Regularly**: Change access keys periodically to reduce the risk of compromise.
+  - **Do Not Embed Access Keys Directly in Code**: Use environment variables or AWS Secrets Manager to store access keys securely.
+  - **Delete Unused Access Keys**: Regularly audit and remove access keys that are no longer in use.
+
+
 ## Best Practices
 
 * Enforcing Strong Password Policies - Implement requirements for password complexity and rotation to enhance security.

@@ -69,12 +69,9 @@ As depicted in the preceding image, we will create two user groups in the AWS Co
 Instructors can upload, delete, and modify files, as well as create buckets. Students can only download files from the S3 bucket uploaded by instructors and cannot create buckets.
 
 ### Hands-On: user01 Inline Policy
-1. Create a user with username - "user01".
-2. Choose attach a policy option.
-3. Select S3 service and add list of actions that are needed for the user to access AWS.
-4. Attach that policy to the user.
+We also can attach policies using the inline policies through JSON (Visual Editor)
 
-A sample JSON file for the user01 to access S3 bucket list
+A sample JSON file for the student01 to access S3 bucket list
 
 ```json
 {
@@ -83,7 +80,7 @@ A sample JSON file for the user01 to access S3 bucket list
         {
             "Sid": "VisualEditor0",
             "Effect": "Allow",
-            "Principal": {"AWS": "arn:aws:iam::account-id:user/user01"},
+            "Principal": {"AWS": "arn:aws:iam::account-id:user/student01"},
             "Action": [
                 "s3:List*"
             ],

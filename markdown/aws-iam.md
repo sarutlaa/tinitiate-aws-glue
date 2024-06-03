@@ -55,17 +55,14 @@ Before proceeding with hands on, let's get an quick understanding on
   s3://ti-author-data/customer-billing/
   ```
 
-#### Hands On - Users and User Groups
-Step 1: As Shown in the above image, lets create 2 user groups Students, Instructors with Student 1 and Instructor 1 as the users in the AWS Console.
-Step 2: For the Students Groups, Lets assign S3 bucket Read access only
-Step 3: For the Instructors Groups, Lets assign S3 bucket full access, as they can upload, delete and view those files.
-Step 4: Now create user - Student01, assign it to the Students Group created, This Student will have the S3 bucket Read access only.
-Step 5: Create user - Instructore01, assign it to the Instructors Group created, they will have full access on S3.
-
-We can notice that, an instrcutor can upload the file, delete the file and modify the file, create buckets.
-The student can download the file uploaded in S3 by the instructor, but cannot create buckets. 
-
-### NOTE : User Credentials have been provided to the students for logging into an AWS account by the instructor. Please refer the documentation mentioned in 
+### Hands-On: Managing Users and User Groups in AWS
+As depicted in the preceding image, we will create two user groups in the AWS Console: "Students" and "Instructors," with "Student 1" and "Instructor 1" as the initial users.
+1. Assign the "Students" group read-only access to the S3 bucket.
+2. Assign the "Instructors" group full access to the S3 bucket, allowing them to upload, delete, and view files.
+3. Create the user "Student01" and add them to the "Students" group. This user will only have read access to the S3 bucket.
+4. Create the user "Instructor01" and add them to the "Instructors" group, granting them full access to the S3 bucket.
+   
+NOTS: Instructors can upload, delete, and modify files, as well as create buckets. Students can only download files from the S3 bucket uploaded by instructors and cannot create buckets.
 
 ### 4. IAM Roles
 - **Description**: Enables you to delegate permissions to AWS services or external users.

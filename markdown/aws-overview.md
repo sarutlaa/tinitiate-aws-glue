@@ -36,7 +36,7 @@ AWS maintains a massive global infrastructure that enhances the performance of i
   They are strategically located in Availability Zones all over the world to ensure redundancy and resilience of AWS services.
 
 <p align="center">
-  <img src="images/global_infra.png" alt="Global Infrastructure" width="600"/>
+  <img src="images/global_infra.png" alt="Global Infrastructure" width="600" height="400"//>
 </p>
 
   

@@ -41,6 +41,7 @@ In essence, IAM helps you control who can access what within your AWS cloud envi
   <img src="images/IAM_3.png" alt="User Groups Example" width="600"/>
 </p>
 
+#### Hands-on
 Lets create a sample policy on AWS IAM Console in the class that defines permissions to read an S3 bucket for a Students group and Read and Write access to Instructors.
 Before that, let's get an quick understanding on 
 #### What is an S3 Bucket? 

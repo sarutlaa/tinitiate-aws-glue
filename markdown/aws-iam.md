@@ -1,7 +1,7 @@
-# AWS Identity and Access Management (IAM)
+# AWS Identity and Access Management
 
 ## Overview
-* Identity and Access Management, Global service - controls access to AWS and its resources.
+* IAM - Identity and Access Management, Global service - controls access to AWS and its resources.
 * Enables you to manage access to AWS services and resources securely. 
 * Using IAM, you can create and manage AWS users and groups, and use permissions to allow and deny their access to AWS resources.
 
@@ -62,7 +62,10 @@ As depicted in the preceding image, we will create two user groups in the AWS Co
 3. Create the user "Student01" and add them to the "Students" group. This user will only have read access to the S3 bucket.
 4. Create the user "Instructor01" and add them to the "Instructors" group, granting them full access to the S3 bucket.
    
-NOTS: Instructors can upload, delete, and modify files, as well as create buckets. Students can only download files from the S3 bucket uploaded by instructors and cannot create buckets.
+Instructors can upload, delete, and modify files, as well as create buckets. Students can only download files from the S3 bucket uploaded by instructors and cannot create buckets.
+
+#### NOTE: Login with the user credentials that have been provided to Students by the Instructor.
+
 
 ### 4. IAM Roles
 - **Description**: Enables you to delegate permissions to AWS services or external users.

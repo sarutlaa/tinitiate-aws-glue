@@ -41,7 +41,7 @@ In essence, IAM helps you control who can access what within your AWS cloud envi
   <img src="images/IAM_3.png" alt="User Groups Example" width="600"/>
 </p>
 
-Lets create a sample policy that defines permissions to read an S3 bucket for a user.
+Lets create a sample policy on AWS IAM Console in the class that defines permissions to read an S3 bucket for a Students group and Read and Write access to Instructors.
 Before that, let's get an quick understanding on 
 #### What is an S3 Bucket? 
 An S3 bucket is a virtual container within AWS Simple Storage Service (S3) designed to store and manage any amount of data.
@@ -80,7 +80,7 @@ All the IAM Core components can be accessed from IAM dashboard as shown below.
   - Enhancing security for accessing the AWS console.
   - Protecting sensitive transactions.
 
-### Access Keys
+### Access Keys : 
 - **Description**: Access keys consist of an access key ID and a secret access key, which are used to sign programmatic requests to AWS.
 - **Common Uses**:
   - Enabling programmatic access to AWS services via AWS CLI, SDKs, or APIs.
@@ -89,9 +89,10 @@ All the IAM Core components can be accessed from IAM dashboard as shown below.
   - **Rotate Access Keys Regularly**: Change access keys periodically to reduce the risk of compromise.
   - **Do Not Embed Access Keys Directly in Code**: Use environment variables or AWS Secrets Manager to store access keys securely.
   - **Delete Unused Access Keys**: Regularly audit and remove access keys that are no longer in use.
+    
+### NOTE : Access keys have been provided to the students for logging into an AWS account by the instructor. Please refer the documentation mentioned in 
 
-
-## Best Practices
+## IAM Best Practices
 * Enforcing Strong Password Policies - Implement requirements for password complexity and rotation to enhance security.
 * Principle of Least Privilege - Ensure that IAM policies grant the minimum permissions necessary to perform job functions.
 * Regular Audits - Conduct regular audits of your IAM settings to ensure they meet your current business needs and comply with your security policies.

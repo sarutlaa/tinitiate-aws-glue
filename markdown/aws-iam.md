@@ -64,6 +64,39 @@ As depicted in the preceding image, we will create two user groups in the AWS Co
    
 Instructors can upload, delete, and modify files, as well as create buckets. Students can only download files from the S3 bucket uploaded by instructors and cannot create buckets.
 
+### Hands-On: User 1 Inline Policy
+1. Create a user with username - "user01".
+2. Choose attach a policy option.
+3. Select S3 service and add list of actions that are needed for the user to access AWS.
+4. Attach that policy to the user.
+
+A sample JSON file for the user01 to access S3 bucket list
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Principal": {"AWS": "arn:aws:iam::account-id:user/user01"},
+            "Action": [
+                "s3:List*"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+```
+Sample Policy Structure in JSON Document:
+1. **Version** - Specifies the policy language version, which must always be set to "2012-10-17".
+2. **Statements** - This section contains one or more distinct entries:
+   * "Sid" :An optional identifier for the statement.
+   * "Effect" : Specifies whether the statement allows or denies access.
+   * "Principal" : Identifies the account, user, or role to which the policy applies.
+   * "Action" :  Defines a list of actions that the policy allows or denies.
+   * "Resource" : Enumerates the resources to which the actions are applicable.
+
 #### NOTE: Login with the user credentials that have been provided to Students by the Instructor. [Student Login](aws-login.md)
 
 
@@ -72,21 +105,6 @@ Instructors can upload, delete, and modify files, as well as create buckets. Stu
 - **Common Uses**:
   - Granting permissions to AWS services like Lambda functions to interact with other AWS resources without needing a separate IAM user.
   - Allowing users from another AWS account to access specific resources in your account in a secure way.
-
-Here's an example of a policy structure that grants read-only access to an S3 bucket for Students User Group
-
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": ["s3:Get*", "s3:List*"],
-      "Resource": ["arn:aws:s3:::example-bucket/*"]
-    }
-  ]
-}
-```
   
 All the IAM Core components can be accessed from IAM dashboard as shown below.
 

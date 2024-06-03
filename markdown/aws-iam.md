@@ -31,19 +31,42 @@ In essence, IAM helps you control who can access what within your AWS cloud envi
   - Restricting access to specific AWS services or functionalities (e.g., allowing read-only access to an S3 bucket).
   - Controlling the level of access a user or service has (e.g., granting full access vs. read-only access).
 
+### 3. IAM Policies
+- **Description**: JSON Documents that define permissions and can be attached to users, groups, roles, or even resources.
+- **Common Uses**:
+  - Specifying allowed or denied actions and the conditions under which actions are allowed for a user, group, role, or resource.
+  - Managing permissions centrally through policy documents which helps in achieving consistent security posture across resources.
+
+<p align="center">
+  <img src="images/IAM_3.png" alt="User Groups Example" width="600"/>
+</p>
+
+Lets create a sample policy that defines permissions to read an S3 bucket for a user.
+Before that, let's get an quick understanding on 
+#### What is an S3 Bucket? 
+An S3 bucket is a virtual container within AWS Simple Storage Service (S3) designed to store and manage any amount of data.
+
+Here's an example of a policy that grants read-only access to an S3 bucket:
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": ["s3:Get*", "s3:List*"],
+      "Resource": ["arn:aws:s3:::example-bucket/*"]
+    }
+  ]
+}
+```
+  
 ### 4. IAM Roles
 - **Description**: Enables you to delegate permissions to AWS services or external users.
 - **Common Uses**:
   - Granting permissions to AWS services like Lambda functions to interact with other AWS resources without needing a separate IAM user.
   - Allowing users from another AWS account to access specific resources in your account in a secure way.
-  
-    
-### 3. IAM Policies
-- **Description**: Documents that define permissions and can be attached to users, groups, roles, or even resources.
-- **Common Uses**:
-  - Specifying allowed or denied actions and the conditions under which actions are allowed for a user, group, role, or resource.
-  - Managing permissions centrally through policy documents which helps in achieving consistent security posture across resources.
-    
+      
 All the IAM Core components can be accessed from IAM dashboard as shown below.
 
 <p align="center">
@@ -51,8 +74,6 @@ All the IAM Core components can be accessed from IAM dashboard as shown below.
 </p>
 
 ## Additional Features
-
-
 ### Multi-Factor Authentication (MFA)
 - **Description**: Adds an extra layer of security by requiring a second form of authentication for users
 - **Common Uses**:
@@ -71,27 +92,6 @@ All the IAM Core components can be accessed from IAM dashboard as shown below.
 
 
 ## Best Practices
-
 * Enforcing Strong Password Policies - Implement requirements for password complexity and rotation to enhance security.
 * Principle of Least Privilege - Ensure that IAM policies grant the minimum permissions necessary to perform job functions.
 * Regular Audits - Conduct regular audits of your IAM settings to ensure they meet your current business needs and comply with your security policies.
-
-## IAM Policy Examples
-
-### Read-Only Access to an S3 Bucket
-#### What is an S3 Bucket? 
-An S3 bucket is a virtual container within AWS Simple Storage Service (S3) designed to store and manage any amount of data.
-
-Here's an example of a policy that grants read-only access to an S3 bucket:
-```json
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": ["s3:Get*", "s3:List*"],
-      "Resource": ["arn:aws:s3:::example-bucket/*"]
-    }
-  ]
-}
-```

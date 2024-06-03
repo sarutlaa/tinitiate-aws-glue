@@ -64,7 +64,7 @@ As depicted in the preceding image, we will create two user groups in the AWS Co
    
 Instructors can upload, delete, and modify files, as well as create buckets. Students can only download files from the S3 bucket uploaded by instructors and cannot create buckets.
 
-#### NOTE: Login with the user credentials that have been provided to Students by the Instructor.
+#### NOTE: Login with the user credentials that have been provided to Students by the Instructor. [Student Login](markdown/aws-loin.md)
 
 
 ### 4. IAM Roles

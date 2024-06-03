@@ -10,16 +10,16 @@ In essence, IAM helps you control who can access what within your AWS cloud envi
 ## IAM Core Components
 
 ### 1. IAM Users
-- **Description**: Represents an individual or service that interacts with AWS resources.
+- **Description**: An IAM user is a resource in IAM that has associated credentials and permissions. An IAM user can represent a person or an application that uses its credentials to make AWS requests. 
 - **Common Uses**:
   - Accessing AWS Management Console.
   - Interacting with AWS services programmatically via the API.
     
 ### 2. IAM User Groups
-- **Description**: A collection of IAM users under a set of permissions.
+- **Description**: An IAM group is an identity that specifies a collection of IAM users. You can use groups to specify permissions for multiple users at a time. Groups make permissions easier to manage for large sets of users.
 - **Common Uses**:
   - Simplifying permission management for multiple users.
-  - Organizing users by department or role (e.g., devops group, finance group).
+  - Organizing users by department or role (e.g., students group, instructors group).
 
 <p align="center">
   <img src="images/IAM_2.png" alt="IAM Users and User Groups" width="600"/>

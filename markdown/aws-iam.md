@@ -1,4 +1,4 @@
-# AWS Identity and Access Management (IAM) Documentation
+# AWS Identity and Access Management (IAM)
 
 ## Overview
 * Identity and Access Management, Global service - controls access to AWS and its resources.

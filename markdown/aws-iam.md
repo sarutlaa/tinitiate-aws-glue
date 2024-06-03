@@ -45,14 +45,12 @@ Before proceeding with hands on, let's get an quick understanding on
 
 #### What is an S3 Bucket? 
 
-An S3 bucket is a virtual container within AWS Simple Storage Service (S3) designed to store and manage any amount of data.
-
-## How S3 is Represented
-Amazon S3 is represented by:
-- **Buckets**: Containers for storing objects.
-- **Objects**: Individual data files stored in buckets.
-
-  Sample Bucket path :
+* An S3 bucket is a virtual container within AWS Simple Storage Service (S3) designed to store and manage any amount of data.
+* Amazon S3 is represented by:
+  - **Buckets**: Containers for storing objects.
+  - **Objects**: Individual data files stored in buckets.
+* Sample Bucket path :
+  
   ```text
   s3://ti-author-data/customer-billing/
   ```

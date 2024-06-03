@@ -41,9 +41,6 @@ AWS maintains a massive global infrastructure that enhances the performance of i
 
 * Edge Locations: AWS Edge Locations are strategically positioned sites around the world that help reduce latency and improve the performance of AWS services like Amazon CloudFront and AWS Lambda@Edge by caching data closer to end users.
 
-## Tools to access AWS Environment
-1. AWS Management Console :The web-based interface where you can manage all AWS services. It provides a visual interface to monitor and control your resources.
-   [AWS Management Console] (https://us-east-1.console.aws.amazon.com/console/home?nc2=h_ct&src=header-signin&region=us-east-1)
-2. Command Line :Allows you to control AWS services from the command line and automate them through scripts.
-3. Cloud Shell :AWS CloudShell is a browser-based shell that makes it easy to securely manage, explore, and interact with your AWS resources.
+## Tour of AWS Console
+Hands-on as shown in the class.
    

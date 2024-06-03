@@ -46,9 +46,9 @@ Before proceeding with hands on, let's get an quick understanding on
 #### What is an S3 Bucket? 
 
 * An S3 bucket is a virtual container within AWS Simple Storage Service (S3) designed to store and manage any amount of data.
-* S3 Bucket: A bucket is like a folder on a cloud platform where you can store any number of files.
-* S3 Object: An object is a file stored in an S3 bucket.
-* S3 Key: A key is the unique address that identifies the location and name of a file within a bucket.
+    -  S3 Bucket: A bucket is like a folder on a cloud platform where you can store any number of files.
+    -  S3 Object: An object is a file stored in an S3 bucket.
+    -  S3 Key: A key is the unique address that identifies the location and name of a file within a bucket.
 * Sample Bucket path :
   
   ```text

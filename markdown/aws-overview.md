@@ -15,7 +15,7 @@ It powers a wide range of infrastructure services, such as computing power, stor
 
 ## Benefits of AWS
 
-![AWS Benefits](images/AWS_Benefits.png)
+<img src="images/AWS_Benefits.png" alt="AWS Benefits" width="600"/>
 
 * Scalability: AWS provides scalable computing resources which means you only use what you need and can scale up or down as required.
 * Cost-Effective: With AWS, you pay only for the computing power, storage, and other resources you use, with no long-term contracts or upfront commitments.

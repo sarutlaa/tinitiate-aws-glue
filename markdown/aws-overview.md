@@ -39,7 +39,7 @@ AWS maintains a massive global infrastructure that enhances the performance of i
   <img src="images/global_infra.png" alt="Global Infrastructure" width="500" height="500"//>
 </p>
 
-  
+
 ## Tools to access AWS Environment
 1. AWS Management Console :The web-based interface where you can manage all AWS services. It provides a visual interface to monitor and control your resources.
    [AWS Management Console] (https://us-east-1.console.aws.amazon.com/console/home?nc2=h_ct&src=header-signin&region=us-east-1)

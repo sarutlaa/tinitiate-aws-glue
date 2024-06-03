@@ -46,14 +46,18 @@ Before proceeding with hands on, let's get an quick understanding on
 #### What is an S3 Bucket? 
 
 * An S3 bucket is a virtual container within AWS Simple Storage Service (S3) designed to store and manage any amount of data.
-* Amazon S3 is represented by:
-  - **Buckets**: Containers for storing objects.
-  - **Objects**: Individual data files stored in buckets.
+* S3 Bucket: A bucket is like a folder on a cloud platform where you can store any number of files.
+* S3 Object: An object is a file stored in an S3 bucket.
+* S3 Key: A key is the unique address that identifies the location and name of a file within a bucket.
 * Sample Bucket path :
   
   ```text
-  s3://ti-author-data/customer-billing/
+  s3://myphotos/2021/trip1/photo.jpg
   ```
+* In this example:
+  - Bucket: myphotos - This is the name of the S3 bucket where the data is stored.
+  - Key: 2021/trip1/photo.jpg - This is the unique identifier for the object within the bucket, which includes the path and the file name.
+  - Object: The file itself, in this case, photo.jpg, is the object. It's stored at the specified key within the bucket.
 
 ### Hands-On: Managing Users and User Groups in AWS
 As depicted in the preceding image, we will create two user groups in the AWS Console: "Students" and "Instructors," with "Student 1" and "Instructor 1" as the initial users.

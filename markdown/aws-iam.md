@@ -1,9 +1,10 @@
 # AWS Identity and Access Management (IAM) Documentation
 
 ## Overview
-AWS Identity and Access Management (IAM) enables you to manage access to AWS services and resources securely. 
-Using IAM, you can create and manage AWS users and groups, and use permissions to allow and deny their access to AWS resources.
-In essence, IAM helps you control who can access what within your AWS cloud environment, ensuring security and compliance.
+* Identity and Access Management, Global service - controls access to AWS and its resources.
+* AWS Identity and Access Management (IAM) enables you to manage access to AWS services and resources securely. 
+* Using IAM, you can create and manage AWS users and groups, and use permissions to allow and deny their access to AWS resources.
+* In essence, IAM helps you control who can access what within your AWS cloud environment, ensuring security and compliance.
 
 ## IAM Core Components
 All the IAM Core components can be accessed from IAM dashboard as shown below.
@@ -15,18 +16,19 @@ All the IAM Core components can be accessed from IAM dashboard as shown below.
 - **Common Uses**:
   - Accessing AWS Management Console.
   - Interacting with AWS services programmatically via the API.
- 
+  - 
+### IAM User Groups
+- **Description**: A collection of IAM users under a set of permissions.
+- **Common Uses**:
+  - Simplifying permission management for multiple users.
+  - Organizing users by department or role (e.g., devops group, finance group).
+  - 
 ### IAM Roles
 - **Description**: Enables you to delegate permissions to AWS services or external users.
 - **Common Uses**:
   - Granting permissions to AWS services like Lambda functions to interact with other AWS resources without needing a separate IAM user.
   - Allowing users from another AWS account to access specific resources in your account in a secure way.
   
-### IAM User Groups
-- **Description**: A collection of IAM users under a set of permissions.
-- **Common Uses**:
-  - Simplifying permission management for multiple users.
-  - Organizing users by department or role (e.g., devops group, finance group).
     
 ### IAM Policies
 - **Description**: Documents that define permissions and can be attached to users, groups, roles, or even resources.

@@ -41,13 +41,33 @@ In essence, IAM helps you control who can access what within your AWS cloud envi
   <img src="images/IAM_3.png" alt="User Groups Example" width="600"/>
 </p>
 
-#### Hands-on
-Lets create a sample policy on AWS IAM Console in the class that defines permissions to read an S3 bucket for a Students group and Read and Write access to Instructors.
-Before that, let's get an quick understanding on 
+Before proceeding with hands on, let's get an quick understanding on 
+
 #### What is an S3 Bucket? 
+
 An S3 bucket is a virtual container within AWS Simple Storage Service (S3) designed to store and manage any amount of data.
 
-Here's an example of a policy that grants read-only access to an S3 bucket:
+## How S3 is Represented
+Amazon S3 is represented by:
+- **Buckets**: Containers for storing objects.
+- **Objects**: Individual data files stored in buckets.
+
+  Sample Bucket path :
+  ```text
+  s3://ti-author-data/customer-billing/
+  ```
+
+#### Users and User Groups Policy Control Hands-on
+Step 1: As Shown in the above image, lets create 2 user groups Students, Instructors with Student 1 and Instructor 1 as the users in the AWS Console.
+Step 2: For the Students Groups, Lets assign S3 bucket Read access only
+Step 3: For the Instructors Groups, Lets assign S3 bucket full access, as they can upload, delete and view those files.
+Step 4: Now create user - Student01, assign it to the Students Group created, This Student will have the S3 bucket Read access only.
+Step 5: Create user - Instructore01, assign it to the Instructors Group created, they will have full access on S3.
+
+We can notice that, an instrcutor can upload the file, delete the file and modify the file, create buckets.
+The student can download the file uploaded in S3 by the instructor, but cannot create buckets. 
+
+Here's an example of a policy structure that grants read-only access to an S3 bucket for Students User Group
 
 ```json
 {

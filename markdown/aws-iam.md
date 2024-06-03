@@ -55,7 +55,7 @@ Before proceeding with hands on, let's get an quick understanding on
   s3://ti-author-data/customer-billing/
   ```
 
-### Hands On - Users and User Groups
+#### Hands On - Users and User Groups
 Step 1: As Shown in the above image, lets create 2 user groups Students, Instructors with Student 1 and Instructor 1 as the users in the AWS Console.
 Step 2: For the Students Groups, Lets assign S3 bucket Read access only
 Step 3: For the Instructors Groups, Lets assign S3 bucket full access, as they can upload, delete and view those files.
@@ -65,13 +65,13 @@ Step 5: Create user - Instructore01, assign it to the Instructors Group created,
 We can notice that, an instrcutor can upload the file, delete the file and modify the file, create buckets.
 The student can download the file uploaded in S3 by the instructor, but cannot create buckets. 
 
+### NOTE : User Credentials have been provided to the students for logging into an AWS account by the instructor. Please refer the documentation mentioned in 
 
-
-
-
-
-
-
+### 4. IAM Roles
+- **Description**: Enables you to delegate permissions to AWS services or external users.
+- **Common Uses**:
+  - Granting permissions to AWS services like Lambda functions to interact with other AWS resources without needing a separate IAM user.
+  - Allowing users from another AWS account to access specific resources in your account in a secure way.
 
 Here's an example of a policy structure that grants read-only access to an S3 bucket for Students User Group
 
@@ -88,12 +88,6 @@ Here's an example of a policy structure that grants read-only access to an S3 bu
 }
 ```
   
-### 4. IAM Roles
-- **Description**: Enables you to delegate permissions to AWS services or external users.
-- **Common Uses**:
-  - Granting permissions to AWS services like Lambda functions to interact with other AWS resources without needing a separate IAM user.
-  - Allowing users from another AWS account to access specific resources in your account in a secure way.
-      
 All the IAM Core components can be accessed from IAM dashboard as shown below.
 
 <p align="center">
@@ -106,18 +100,6 @@ All the IAM Core components can be accessed from IAM dashboard as shown below.
 - **Common Uses**:
   - Enhancing security for accessing the AWS console.
   - Protecting sensitive transactions.
-
-### Access Keys : 
-- **Description**: Access keys consist of an access key ID and a secret access key, which are used to sign programmatic requests to AWS.
-- **Common Uses**:
-  - Enabling programmatic access to AWS services via AWS CLI, SDKs, or APIs.
-  - Allowing applications to authenticate and interact with AWS resources without manual login.
-- **Best Practices**:
-  - **Rotate Access Keys Regularly**: Change access keys periodically to reduce the risk of compromise.
-  - **Do Not Embed Access Keys Directly in Code**: Use environment variables or AWS Secrets Manager to store access keys securely.
-  - **Delete Unused Access Keys**: Regularly audit and remove access keys that are no longer in use.
-    
-### NOTE : Access keys have been provided to the students for logging into an AWS account by the instructor. Please refer the documentation mentioned in 
 
 ## IAM Best Practices
 * Enforcing Strong Password Policies - Implement requirements for password complexity and rotation to enhance security.

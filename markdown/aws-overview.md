@@ -39,7 +39,7 @@ AWS maintains a massive global infrastructure that enhances the performance of i
   <img src="images/global_infra.png" alt="Global Infrastructure" width="400" height="400"//>
 </p>
 
-* Edge Locations: AWS Edge Locations are strategically positioned sites around the world that help reduce latency and improve the performance of AWS services like Amazon CloudFront and AWS Lambda@Edge by caching data closer to end users.
+* Edge Locations: AWS Edge Locations are strategically positioned sites around the world that help reduce latency and improve the performance of AWS services like Amazon CloudFront and AWS Lambda@Edge by caching data closer to end users.  They are not full AWS regions or Availability Zones but are extensions of these that help deliver AWS content delivery and other services more efficiently to end users.
 
 ## Tour of AWS Console
 Hands-on as shown in the class.

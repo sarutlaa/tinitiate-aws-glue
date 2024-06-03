@@ -25,7 +25,7 @@
 </p>
 
 #### IAM Permissions
-- **Description**: Defines what actions are allowed or denied on user or user groups or aws resources.
+- **Description**: Defines what actions are allowed or denied on users, user groups and aws resources.
 - **Common Uses**:
   - Restricting access to specific AWS services or functionalities (e.g., allowing read-only access to an S3 bucket).
   - Controlling the level of access a user or service has (e.g., granting full access vs. read-only access).

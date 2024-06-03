@@ -32,8 +32,6 @@ AWS maintains a massive global infrastructure that enhances the performance of i
   Each zone is made up of one or more data centers equipped with independent power, cooling, and networking.
 * Data Centers: AWS Data Centers are highly secure facilities that house the hardware and systems which power the various AWS services.
   They are strategically located in Availability Zones all over the world to ensure redundancy and resilience of AWS services.
-* Edge Locations: These are sites deployed in major cities and highly populated areas globally.
-  They are used to deliver content, reducing latency by caching data closer to end users. Edge Locations are integral to services like Amazon CloudFront and AWS Lambda@Edge.
   
 ## Tools to access AWS Environment
 1. AWS Management Console :The web-based interface where you can manage all AWS services. It provides a visual interface to monitor and control your resources.

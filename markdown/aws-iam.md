@@ -68,7 +68,7 @@ As depicted in the preceding image, we will create two user groups in the AWS Co
    
 Instructors can upload, delete, and modify files, as well as create buckets. Students can only download files from the S3 bucket uploaded by instructors and cannot create buckets.
 
-### Hands-On: User 1 Inline Policy
+### Hands-On: user01 Inline Policy
 1. Create a user with username - "user01".
 2. Choose attach a policy option.
 3. Select S3 service and add list of actions that are needed for the user to access AWS.

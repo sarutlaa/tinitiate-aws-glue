@@ -7,20 +7,14 @@
 * In essence, IAM helps you control who can access what within your AWS cloud environment, ensuring security and compliance.
 
 ## IAM Core Components
-All the IAM Core components can be accessed from IAM dashboard as shown below.
 
-<p align="center">
-  <img src="images/IAM_1.png" alt="IAM Dashboard" width="600"/>
-</p>
-
-
-### IAM Users
+### 1. IAM Users
 - **Description**: Represents an individual or service that interacts with AWS resources.
 - **Common Uses**:
   - Accessing AWS Management Console.
   - Interacting with AWS services programmatically via the API.
     
-### IAM User Groups
+### 2. IAM User Groups
 - **Description**: A collection of IAM users under a set of permissions.
 - **Common Uses**:
   - Simplifying permission management for multiple users.
@@ -29,35 +23,34 @@ All the IAM Core components can be accessed from IAM dashboard as shown below.
 <p align="center">
   <img src="images/IAM_2.png" alt="IAM Users and User Groups" width="600"/>
 </p>
-    
-### IAM Roles
+
+#### IAM Permissions
+- **Description**: Defines what actions are allowed or denied on user or user groups or aws resources.
+- **Common Uses**:
+  - Restricting access to specific AWS services or functionalities (e.g., allowing read-only access to an S3 bucket).
+  - Controlling the level of access a user or service has (e.g., granting full access vs. read-only access).
+
+### 4. IAM Roles
 - **Description**: Enables you to delegate permissions to AWS services or external users.
 - **Common Uses**:
   - Granting permissions to AWS services like Lambda functions to interact with other AWS resources without needing a separate IAM user.
   - Allowing users from another AWS account to access specific resources in your account in a secure way.
   
     
-### IAM Policies
+### 3. IAM Policies
 - **Description**: Documents that define permissions and can be attached to users, groups, roles, or even resources.
 - **Common Uses**:
   - Specifying allowed or denied actions and the conditions under which actions are allowed for a user, group, role, or resource.
   - Managing permissions centrally through policy documents which helps in achieving consistent security posture across resources.
     
-### Identity Providers (IdPs)
-- **Description**: External services that manage user authentication and authorization.
-- **Common Uses**:
-  - Federating single sign-on (SSO) to allow users to log in to AWS using their organizational credentials.
-  - Supporting integration with corporate directories to simplify the management of AWS resources.
-- **Details**:
-  - **SAML 2.0 Providers**: Enable users to authenticate with their existing corporate credentials to have access to AWS resources.
-  - **OpenID Connect Providers**: Allow users to authenticate using identity services like Google, Facebook, or any OpenID Connect-compatible identity provider.
+All the IAM Core components can be accessed from IAM dashboard as shown below.
+
+<p align="center">
+  <img src="images/IAM_1.png" alt="IAM Dashboard" width="600"/>
+</p>
 
 ## Additional Features
-### IAM Permissions
-- **Description**: Defines what actions are allowed or denied on specific AWS resources.
-- **Common Uses**:
-  - Restricting access to specific AWS services or functionalities (e.g., allowing read-only access to an S3 bucket).
-  - Controlling the level of access a user or service has (e.g., granting full access vs. read-only access).
+
 
 ### Multi-Factor Authentication (MFA)
 - **Description**: Adds an extra layer of security by requiring a second form of authentication for users

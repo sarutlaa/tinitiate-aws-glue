@@ -9,20 +9,27 @@
 ## IAM Core Components
 All the IAM Core components can be accessed from IAM dashboard as shown below.
 
-<img width="952" alt="IAM_1" src="https://github.com/sarutlaa/tinitiate-aws-glue/assets/141533429/60440f5c-809f-4072-9f71-791f250c5fab">
+<p align="center">
+  <img src="images/IAM_1.png" alt="IAM Dashboard" width="600"/>
+</p>
+
 
 ### IAM Users
 - **Description**: Represents an individual or service that interacts with AWS resources.
 - **Common Uses**:
   - Accessing AWS Management Console.
   - Interacting with AWS services programmatically via the API.
-  - 
+    
 ### IAM User Groups
 - **Description**: A collection of IAM users under a set of permissions.
 - **Common Uses**:
   - Simplifying permission management for multiple users.
   - Organizing users by department or role (e.g., devops group, finance group).
-  - 
+
+<p align="center">
+  <img src="images/IAM_2.png" alt="IAM Users and User Groups" width="600"/>
+</p>
+    
 ### IAM Roles
 - **Description**: Enables you to delegate permissions to AWS services or external users.
 - **Common Uses**:

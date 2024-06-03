@@ -15,7 +15,9 @@ It powers a wide range of infrastructure services, such as computing power, stor
 
 ## Benefits of AWS
 
-<img src="images/AWS_Benefits.png" alt="AWS Benefits" width="600"/>
+<p align="center">
+  <img src="images/AWS_Benefits.png" alt="AWS Benefits" width="600"/>
+</p>
 
 * Scalability: AWS provides scalable computing resources which means you only use what you need and can scale up or down as required.
 * Cost-Effective: With AWS, you pay only for the computing power, storage, and other resources you use, with no long-term contracts or upfront commitments.
@@ -33,7 +35,10 @@ AWS maintains a massive global infrastructure that enhances the performance of i
 * Data Centers: AWS Data Centers are highly secure facilities that house the hardware and systems which power the various AWS services.
   They are strategically located in Availability Zones all over the world to ensure redundancy and resilience of AWS services.
 
-  ![Global Infrastructure](images/global_infra.png)
+<p align="center">
+  <img src="images/global_infra.png" alt="Global Infrastructure" width="600"/>
+</p>
+
   
 ## Tools to access AWS Environment
 1. AWS Management Console :The web-based interface where you can manage all AWS services. It provides a visual interface to monitor and control your resources.

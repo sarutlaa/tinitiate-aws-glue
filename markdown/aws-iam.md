@@ -2,9 +2,10 @@
 
 ## Overview
 * Identity and Access Management, Global service - controls access to AWS and its resources.
-* AWS Identity and Access Management (IAM) enables you to manage access to AWS services and resources securely. 
+* Enables you to manage access to AWS services and resources securely. 
 * Using IAM, you can create and manage AWS users and groups, and use permissions to allow and deny their access to AWS resources.
-* In essence, IAM helps you control who can access what within your AWS cloud environment, ensuring security and compliance.
+
+In essence, IAM helps you control who can access what within your AWS cloud environment, ensuring security and compliance.
 
 ## IAM Core Components
 

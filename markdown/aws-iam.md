@@ -102,10 +102,13 @@ Sample Policy Structure in JSON Document:
 
 
 ### 4. IAM Roles
-- **Description**: Enables you to delegate permissions to AWS services or external users.
+- **Description**:
+  * IAM roles are used to grant specific permissions to AWS services, applications, and for cross-account access without using permanent credentials.
+  * Roles are assumed temporarily, and when assumed, AWS provides security credentials that are temporary and are automatically rotated.
 - **Common Uses**:
   - Granting permissions to AWS services like Lambda functions to interact with other AWS resources without needing a separate IAM user.
   - Allowing users from another AWS account to access specific resources in your account in a secure way.
+
 <p align="center">
   <img src="images/IAM_4.png" alt="IAM Role Example" width="600"/>
 </p>

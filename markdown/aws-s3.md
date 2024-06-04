@@ -59,24 +59,20 @@ Up to this point, we've explored methods to grant access to a user through IAM U
 - ```json
   {
       "Version": "2012-10-17",
+      "Id": "Policy1717533515994",
       "Statement": [
           {
+              "Sid": "Stmt1717533514621",
               "Effect": "Allow",
               "Principal": {
-                  "AWS": "arn:aws:iam::123456789012:user/student1"
+                  "AWS": "arn:aws:iam::352196831952:user/student1"
               },
-              "Action": [
-                  "s3:GetObject",
-                  "s3:PutObject",
-                  "s3:DeleteObject"
-              ],
-              "Resource": [
-                  "arn:aws:s3:::example-bucket/*"
-              ]
+              "Action": "s3:PutObject",
+              "Resource": "arn:aws:s3:::testbucket/*"
           }
       ]
   }
-  
+  ```
 - Explanation of the policy structure:
   * Resources : to which buckets and objects we applying this policy for
   * Effect : Allow/Deny

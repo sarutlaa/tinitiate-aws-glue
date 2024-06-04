@@ -35,9 +35,9 @@ Amazon Simple Storage Service (S3) is a cloud-based object storage service that 
   - If uploading more than 5TB, than we must use multi-part-upload.
 
 ### Sample Bucket path :
-          ```text
+  ```text
           s3://myphotos/2021/trip1/photo.jpg
-          ```
+  ```
   In this example:
   
       - Bucket: myphotos - This is the name of the S3 bucket where the data is stored.

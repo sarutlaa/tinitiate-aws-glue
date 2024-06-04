@@ -49,7 +49,7 @@ Amazon Simple Storage Service (S3) is a cloud-based object storage service that 
 ## Bucket Policies : 
 
 <p align="center">
-  <img src="images/S3_2.png" alt="S3 2" width="300"/>
+  <img src="images/S3_2.png" alt="S3 2" width="600"/>
 </p>
 
 Up to this point, we've explored methods to grant access to a user through IAM User Policies and allow other AWS resources access to S3 via IAM roles. Additionally, beyond using IAM User Policies and Roles, we can also establish a bucket policy to control access at the bucket level.

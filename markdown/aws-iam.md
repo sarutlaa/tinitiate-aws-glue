@@ -106,6 +106,9 @@ Sample Policy Structure in JSON Document:
 - **Common Uses**:
   - Granting permissions to AWS services like Lambda functions to interact with other AWS resources without needing a separate IAM user.
   - Allowing users from another AWS account to access specific resources in your account in a secure way.
+<p align="center">
+  <img src="images/IAM_4.png" alt="IAM Role Example" width="600"/>
+</p>
   
 All the IAM Core components can be accessed from IAM dashboard as shown below.
 

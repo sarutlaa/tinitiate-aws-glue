@@ -39,6 +39,7 @@ Amazon Simple Storage Service (S3) is a cloud-based object storage service that 
           s3://myphotos/2021/trip1/photo.jpg
           ```
   In this example:
+  
       - Bucket: myphotos - This is the name of the S3 bucket where the data is stored.
       - Key: 2021/trip1/photo.jpg - This is the unique identifier for the object within the bucket, which includes the path and the file name.
       - Object: The file itself, in this case, photo.jpg, is the object. It's stored at the specified key within the bucket.

@@ -130,3 +130,8 @@ All the IAM Core components can be accessed from IAM dashboard as shown below.
 * Enforcing Strong Password Policies - Implement requirements for password complexity and rotation to enhance security.
 * Principle of Least Privilege - Ensure that IAM policies grant the minimum permissions necessary to perform job functions.
 * Regular Audits - Conduct regular audits of your IAM settings to ensure they meet your current business needs and comply with your security policies.
+
+## Other Ways to access AWS 
+* Access AWS via CLI (Command Line Interface): The AWS CLI can be installed on your local PC to interact directly with AWS services. This tool does not require Putty; instead, it uses your IAM user’s access key ID and secret access key for authentication. Once configured, you can manage AWS resources from your command line.
+
+* Using AWS CloudShell: AWS CloudShell is a browser-based shell that you can launch directly from the AWS Management Console. It provides command-line access to AWS resources without the need to install any local software. CloudShell is pre-authenticated with your console credentials, simplifying the process of running AWS CLI commands directly in your browser.

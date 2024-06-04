@@ -2,7 +2,7 @@
 Amazon Simple Storage Service (S3) is a cloud-based object storage service that allows users to store and retrieve any amount of data from anywhere at any time.
 
 <p align="center">
-  <img src="images/S3_1.png" alt="S3" width="600"/>
+  <img src="images/S3_1.png" alt="S3" width="300"/>
 </p>
 
 ## S3 Features

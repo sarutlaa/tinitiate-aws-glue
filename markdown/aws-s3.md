@@ -46,22 +46,42 @@ Amazon Simple Storage Service (S3) is a cloud-based object storage service that 
 
 ### Hands On : Creating and Configuring an S3 Bucket.
 
+## Bucket Policies : 
 
-## Bucket Policies
+<p align="center">
+  <img src="images/S3_2.png" alt="S3 2" width="300"/>
+</p>
+
+Up to this point, we've explored methods to grant access to a user through IAM User Policies and allow other AWS resources access to S3 via IAM roles. Additionally, beyond using IAM User Policies and Roles, we can also establish a bucket policy to control access at the bucket level.
+
 - **Description**: JSON-based policies used to grant or restrict permissions for an S3 bucket and the objects within it.
 - **Example**: Allowing public read access to a bucket:
-  ```json
+- ```json
   {
-    "Version": "2012-10-17",
-    "Statement": [
-      {
-        "Effect": "Allow",
-        "Principal": "*",
-        "Action": ["s3:GetObject"],
-        "Resource": ["arn:aws:s3:::example-bucket/*"]
-      }
-    ]
+      "Version": "2012-10-17",
+      "Statement": [
+          {
+              "Effect": "Allow",
+              "Principal": {
+                  "AWS": "arn:aws:iam::123456789012:user/student1"
+              },
+              "Action": [
+                  "s3:GetObject",
+                  "s3:PutObject",
+                  "s3:DeleteObject"
+              ],
+              "Resource": [
+                  "arn:aws:s3:::example-bucket/*"
+              ]
+          }
+      ]
   }
+  
+- Explanation of the policy structure:
+  * Resources : to which buckets and objects we applying this policy for
+  * Effect : Allow/Deny
+  * Actions : Set of API to allow or deny
+  * Principal : Account or user to apply the policy to.
   
 ### Hands on : Writing and Applying a Bucket Policy
  
@@ -70,7 +90,7 @@ Amazon Simple Storage Service (S3) is a cloud-based object storage service that 
 - **Uses:**
   - Protects against accidental deletions and overwrites.
   - Enables easy recovery of previous versions of objects.
- 
+
 ## S3 Security
 - **Access Control**: Managed through IAM policies, bucket policies, and access control lists (ACLs).
 - **Encryption**:

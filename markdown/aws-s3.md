@@ -56,7 +56,7 @@ Up to this point, we've explored methods to grant access to a user through IAM U
 
 - **Description**: JSON-based policies used to grant or restrict permissions for an S3 bucket and the objects within it.
 - **Example**: Allowing public read access to a bucket:
-- ```json
+  ```json
   {
       "Version": "2012-10-17",
       "Id": "Policy1717533515994",

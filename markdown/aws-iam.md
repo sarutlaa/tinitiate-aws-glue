@@ -150,3 +150,8 @@ All the IAM Core components can be accessed from IAM dashboard as shown below.
     Each AWS service has specific CLI commands. You can find these by typing aws [service] help in the Command Prompt.
 
 * Using AWS CloudShell: AWS CloudShell is a browser-based shell that you can launch directly from the AWS Management Console. It provides command-line access to AWS resources without the need to install any local software. CloudShell is pre-authenticated with your console credentials, simplifying the process of running AWS CLI commands directly in your browser.
+
+
+## TASK 
+
+Try creating S3 bucket using Command Line Interface. 

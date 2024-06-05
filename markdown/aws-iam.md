@@ -133,5 +133,20 @@ All the IAM Core components can be accessed from IAM dashboard as shown below.
 
 ## Other Ways to access AWS 
 * Access AWS via CLI (Command Line Interface): The AWS CLI can be installed on your local PC to interact directly with AWS services. This tool does not require Putty; instead, it uses your IAM user’s access key ID and secret access key for authentication. Once configured, you can manage AWS resources from your command line.
+* Steps to access AWS via a CLI (Command Line Interface)
+  - Step 1: Download the installer for CLI in your PC Refer https://aws.amazon.com/cli/
+  - Step 2: Install the AWS CLI, once downloaded following the prompts given on the screen.
+  - Step 3: Configure AWS CLI
+         1. Open Command Prompt, type 'aws configure'
+         2.  You will be prompted to enter your AWS Access Key ID and AWS Secret Access Key, which you can get from your AWS Management Console under IAM (Identity and Access Management).
+         3. Next, enter the default region name (e.g., us-east-1) and default output format (e.g., json). These settings can be changed later if needed.
+  - Step 4: Verify Installation
+    ```text
+    aws s3 ls
+    ```
+    This command lists all the S3 buckets available under your account. If the configuration is correct, you should see a list of your S3 buckets (if any exist).
+  - Step 4: Using AWS CLI:
+    You can now use the AWS CLI to manage your AWS services. For example, to launch an EC2 instance, manage IAM roles, or handle other AWS resources.
+    Each AWS service has specific CLI commands. You can find these by typing aws [service] help in the Command Prompt.
 
 * Using AWS CloudShell: AWS CloudShell is a browser-based shell that you can launch directly from the AWS Management Console. It provides command-line access to AWS resources without the need to install any local software. CloudShell is pre-authenticated with your console credentials, simplifying the process of running AWS CLI commands directly in your browser.

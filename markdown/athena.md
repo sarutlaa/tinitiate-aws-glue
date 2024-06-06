@@ -61,3 +61,9 @@ AWS Glue Data Catalog: Stores these notes in an organized manner, making it easy
 * Query Result Caching: Athena provides query result caching that can help reduce costs and improve performance for repeated queries over the same data.
 * Data Transfer Costs: There are no additional data transfer fees for data scanned by Athena within the same AWS region. However, if query results are exported out of the 
   AWS region, standard AWS data transfer rates apply.
+
+## Today's Individual Hands on - Bucket Policies
+1. Create two S3 Buckets.
+2. Upload the files given to you during the class to your respective S3 buckets.
+3. Create a bucket policy that allows all IAM users in your AWS account list-only access to Bucket1.
+4. Create a bucket policy that allows all IAM users in your AWS account read-only access to Bucket2.

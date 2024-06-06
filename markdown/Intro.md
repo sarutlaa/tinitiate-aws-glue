@@ -7,7 +7,9 @@
 
 AWS Glue is a Serverless data integration i.e., fully managed Extract, Transform, and Load (ETL) service that makes it easy to prepare and process data for analytics and machine learning. It automates the discovery, cataloging, cleaning, enriching, and moving of data between various data stores enabling more focus on analyzing the data rather than managing the infrastructure.
 
-![AWS Glue Components](https://github.com/sarutlaa/tinitiate-aws-glue/assets/141533429/49d4152a-1baa-4ff8-ae33-1532e8eeffe3)
+<p align="center">
+  <img src="images/Glue_Components.png.png" alt="AWS Glue Components" width="600"/>
+</p>
 
 ***Fig.1 AWS Glue Components***
 

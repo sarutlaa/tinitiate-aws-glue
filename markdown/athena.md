@@ -40,6 +40,10 @@ Amazon Athena is an interactive query service that makes it easy to analyze data
 AWS Glue Crawler: Walks through your data stores, looks at all the data, and takes notes about what it finds (like the types of data and their organization).
 AWS Glue Data Catalog: Stores these notes in an organized manner, making it easy for you and other AWS services to understand and use the data efficiently.
 
+## Athena Console Walkthrough 
+1. Connecting to AWS Data Catalog and choosing the database from Glue.
+2. Executing ANSI SQL Queries in Athena. 
+
 ## Common Use Cases
 - Ad-hoc Analysis: Quickly run ad-hoc queries against large-scale datasets. Analysts use Athena for data exploration and quick checks without needing to set up complex data processing infrastructure.
 

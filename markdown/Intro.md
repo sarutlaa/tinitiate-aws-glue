@@ -2,6 +2,12 @@
 # AWS Glue Overview
 
 > Jay Kumsi & Sravya Arutla
+## What is ETL?
+Extract, Transform, and Load (ETL) is a data integration process that involves:
+
+1. Extracting data from homogeneous or heterogeneous sources,
+2. Transforming the data to fit operational needs, which may include cleansing, organizing, validating, and applying business rules, and
+3. Loading the data into a target database, data warehouse, or a data mart for analytics.
 
 ## Introduction
 
@@ -12,12 +18,10 @@ AWS Glue is a Serverless data integration i.e., fully managed Extract, Transform
 </p>
 
 ***Fig.1 AWS Glue Components***
-
 Below are the listed Key AWS Glue Components.
 
 
 ## AWS Glue Components
-
 AWS Glue utilizes a collaborative framework of multiple components, each contributing to the design and upkeep of ETL processes.
 
 ### Glue Console
@@ -33,40 +37,33 @@ AWS Glue utilizes a collaborative framework of multiple components, each contrib
 
 
 ### Database
-
 Databases in the AWS Glue Data Catalog function as collections of related Data Catalog table definitions, systematically organized into logical groups. This structure supports efficient data catalog organization and streamlines the control of access and permissions across a variety of datasets.
 
 ### Data Store, Data Source, and Data Target
-
 - Data Store: A repository designated for data storage. Within AWS Glue, data stores encompass Amazon S3 buckets, Amazon RDS databases, Amazon DynamoDB tables, among others.
 - Data Source: The origin point from which an ETL job retrieves its data. This encompasses any data store that is accessible by AWS Glue.
 - Data Target: The endpoint to which an ETL job delivers the processed data. Similar to the data source, it includes any data store supported by AWS Glue.
 
 ### Table
-
 - Provides a metadata definition, capturing the schema of data in its original storage location.
 - Includes details like column names, data types, and additional attributes, reflecting the structure of tables in standard relational databases. 
 
 Therefore, AWS Glue tables establish a structured metadata framework, outlining the characteristics of the data without changing its actual form or position.
 
 ### Crawler and Classifier
-
 * Crawler: A component of AWS Glue that scans various data stores to automatically discover and infer schemas. It categorizes data formats and suggests schemas and transformations, populating the Glue Data Catalog with table definitions.
 
 * Classifier: Identifies the schema of data. Upon execution, a crawler activates classifiers to deduce the data's format and schema. These classifiers are adept at recognizing a range of file formats and data types, such as JSON, CSV, and Parquet.
 
 ### Job
-
 - A business logic that automates the ETL process.
 - Involves extracting data from a source, transforming this data according to specified rules, and loading it into a target destination.
 
 ### Glue Triggers
-
 - Conditions or schedules that automatically start ETL jobs.
 - Configurable to activate on a set schedule, in reaction to specific events, or on-demand, facilitating flexible and automated management of data workflows.
 
 ### Development Endpoint
-
 - A development endpoint provides an environment for the interactive development and testing of ETL scripts.
 - It offers a serverless Apache Spark environment, enabling exploration and experimentation with data transformation logic prior to deployment as a job.
 

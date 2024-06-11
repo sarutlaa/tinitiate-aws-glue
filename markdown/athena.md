@@ -44,7 +44,33 @@ Amazon Athena is an interactive query service that makes it easy to analyze data
 
 ## Athena Console Walkthrough 
 1. Connecting to AWS Data Catalog and choosing the database from Glue.
-2. Executing ANSI SQL Queries in Athena. 
+2. Executing ANSI SQL Queries in Athena.
+3. Creating table to directly read the data from S3 (CSV File) without crawler
+   sample SQL query:
+   ```sql
+   CREATE EXTERNAL TABLE IF NOT EXISTS AwsDataCatalog.tinitiate_athena.pq_sample_athena (
+    productid INT,
+    categoryid INT,
+    productname STRING,
+    unit_price DOUBLE
+    )
+    ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
+    WITH SERDEPROPERTIES (
+        "separatorChar" = ",",
+        "quoteChar" = "\"",
+        "escapeChar" = "\\"
+    )
+    STORED AS TEXTFILE
+    LOCATION 's3://your-s3-bucket';
+    ```
+For this make sure your S3 bucket has give the glue access to create database in Glue Data Catalog. The above query can be explained as :
+* CREATE EXTERNAL TABLE IF NOT EXISTS: Creates a new external table in Athena, only if a table with the same name does not already exist.
+* Table Name and Schema: Specifies the full table name (AwsDataCatalog.tinitiate_athena.pq_sample_athena) and defines the columns (productid, categoryid, productname, unit_price) with their respective data types.
+* ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde': Uses the OpenCSVSerde to interpret the comma-separated values in the data files.
+* WITH SERDEPROPERTIES: Sets properties for the SERDE, specifying the comma as a separator, double quotes as quote characters, and the backslash as an escape character.
+* STORED AS TEXTFILE: Indicates the data is stored as plain text files.
+* LOCATION 's3://ti-author-data/retail/product/': Points to the specific Amazon S3 directory that contains the data files Athena will query.
+
 
 ## Common Use Cases
 - Ad-hoc Analysis: Quickly run ad-hoc queries against large-scale datasets. Analysts use Athena for data exploration and quick checks without needing to set up complex data processing infrastructure.
@@ -69,3 +95,6 @@ Amazon Athena is an interactive query service that makes it easy to analyze data
 2. Upload the files given to you during the class to your respective S3 buckets.
 3. Create a bucket policy that allows all IAM users in your AWS account list-only access to Bucket1.
 4. Create a bucket policy that allows all IAM users in your AWS account read-only access to Bucket2.
+
+## Task to be submitted before Wednesday's class:
+For the prurchase csv please create a table through Athena in tinitiate_athena Data Catalog and perform few of the analysis on purchase data. 

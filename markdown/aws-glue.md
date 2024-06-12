@@ -45,10 +45,6 @@
 
 ## Adding External Libraies
 * [External Libraries](adding-external-libraries.md)
-
-### Pending Ones
-* Glue Generate PySpark DataFrame from RDBMS (Oracle, SQL Server, Postgresql, MySQL) - Pending
-* Glue Generate PySpark DataFrame from DynamoDB - Pending ( nested and non nested table building )
   
 ## Building a DataFrame from Various Source types:
 * [Reading from CSV](read-from-csv.md)

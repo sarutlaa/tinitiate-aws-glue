@@ -108,4 +108,4 @@ UI Creation Walk through - Hands On
 4. Create a bucket policy that allows all IAM users in your AWS account read-only access to Bucket2.
 
 ## Task 2 - Athena Tables (DDL) Creation from S3
-1 From the folder uploaded into the "ti-student-apr-2024" , Creating tables in Athena_tinitate Data Catalog, as discussed in the class.
+1. From the folder uploaded into the "ti-student-apr-2024" , Creating tables in Athena_tinitate Data Catalog, as discussed in the class.

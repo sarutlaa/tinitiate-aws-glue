@@ -46,8 +46,6 @@ Amazon Athena is an interactive query service that makes it easy to analyze data
 1. Connecting to AWS Data Catalog and choosing the database from Glue.
 2. Executing ANSI SQL Queries in Athena.
 3. Creating table to directly read the data from S3 (CSV File) without crawler
-
-   Using Athena Console will be shown in hands-on and below is the code to create using SQL
    sample SQL query:
    ```sql
     CREATE EXTERNAL TABLE IF NOT EXISTS AwsDataCatalog.tinitiate_athena.pq_sample_athena (
@@ -80,6 +78,7 @@ For this make sure your S3 bucket has give the glue access to create database in
 * LOCATION 's3://ti-author-data/retail/product/': Points to the specific Amazon S3 directory that contains the data files Athena will query.
 * TBLPROPERTIES: Sets additional table properties such as CSV classification and instructs Athena to skip the header row in the data files.
 
+UI Creation Walk through.
 
 ## Common Use Cases
 - Ad-hoc Analysis: Quickly run ad-hoc queries against large-scale datasets. Analysts use Athena for data exploration and quick checks without needing to set up complex data processing infrastructure.

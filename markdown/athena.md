@@ -64,7 +64,7 @@ Amazon Athena is an interactive query service that makes it easy to analyze data
          "escapeChar" = "\\"
      )
      STORED AS TEXTFILE
-     LOCATION 's3://ti-student-apr-2024/products_input'
+     LOCATION 's3://ti-student-apr-2024/athena/products_input'
      TBLPROPERTIES (
       'classification'='csv', 
       'skip.header.line.count'='1');

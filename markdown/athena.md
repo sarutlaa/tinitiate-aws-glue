@@ -43,9 +43,12 @@ Amazon Athena is an interactive query service that makes it easy to analyze data
 * AWS Glue Data Catalog: Stores these notes in an organized manner, making it easy for you and other AWS services to understand and use the data efficiently.
 
 ## Athena Console Walkthrough 
+### Method 1 Access: Using Glue Data Crawler and Catalog
 1. Connecting to AWS Data Catalog and choosing the database from Glue.
 2. Executing ANSI SQL Queries in Athena.
-3. Creating table to directly read the data from S3 (CSV File) without crawler
+
+### Method 2 Access: Reading from S3 without crawler
+1. Creating table to directly read the data from S3 (CSV File) from specified location
    sample SQL query:
    ```sql
     CREATE EXTERNAL TABLE IF NOT EXISTS AwsDataCatalog.tinitiate_athena.pq_sample_athena (
@@ -78,7 +81,7 @@ For this make sure your S3 bucket has give the glue access to create database in
 * LOCATION 's3://ti-author-data/retail/product/': Points to the specific Amazon S3 directory that contains the data files Athena will query.
 * TBLPROPERTIES: Sets additional table properties such as CSV classification and instructs Athena to skip the header row in the data files.
 
-UI Creation Walk through.
+UI Creation Walk through - Hands On
 
 ## Common Use Cases
 - Ad-hoc Analysis: Quickly run ad-hoc queries against large-scale datasets. Analysts use Athena for data exploration and quick checks without needing to set up complex data processing infrastructure.
@@ -98,11 +101,11 @@ UI Creation Walk through.
 * Data Transfer Costs: There are no additional data transfer fees for data scanned by Athena within the same AWS region. However, if query results are exported out of the 
   AWS region, standard AWS data transfer rates apply.
 
-## Today's Individual Hands on - Bucket Policies
+## Task 1 - Bucket Policies
 1. Create two S3 Buckets.
 2. Upload the files given to you during the class to your respective S3 buckets.
 3. Create a bucket policy that allows all IAM users in your AWS account list-only access to Bucket1.
 4. Create a bucket policy that allows all IAM users in your AWS account read-only access to Bucket2.
 
-## Task to be submitted before Wednesday's class:
-For the prurchase csv please create a table through Athena in tinitiate_athena Data Catalog and perform few of the analysis on purchase data. 
+## Task 2 - Athena Tables (DDL) Creation from S3
+1 From the folder uploaded into the "ti-student-apr-2024" , Creating tables in Athena_tinitate Data Catalog, as discussed in the class.

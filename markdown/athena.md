@@ -46,30 +46,39 @@ Amazon Athena is an interactive query service that makes it easy to analyze data
 1. Connecting to AWS Data Catalog and choosing the database from Glue.
 2. Executing ANSI SQL Queries in Athena.
 3. Creating table to directly read the data from S3 (CSV File) without crawler
+
+   Using Athena Console will be shown in hands-on and below is the code to create using SQL
    sample SQL query:
    ```sql
-   CREATE EXTERNAL TABLE IF NOT EXISTS AwsDataCatalog.tinitiate_athena.pq_sample_athena (
-    productid INT,
-    categoryid INT,
-    productname STRING,
-    unit_price DOUBLE
-    )
-    ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
-    WITH SERDEPROPERTIES (
-        "separatorChar" = ",",
-        "quoteChar" = "\"",
-        "escapeChar" = "\\"
-    )
-    STORED AS TEXTFILE
-    LOCATION 's3://your-s3-bucket';
+    CREATE EXTERNAL TABLE IF NOT EXISTS AwsDataCatalog.tinitiate_athena.pq_sample_athena (
+     productid INT,
+     categoryid INT,
+     productname STRING,
+     unit_price DOUBLE
+     )
+     ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
+     WITH SERDEPROPERTIES (
+         "separatorChar" = ",",
+         "quoteChar" = "\"",
+         "escapeChar" = "\\"
+     )
+     STORED AS TEXTFILE
+     LOCATION 's3://ti-student-apr-2024/products_input'
+     TBLPROPERTIES (
+      'classification'='csv', 
+      'skip.header.line.count'='1');
     ```
 For this make sure your S3 bucket has give the glue access to create database in Glue Data Catalog. The above query can be explained as :
-* CREATE EXTERNAL TABLE IF NOT EXISTS: Creates a new external table in Athena, only if a table with the same name does not already exist.
-* Table Name and Schema: Specifies the full table name (AwsDataCatalog.tinitiate_athena.pq_sample_athena) and defines the columns (productid, categoryid, productname, unit_price) with their respective data types.
-* ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde': Uses the OpenCSVSerde to interpret the comma-separated values in the data files.
-* WITH SERDEPROPERTIES: Sets properties for the SERDE, specifying the comma as a separator, double quotes as quote characters, and the backslash as an escape character.
+* CREATE EXTERNAL TABLE IF NOT EXISTS: Creates a new external table in Athena only if a table with the same name does not already exist.
+* Table Name and Schema: Specifies the table's name and its columns (productid, categoryid, productname, unit_price) with their data types.
+* ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde': Uses the OpenCSVSerde to parse CSV format data. SERDE (Serializer/Deserializer) is responsible for defining how strings in the file are interpreted as rows in the table. This choice is particularly suitable for CSV files.
+* WITH SERDEPROPERTIES:
+    - separatorChar = ",": Sets the comma (,) as the column delimiter.
+    - quoteChar = "\"": Sets the double quote (") as the character for enclosing fields, particularly useful for handling fields that contain the delimiter.
+    - escapeChar = "\\": Sets the backslash (\) as the escape character to allow for inclusion of special characters like newlines, tabs, or even delimiters as literal characters.
 * STORED AS TEXTFILE: Indicates the data is stored as plain text files.
 * LOCATION 's3://ti-author-data/retail/product/': Points to the specific Amazon S3 directory that contains the data files Athena will query.
+* TBLPROPERTIES: Sets additional table properties such as CSV classification and instructs Athena to skip the header row in the data files.
 
 
 ## Common Use Cases

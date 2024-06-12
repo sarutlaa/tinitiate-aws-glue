@@ -36,7 +36,7 @@
 
 ### Advanced Query Techniques
 * [Psuedo Columns](glue-pyspark-built-in-pseudo-columns.md)
-* [Hierarchial Queries](glue-hierarchial-queries.md) - ERROR , check pyspark version of running a recursive query
+* [Hierarchial Queries](glue-hierarchial-queries.md) 
   
 ### Partitioning Concepts:
 * [Data Repartition](glue-repartition.md)

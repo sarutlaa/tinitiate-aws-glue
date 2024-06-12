@@ -5,14 +5,6 @@
 * [AWS Glue Overview](Intro.md)
 * [Apache Spark Overview](spark.md)
 * [AWS Glue Crawler](aws-glue-crawler.md)
-   * Source
-   * Target
-* Glue with PySpark
-    * Source S3 (CSV,Parquet,JSON,AWS ION) - Target(S3,RDBMS,DynamoDB)
-        * IAM roles needed
-        * Code Structure
-    * Source RDBMS (Oracle, SQL Server, Postgresql) - Target(S3,RDBMS,DynamoDB) 
-    * Source Dynamo - Target(S3,RDBMS,DynamoDB)
 
 ## Glue with PySpark
 * [IAM Prerequisites](IAM-prerequisites.md)
@@ -72,10 +64,5 @@
 * [Writing Parquet to S3](write-to-parquet.md)
 * [Writing AWS ION to S3](write-to-awsion.md)
 
-### 
-* Glue PySpark Targets write DataFrame to RDBMS (Oracle, SQL Server, Postgresql, MySQL)
-* Glue PySpark Targets write DataFrame to NoSQL DynamoDB
-* Glue PySpark DataFrame index
-* Glue PySpark DataFrame caching
-* Glue PySpark DataFrame performance tuning
+
 

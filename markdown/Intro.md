@@ -93,6 +93,22 @@ Each of these components plays a crucial role in the AWS Glue service, working t
 - Spark, Scala, and Python expertise required
 - No real-time data operations
 
+## AWS Glue Features
+1. Serverless ETL Service: AWS Glue is serverless, which means it automatically provisions the environment needed to complete the job without requiring you to manage any infrastructure.
+
+2. Data Catalog: AWS Glue provides a persistent metadata repository known as the AWS Glue Data Catalog, which stores metadata about your data assets, making it easy for you to find and access data across AWS services.
+
+3. Integrated Data Sources: It supports data stored in Amazon S3, Amazon RDS, Amazon Redshift, and any JDBC-compliant databases. This broad support enables seamless integration with a variety of AWS and on-premise data stores.
+
+4. Automatic Schema Discovery: AWS Glue automatically discovers and profiles your data via its crawlers, suggesting schemas and transformations, which reduces the manual effort typically involved in preparing data for ETL.
+
+5. Code Generation: AWS Glue generates ETL code in Python or Scala that is customizable and reusable. It simplifies the process of writing ETL scripts by generating code that's tailored to your data sources.
+
+6. Flexible Scheduling: ETL jobs in AWS Glue can be triggered based on a schedule, in response to events, or on-demand. This allows for flexible data processing workflows that can adapt to business needs.
+
+7. Scalable and Efficient: AWS Glue can handle ETL workloads that scale from a few data processing units (DPUs) to potentially thousands, automatically scaling to match the workload. DPUs are a measure of processing power that encapsulate CPU, memory, and network capacity.
+
+8. Transformations and Job Orchestration: Glue offers built-in transformations, and it also integrates with AWS Step Functions to allow for complex job orchestration workflows across multiple AWS services.
 
 ## Use Cases
 

@@ -9,6 +9,10 @@ Extract, Transform, and Load (ETL) is a data integration process that involves:
 2. Transforming the data to fit operational needs, which may include cleansing, organizing, validating, and applying business rules, and
 3. Loading the data into a target database, data warehouse, or a data mart for analytics.
 
+   <p align="center">
+    <img src="images/ETL_1.png" alt="ETL 1" width="600"/>
+  </p>
+
 ## Introduction
 
 AWS Glue is a Serverless data integration i.e., fully managed Extract, Transform, and Load (ETL) service that makes it easy to prepare and process data for analytics and machine learning. It automates the discovery, cataloging, cleaning, enriching, and moving of data between various data stores enabling more focus on analyzing the data rather than managing the infrastructure.

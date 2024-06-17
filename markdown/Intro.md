@@ -125,29 +125,29 @@ Each of these components plays a crucial role in the AWS Glue service, working t
    * Contains raw data stored across various systems (like databases or cloud storage).
 2. Crawler:
 
-* Automatically scans the data in these stores.
-* Identifies the format, schema, and associated properties of the data.
-* Updates the AWS Glue Data Catalog with this metadata.
+  * Automatically scans the data in these stores.
+  * Identifies the format, schema, and associated properties of the data.
+  * Updates the AWS Glue Data Catalog with this metadata.
 3. Data Catalog:
-
-* Central repository for all data metadata collected by the crawler.
-* Helps in managing and accessing data structure information easily.
+  
+  * Central repository for all data metadata collected by the crawler.
+  * Helps in managing and accessing data structure information easily.
 3. AWS Management Console:
 
-* Interface used to configure and manage AWS Glue settings and operations.
+  * Interface used to configure and manage AWS Glue settings and operations.
 4. Schedule or Event:
 
-* Triggers for the AWS Glue jobs which can be set based on specific schedules (time-based) or events (like data updates).
+  * Triggers for the AWS Glue jobs which can be set based on specific schedules (time-based) or events (like data updates).
 5. Job:
 
-* Consists of business logic that performs ETL operations:
-* Extract: Data is extracted from the source systems listed in the Data Catalog.
-* Transform: Data is processed and transformed using predefined scripts to clean, reformat, and enrich.
-* Load: Transformed data is loaded into a target system for further analysis like a data warehouse or data mart.
+  * Consists of business logic that performs ETL operations:
+  * Extract: Data is extracted from the source systems listed in the Data Catalog.
+  * Transform: Data is processed and transformed using predefined scripts to clean, reformat, and enrich.
+  * Load: Transformed data is loaded into a target system for further analysis like a data warehouse or data mart.
 6. Data Source and Data Target:
 
-6. Data Source: The initial repository from where data is pulled during the extract phase.
-7. Data Target: The final destination where cleaned and transformed data is stored for access and analysis.
+  * Data Source: The initial repository from where data is pulled during the extract phase.
+  * Data Target: The final destination where cleaned and transformed data is stored for access and analysis.
 
 
 ## Use Cases

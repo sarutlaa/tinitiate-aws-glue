@@ -34,7 +34,7 @@ Configure Security Setting
 
 ### Step 5:
 * Set Output and Scheduling
-   1. Select the Target Database, we have already created glue_db . 
+   1. Select the Target Database, we have already created glue_db . ( Create a database in database, if you want to add in a new database )
    2. If Database is not created then click Add Database to create one.
    3. select the frequency on which the crawler to run. 
    4. Click next

@@ -40,7 +40,11 @@ Classifiers work alongside crawlers to accurately understand the format of your 
 |           | Amazon DocumentDB |
 
 
+## Workflow of a Crawler:
 
+   <p align="center">
+    <img src="images/ETL_2.png" alt="ETL 2" width="600"/>
+  </p>
 			
 			
 			

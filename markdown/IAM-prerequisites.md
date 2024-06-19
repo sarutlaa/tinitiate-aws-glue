@@ -12,14 +12,7 @@ AWS Glue crawlers rely on an IAM role to perform their data discovery and schema
 - Log in to the AWS Management Console.
 - In the navigation pane on the left side of the page, locate the "IAM" service and click on it.
   
-### Step 2. Creating the IAM Role:
-- Under IAM services, click on "Roles" from the left-hand sidebar.
-- Click the "Create role" button.
-- In the "Choose a role type" section, select "AWS service".
-- From the list of services, choose "Glue".
-- Click "Next: Permissions".
-  
-### Step 3. Attaching Permissions:
+### Step 2. Attaching Permissions:
 Here, we'll define two separate policy documents to grant the required permissions:
 
 #### a) S3 Access Policy:
@@ -52,10 +45,16 @@ Here, we'll define two separate policy documents to grant the required permissio
 - This policy allows the crawler to read data (GetObject) and potentially write temporary files (PutObject) during the crawling process.
 - Enter a descriptive name for your policy (e.g., "S3AccessForGlueCrawler") and click "Create policy".
 
-#### b) Glue Service Role Policy:
 
+#### b) Glue Service Role Policy:
+Lets now create a policy for Glue 
+- Under IAM services, click on "Policy" from the left-hand sidebar.
+- Click the "Create Policy" button.
+- In the "Choose a role type" section, select "AWS service".
+- From the list of services, choose "Glue".
+- Click "Next: Permissions".
 * Click on the "Attach existing policies" button.
-* In the search bar, type "AWSGlueServiceRole" and select the policy.
+* In the search bar, type "AWSGlueServiceRole".
   ![Crawler_3](images/AWSGlueservicerole.png)
 * Click "Attach policy".
 * Below Json policy is for Glue Service Role
@@ -115,14 +114,9 @@ Here, we'll define two separate policy documents to grant the required permissio
   		]
   	}
   ```
-  ### Step 4. Finalizing the IAM Role:
-* Review the attached policies and click "Next: Tags" (optional: add tags for better organization).
-  ![Crawler_5](images/image-5.png)
-* Click "Next: Review" to review the role details and permissions.
-  ![Crawler_4](images/image-4.png)
-* Enter a name for your IAM role (e.g., "GlueCrawlerRole") and click "Create role".
 
-## Create Crawler Roles for the policies created
+
+## Creating IAM Roles for the policies created in above step
 ### Step 1: Go to IAM (Identity and Access Management) , 
 * click the roles tab on the left side of the page and click on create role
    ![Crawler_6](images/image-6.png)

@@ -98,14 +98,6 @@ df = spark.createDataFrame(data, columns)
 df.show()
 ```
 
-### AWS Glue Dynamic Dataframe
-AWS Glue offers a unique component known as the DynamicFrame, which is designed specifically for use within the AWS Glue environment.
-- Schema Flexibility: DynamicFrames do not require a schema to be defined beforehand. They are designed to handle schema variations automatically, which is particularly useful when dealing with semi-structured or unstructured data sources.
-- Error Handling: They are more tolerant of data inconsistencies and errors. For instance, if a certain operation fails on a subset of data due to schema mismatches, DynamicFrames can continue processing the remaining data without failing the entire job.
-- Interoperability: DataFrames support seamless conversion to and from RDDs and can be easily integrated with other Spark components like Spark SQL and MLlib.
-- Error Handling: They are more tolerant of data inconsistencies and errors. For instance, if a certain operation fails on a subset of data due to schema mismatches, DynamicFrames can continue processing the remaining data without failing the entire job.
-- Transformation and Processing: AWS Glue provides various built-in transformations specifically designed to be used with DynamicFrames, such as ApplyMapping, DropFields, and RenameField.
-
 ### What is Lazy Evaluation?
 Apache Spark utilizes a concept known as "lazy evaluation" which is central to its processing efficiency and optimization capabilities. Here’s a straightforward overview, focusing on the concepts of transformations and actions in Spark:
 
@@ -124,4 +116,19 @@ Transformations are operations that create a new dataset from an existing one. E
 - Optimization: Spark’s ability to optimize the execution plan (like rearranging operations or combining tasks) is possible because of lazy evaluation. This results in more efficient processing.
 - Reduced Overhead: By organizing data operations into stages and executing them only when necessary, Spark reduces the overhead and latency associated with executing numerous intermediate data operations.
 - Adaptive Execution: Spark can adapt the execution plan based on the actual data and cluster conditions at runtime, which often leads to better utilization of resources and faster execution times.
+
+### Spark Dataframe vs Glue Dynamic Dataframe
+
+# Spark DataFrame vs AWS Glue Dynamic DataFrame
+
+| Aspect          | Spark DataFrame                           | AWS Glue Dynamic DataFrame                |
+|-----------------|-------------------------------------------|-------------------------------------------|
+| **Definition**           | A distributed collection of data organized into named columns, similar to tables in a relational database. | An extension of Spark DataFrames specifically designed for AWS Glue, with additional dynamic capabilities. |
+| **Schema Flexibility** | Fixed schema; must be defined upfront or inferred at read time. | Flexible schema; can adapt dynamically to changing data during processing. |
+| **Error Handling** | Fails on data errors unless explicitly handled. | Continues processing even with some data errors, making it robust for messy data sources. |
+| **Environment** | Works in any Spark-enabled environment.  | Specific to AWS Glue, integrates well with AWS services. |
+| **Performance** | Generally faster due to static schema optimization. | May have some overhead due to dynamic schema handling. |
+| **Use Cases**   | Ideal for structured data with a stable schema. | Better for ETL jobs where data schema might vary or evolve over time. |
+
+
 

@@ -33,3 +33,10 @@ Monitoring and Logging
 * Keep Functions Lean: The leaner your function, the quicker the execution. Organize your deployment package to include only necessary code and dependencies.
 * Minimize Permissions: Apply the principle of least privilege by granting your Lambda functions only the permissions they need.
 * Optimize Execution Time: Monitor and optimize the execution time of your functions, especially if they are part of a larger, user-facing workflow.
+
+## AWS Lambda Pricing:
+* Pay-per-Request: $0.20 per 1 million requests after the first free 1 million requests monthly.
+* Compute Time: Priced per 100 milliseconds of execution, scaled by the amount of memory allocated.
+* Free Tier: Includes 1 million requests and 400,000 GB-seconds of compute time monthly, free.
+* Additional Costs: Charges for using other AWS services and data transfer may apply.
+

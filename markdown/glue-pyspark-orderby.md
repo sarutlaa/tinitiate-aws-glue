@@ -14,9 +14,9 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
 * [Crawler Setup Instructions](set-up-instructions.md)
 
 ##  PySpark Script - [pyspark-orderby.py](../glue-code/ti-pyspark-orderby.py)
-- Input tables          : purchase
+- Input tables          : electric_vehicle_population_data_csv
 - Output                : cloudwatch logs
-- Crawlers used         : purchase_crawler
+- Crawlers used         : electric_vechiles
 
 ## Main Operations
 ### 1. Initializing Spark and Glue Contexts:

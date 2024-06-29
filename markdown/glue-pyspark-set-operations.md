@@ -50,9 +50,10 @@ Ensure proper configuration of IAM roles and S3 buckets and run necessary crawle
   ```
 * Intersect Operation: Retrieves only the common rows between two datasets.
   ```python
-  union_all_df = df1.union(df2)
-  print("Union All Results:")
-  union_all_df.show()
+  # Intersect operation
+  intersect_df = df1.intersect(df2)
+  print("Intersect Results:")
+  intersect_df.show()
   ```
 * Except Operation: Retrieves records from the first DataFrame that do not exist in the second DataFrame.
   ```python

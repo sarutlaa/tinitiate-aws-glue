@@ -1,8 +1,6 @@
 # Handling Null and Non-Null Values
 The script performs essential data cleansing operations by segregating null and non-null values within a specified column of the dataset. This process is critical for preparing the data for further analytics, ensuring that downstream processes such as reporting and data visualization are based on clean and accurate data.
 
-DateTime manipulations are crucial for preparing data for analyses that depend on accurate timing and scheduling insights. This includes timezone adjustments, formatting dates for readability, and calculating time differences to understand durations or delays.
-
 ## Prerequisites
 
 Ensure proper configuration of IAM roles and S3 buckets and run necessary crawleras outlined here:

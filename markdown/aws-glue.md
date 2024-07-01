@@ -37,7 +37,6 @@
 
 ### Advanced Query Techniques
 * [Psuedo Columns](glue-pyspark-built-in-pseudo-columns.md)
-* [Hierarchial Queries](glue-hierarchial-queries.md) 
   
 ### Partitioning Concepts:
 * [Data Repartition](glue-repartition.md)

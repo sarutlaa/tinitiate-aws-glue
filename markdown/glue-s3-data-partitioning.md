@@ -1,10 +1,15 @@
 # Data Partitioning and Storage with PySpark in AWS Glue
-This document outlines the process of loading, partitioning, and storing data using PySpark within AWS Glue. The script demonstrates how to manage and write partitioned data to Amazon S3 in different formats, leveraging partitioning capabilities to enhance data retrieval and processing efficiency.
+In PySpark and AWS Glue, the partitionBy method is a crucial feature for organizing and optimizing how data is stored, especially when working with large datasets that need to be processed in distributed environments like Apache Spark or stored efficiently in systems like AWS S3. Understanding how partitionBy works and how to apply it correctly can significantly improve performance and cost-effectiveness of data operations.
 
-## Overview:
-1. Partitioning: Organizing data in a structured format within S3 to enhance query performance and data management.
-2. Data Formats: Writing data in multiple formats (Parquet, JSON, CSV) to support various use cases and systems.
-   
+## Key Points:
+
+1. Purpose: Organizes data into partitions or directories based on column values. It's particularly useful for data that is queried frequently based on certain columns, such as date or region.
+2. Functionality: When you save a DataFrame using partitionBy, PySpark creates a folder structure for each unique value or combination of values in the specified column(s). Each folder then contains only the data corresponding to its partition value, which can significantly improve query performance on large datasets.
+3. Usage: Commonly used with file formats that support partition discovery like Parquet and ORC, which allow Spark to optimize queries by reading only relevant partitions of data.
+
+
+AWS Glue uses the same principle as PySpark but adds additional integration with AWS services. Glue can read and write data from various sources like Amazon S3, and using partitionBy helps manage data storage more efficiently and reduce costs by minimizing the data scanned during queries.
+
 ## Prerequisites
 Ensure proper configuration of IAM roles and S3 buckets and run necessary crawleras outlined here:
 * [IAM Prerequisites](IAM-prerequisites.md)

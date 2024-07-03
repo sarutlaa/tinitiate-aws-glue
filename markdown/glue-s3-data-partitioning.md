@@ -10,6 +10,8 @@ In PySpark and AWS Glue, the partitionBy method is a crucial feature for organiz
 
 AWS Glue uses the same principle as PySpark but adds additional integration with AWS services. Glue can read and write data from various sources like Amazon S3, and using partitionBy helps manage data storage more efficiently and reduce costs by minimizing the data scanned during queries.
 
+The partitionBy() method is used primarily when writing DataFrames to disk. It partitions data based on one or more specified column values before saving it
+
 ## Prerequisites
 Ensure proper configuration of IAM roles and S3 buckets and run necessary crawleras outlined here:
 * [IAM Prerequisites](IAM-prerequisites.md)

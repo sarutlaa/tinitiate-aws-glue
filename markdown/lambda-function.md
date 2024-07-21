@@ -1,4 +1,4 @@
-# Overview of AWS Lambda Functions
+# AWS Lambda Functions
 
 The individual functions you write and deploy within the AWS Lambda service. Each Lambda function is a piece of code that performs a specific task and is executed in response to an event. 
 
@@ -42,4 +42,4 @@ The individual functions you write and deploy within the AWS Lambda service. Eac
 - Scalability: AWS Lambda automatically scales by adjusting the number of EC2 instances based on the number of incoming requests. This means your function can handle increases in workload without any manual intervention.
 - Pay for Use: You only pay for the compute time you consume, making AWS Lambda a cost-effective solution for running code that responds to events.
 
-
+## Hands-On Lambda Function Creation

@@ -63,13 +63,13 @@ The individual functions you write and deploy within the AWS Lambda service. Eac
   </p>
   - Permissions: Expand the "Change default execution role" section.
   - Execution Role: Choose "Create a new role with basic Lambda permissions" or use an existing role if you already have one appropriate for a simple Lambda function.
-            <p align="center">
+      <p align="center">
     <img src="images/Lambda_5.png" alt="Lambda Function 2" width="600"/>
   </p>
 
 ### Step 3: Write Function Code
 - After creating the function, you will be redirected to the function's configuration page.
-              <p align="center">
+  <p align="center">
     <img src="images/Lambda_6.png" alt="Lambda Function 3" width="600"/>
   </p>
 - In the "Function code" section, find the online code editor.
@@ -83,7 +83,7 @@ The individual functions you write and deploy within the AWS Lambda service. Eac
         'body': 'Welcome to Tinitiate, AWS Training'
     }
   ```
-                <p align="center">
+  <p align="center">
     <img src="images/Lambda_7.png" alt="Lambda Function 4" width="600"/>
   </p>
 
@@ -92,7 +92,7 @@ The individual functions you write and deploy within the AWS Lambda service. Eac
 - Test:
   - Click on the "Test" button at the top of the page.
   - Create a new test event: In the dialog that appears, you can leave the default event template. Name your test event (e.g., testEvent) and click "Create".
-                  <p align="center">
+    <p align="center">
     <img src="images/Lambda_8.png" alt="Lambda Function 4" width="600"/>
   </p>
   - Click the "Test" button again to execute the function with the test event you created.

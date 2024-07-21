@@ -2,19 +2,8 @@
 > Sravya Arutla
 
 * [AWS Lambda Overview](aws-lambda-overview.md)
-   - Introduction to serverless computing
-   - Benefits and use cases of AWS Lambda
-   - Core features and capabilities
-
 * [Lambda Functions Overview](lambda-function.md)
-   - Understanding Lambda functions
-   - Configuration, deployment, and execution
-   - Event sources and event handling
-
 * [IAM Best Practices for Lambda](iam-best-practices-lambda.md)
-   - Securing Lambda functions with IAM roles
-   - Minimum privilege and permission boundaries
-   - Tips for managing credentials and policies
 
 ## Lambda Development
 * Event Handling with Lambda

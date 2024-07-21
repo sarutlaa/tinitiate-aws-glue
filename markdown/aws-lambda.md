@@ -3,7 +3,6 @@
 
 * [AWS Lambda Overview](aws-lambda-overview.md)
 * [Lambda Functions Overview](lambda-function.md)
-* [IAM Best Practices for Lambda](iam-best-practices-lambda.md)
 
 ## Lambda Development
 * [Python Code Deployment](lambda-python-deployment.md)

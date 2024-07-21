@@ -11,7 +11,8 @@ The individual functions you write and deploy within the AWS Lambda service. Eac
 
 ## How Lambda Function works internally?
 1. Uploading Code:
-  Developers upload their function code to AWS Lambda. This code is what will be executed when the function is triggered. The code must be written in one of the programming languages supported by Lambda, such as Python or Node.js.
+  Developers upload their function code to AWS Lambda. This code is what will be executed when the function is triggered.
+  Supported programming languages  : The code must be written in one of the by Lambda, such as Python or Node.js.
 
 3. ARN Generation:
   When you upload your code, AWS Lambda automatically generates an Amazon Resource Name (ARN). This ARN is a unique identifier for your Lambda function, which you will use to reference and invoke your function.

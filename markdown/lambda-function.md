@@ -97,9 +97,7 @@ The individual functions you write and deploy within the AWS Lambda service. Eac
   </p>
   - Click the "Test" button again to execute the function with the test event you created.
                
- 
-## TASK : Similarly implement the same for jave code.
-    
+   
 ### Step 5: Review Execution Result
 - After testing, you will see the execution result in the console. This includes the execution log and return value from the function. The logs will display "Hello, World!" if executed correctly, and the execution result should show the return statement defined in your function.
 
@@ -117,3 +115,6 @@ You can view detailed logs and monitor the function's execution metrics using AW
    <p align="center">
     <img src="images/Lambda_11.png" alt="Lambda Function 7" width="600"/>
   </p>
+
+
+## TASK : Similarly implement the same for jave code.

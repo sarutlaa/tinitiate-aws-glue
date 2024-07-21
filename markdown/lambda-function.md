@@ -109,3 +109,11 @@ The individual functions you write and deploy within the AWS Lambda service. Eac
 
 ### Step 7: Monitor and Logs
 You can view detailed logs and monitor the function's execution metrics using AWS CloudWatch, which is directly integrated into the Lambda console under the "Monitor" tab.
+
+ <p align="center">
+    <img src="images/Lambda_10.png" alt="Lambda Function 6" width="600"/>
+  </p>
+
+   <p align="center">
+    <img src="images/Lambda_11.png" alt="Lambda Function 7" width="600"/>
+  </p>

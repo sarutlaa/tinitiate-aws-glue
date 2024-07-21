@@ -10,26 +10,27 @@ The individual functions you write and deploy within the AWS Lambda service. Eac
 * IAM Role: The IAM policy that grants your function permission to access AWS resources
 
 ## How Lambda Function works internally?
-1. Uploading Code
-Developers upload their function code to AWS Lambda. This code is what will be executed when the function is triggered. The code must be written in one of the programming languages supported by Lambda, such as Python or Node.js.
+1. Uploading Code:
+  Developers upload their function code to AWS Lambda. This code is what will be executed when the function is triggered. The code must be written in one of the programming languages supported by Lambda, such as Python or Node.js.
 
-2. ARN Generation
-When you upload your code, AWS Lambda automatically generates an Amazon Resource Name (ARN). This ARN is a unique identifier for your Lambda function, which you will use to reference and invoke your function.
+3. ARN Generation:
+  When you upload your code, AWS Lambda automatically generates an Amazon Resource Name (ARN). This ARN is a unique identifier for your Lambda function, which you will use to reference and invoke your function.
 
 <p align="center">
   <img src="images/Lambda_1.png" alt="Lambda Function" width="600"/>
 </p>
 
-4. Invoking the Function
-Your Lambda function can be triggered (invoked) in various ways:
+4. Invoking the Function:
+  Your Lambda function can be triggered (invoked) in various ways:
+  
+  Directly through the AWS Management Console or using the AWS CLI.
+  Automatically by AWS services, such as when a new file is uploaded to S3 or a new record is added to a DynamoDB table.
+  
+4. Load Balancing:
+  AWS Lambda uses internal load balancing mechanisms to efficiently distribute incoming function calls across its infrastructure. This ensures that each function invocation is processed quickly and efficiently.
 
-Directly through the AWS Management Console or using the AWS CLI.
-Automatically by AWS services, such as when a new file is uploaded to S3 or a new record is added to a DynamoDB table.
-4. Load Balancing
-AWS Lambda uses internal load balancing mechanisms to efficiently distribute incoming function calls across its infrastructure. This ensures that each function invocation is processed quickly and efficiently.
-
-5. Execution
-Lambda functions are executed inside a secure, isolated environment. This environment is automatically managed by AWS and runs on a fleet of EC2 instances that are optimized for Lambda. Developers do not need to worry about the underlying EC2 instances; AWS handles the scaling and management automatically.
+5. Execution:
+  Lambda functions are executed inside a secure, isolated environment. This environment is automatically managed by AWS and runs on a fleet of EC2 instances that are optimized for Lambda. Developers do not need to worry about the underlying EC2 instances; AWS handles the scaling and management automatically.
 
 
 <p align="center">

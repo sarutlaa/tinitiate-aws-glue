@@ -43,7 +43,7 @@ The individual functions you write and deploy within the AWS Lambda service. Eac
 - Scalability: AWS Lambda automatically scales by adjusting the number of EC2 instances based on the number of incoming requests. This means your function can handle increases in workload without any manual intervention.
 - Pay for Use: You only pay for the compute time you consume, making AWS Lambda a cost-effective solution for running code that responds to events.
 
-## Hands-On Lambda Function Creation
+## Hands-On Lambda Function Creation in Python
 
 ### Step 1: Open AWS Lambda Console
 - Navigate to the AWS Management Console.
@@ -118,3 +118,30 @@ You can view detailed logs and monitor the function's execution metrics using AW
 
 
 ## TASK : Similarly implement the same for jave code.
+
+
+## Lambda Functions: Working with other Languages
+
+When using AWS Lambda, only Python and Node.js have direct support for in-browser code editing. For other supported languages (like Java, Go, C#, Ruby, and PowerShell), you must package and upload your code as a ZIP file.
+### 1. Prepare Your Code
+* Write Your Code: Develop your Lambda function locally in your chosen language.
+* Package Your Code:
+    - For compiled languages (like Java or C#), compile your code and package the binaries and any dependencies into a ZIP file.
+    - For interpreted languages (like Ruby), package your script files and any dependencies into a ZIP file.
+### 2. Create a Lambda Function
+* Open AWS Management Console, go to the Lambda section.
+* Create Function: Select “Author from scratch”, input your function name, and select the runtime that matches your programming language.
+* Set Permissions: Choose an existing IAM role or create a new one that has the necessary permissions for your function.
+### 3. Upload Your Function Code
+* Navigate to Function Code Section: Choose "Upload from" -> ".zip file".
+* Upload Your ZIP File: Upload the ZIP file containing your function and its dependencies.
+### 4. Configure Your Function
+* Handler Name: Specify the method in your code that Lambda calls to start execution.
+  * Example for Java: com.example.MyHandler::handleRequest
+  * Example for Ruby: lambda_function.handler
+* Environment Variables: Set any necessary environment variables.
+### 5. Deploy and Test
+* Deploy Your Code: Save and deploy your changes in the Lambda console.
+* Test Your Function: Set up a test event and invoke your function to ensure it works correctly.
+### 6. Monitoring and Logs
+* Use AWS CloudWatch: Monitor the execution and performance of your function through logs and metrics available in CloudWatch.

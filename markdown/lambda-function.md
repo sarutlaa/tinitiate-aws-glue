@@ -51,15 +51,27 @@ The individual functions you write and deploy within the AWS Lambda service. Eac
 
 ### Step 2: Create a New Lambda Function
 - Create Function: Click on the "Create function" button.
+    <p align="center">
+    <img src="images/Lambda_3.png" alt="Lambda Create Function" width="600"/>
+  </p>
 - Author from Scratch: Select "Author from scratch".
 - Function Configuration:
   - Name: Enter a name for your function, such as HelloWorldPython.
   - Runtime: Select "Python 3.8" (or the latest supported Python version available).
+    <p align="center">
+    <img src="images/Lambda_4.png" alt="Lambda Function 1" width="600"/>
+  </p>
   - Permissions: Expand the "Change default execution role" section.
   - Execution Role: Choose "Create a new role with basic Lambda permissions" or use an existing role if you already have one appropriate for a simple Lambda function.
+            <p align="center">
+    <img src="images/Lambda_5.png" alt="Lambda Function 2" width="600"/>
+  </p>
 
 ### Step 3: Write Function Code
 - After creating the function, you will be redirected to the function's configuration page.
+              <p align="center">
+    <img src="images/Lambda_6.png" alt="Lambda Function 3" width="600"/>
+  </p>
 - In the "Function code" section, find the online code editor.
 - Replace the existing code with the following simple "Welcome to Tinitiate, AWS Training!" Python code:
 
@@ -71,18 +83,29 @@ The individual functions you write and deploy within the AWS Lambda service. Eac
         'body': 'Welcome to Tinitiate, AWS Training'
     }
   ```
+                <p align="center">
+    <img src="images/Lambda_7.png" alt="Lambda Function 4" width="600"/>
+  </p>
 
 ### Step 4: Save and Test the Function
 - Save: Click the "Deploy" button to save your function code.
 - Test:
   - Click on the "Test" button at the top of the page.
   - Create a new test event: In the dialog that appears, you can leave the default event template. Name your test event (e.g., testEvent) and click "Create".
+                  <p align="center">
+    <img src="images/Lambda_8.png" alt="Lambda Function 4" width="600"/>
+  </p>
   - Click the "Test" button again to execute the function with the test event you created.
+               
  
 ## TASK : Similarly implement the same for jave code.
     
 ### Step 5: Review Execution Result
 - After testing, you will see the execution result in the console. This includes the execution log and return value from the function. The logs will display "Hello, World!" if executed correctly, and the execution result should show the return statement defined in your function.
+
+ <p align="center">
+    <img src="images/Lambda_9.png" alt="Lambda Function 5" width="600"/>
+  </p>
 
 ### Step 7: Monitor and Logs
 You can view detailed logs and monitor the function's execution metrics using AWS CloudWatch, which is directly integrated into the Lambda console under the "Monitor" tab.

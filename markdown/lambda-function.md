@@ -21,10 +21,10 @@ The individual functions you write and deploy within the AWS Lambda service. Eac
 </p>
 
 4. Invoking the Function:
-  Your Lambda function can be triggered (invoked) in various ways:
-  
-  Directly through the AWS Management Console or using the AWS CLI.
-  Automatically by AWS services, such as when a new file is uploaded to S3 or a new record is added to a DynamoDB table.
+    Your Lambda function can be triggered (invoked) in various ways:
+    
+    Directly through the AWS Management Console or using the AWS CLI.
+    Automatically by AWS services, such as when a new file is uploaded to S3 or a new record is added to a DynamoDB table.
   
 4. Load Balancing:
   AWS Lambda uses internal load balancing mechanisms to efficiently distribute incoming function calls across its infrastructure. This ensures that each function invocation is processed quickly and efficiently.

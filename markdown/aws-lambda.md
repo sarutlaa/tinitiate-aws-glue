@@ -6,7 +6,7 @@
 * [IAM Best Practices for Lambda](iam-best-practices-lambda.md)
 
 ## Lambda Development
-* Python Code Deployment(lambda-python-deployment.md)
+* [Python Code Deployment](lambda-python-deployment.md)
 * Event Handling with Lambda
   * Lambda Functions with S3
   * Lambda Functions with SNS

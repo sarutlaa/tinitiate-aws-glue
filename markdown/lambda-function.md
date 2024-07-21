@@ -37,5 +37,9 @@ The individual functions you write and deploy within the AWS Lambda service. Eac
   <img src="images/Lambda_2.png" alt="Lambda Function Internal Working" width="600"/>
 </p>
 
+### Key Points to Remember
+- Isolation: Each function runs in its own isolated environment, ensuring that functions do not interfere with each other.
+- Scalability: AWS Lambda automatically scales by adjusting the number of EC2 instances based on the number of incoming requests. This means your function can handle increases in workload without any manual intervention.
+- Pay for Use: You only pay for the compute time you consume, making AWS Lambda a cost-effective solution for running code that responds to events.
 
 
